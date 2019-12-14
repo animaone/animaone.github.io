@@ -1,5 +1,5 @@
 /*                                                                                                                                                                                                             
- * ChartNew.js  
+ * ChartNew.js
  *                                                                                                                                                                           
  * Vancoppenolle Francois - January 2014                                                                               
  * francois.vancoppenolle@favomo.be                                                                                    
