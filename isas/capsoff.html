@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>CAPSOFF/SMALL</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>CAPSOFF/SMALL</H2>
+
+<font size=-1>[ <A HREF="binset.html">前ページへ</A> | <A HREF="capson.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>シンボルの英文字を、小文字と大文字を別文字として判断します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	CAPSOFF
+</PRE>
+<P>または</P>
+<PRE>	SMALL
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>CAPSOFF疑似命令、またはSMALL疑似命令を指定すると、シンボルの英文字部分の大文字と小文字を異なる文字として判断します。例えば、シンボル名"ABC"とシンボル名"abc"は異なるシンボルとして判断します。</P>
+<P>なお、CAPSOFF疑似命令とSMALL疑似命令はスペルのみ異なり、動作は同じです。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="capson.html">CAPSON</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	capsoff
+ABC				; シンボル名"ABC"を定義する
+	:
+abc				; シンボル名"abc"はシンボル名"ABC"とは
+	:			; 異なるシンボルとしてして判断するので
+	:			; エラーは発生しない
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

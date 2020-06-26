@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>OPTI（65816用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>OPTI（65816用）</H2>
+
+<font size=-1>[ <A HREF="onrng.html">前ページへ</A> | <A HREF="org.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>1パス目アセンブル時に未解決シンボルのオペランド長を指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	OPTI	&lt;式&gt;<!-- <式> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>1パス目のアセンブル時に解決できないオペランド部のシンボルが見つかった場合、確保するシンボルのオペランド長を指定します。&lt;式&gt;<!-- <式> -->に0から5までの値を指定することにより、未解決シンボルのオペランド長を決定する優先順位を指定することができます。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>&lt;式&gt;<!-- <式> --></TH>
+	<TH COLSPAN=3 ALIGN=LEFT VALIGN=TOP NOWRAP>アドレッシングの優先順位</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>0</TD>
+	<TD NOWRAP>ダイレクト</TD>
+	<TD NOWRAP>アブソリュート</TD>
+	<TD NOWRAP>ロング</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>1</TD>
+	<TD NOWRAP>アブソリュート</TD>
+	<TD NOWRAP>ダイレクト</TD>
+	<TD NOWRAP>ロング</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>2</TD>
+	<TD NOWRAP>アブソリュート</TD>
+	<TD NOWRAP>ロング</TD>
+	<TD NOWRAP>ダイレクト</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>3</TD>
+	<TD NOWRAP>ダイレクト</TD>
+	<TD NOWRAP>ロング</TD>
+	<TD NOWRAP>アブソリュート</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>4</TD>
+	<TD NOWRAP>ロング</TD>
+	<TD NOWRAP>ダイレクト</TD>
+	<TD NOWRAP>アブソリュート</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>5</TD>
+	<TD NOWRAP>ロング</TD>
+	<TD NOWRAP>アブソリュート</TD>
+	<TD NOWRAP>ダイレクト</TD>
+</TR>
+</TABLE>
+
+<P>例えば、次のようにOPTI疑似命令の&lt;式&gt;<!-- <式> -->が1の時、</P>
+
+<PRE>	opti	1
+	op_code	symbol
+symbol	dw	00H
+</PRE>
+
+<P>ope_codeが指定できるアドレッシングを次の優先順位に従ってチェックし、未解決シンボルsymbolのオペランド長として確保します。</P>
+
+<OL>
+<LI>アブソリュートアドレッシングを指定することができる時は2バイト
+<LI>ダイレクトアドレッシングを指定することができる時は1バイト
+<LI>何れも指定できない時は3バイト
+</OL>
+
+<P>なお、ISAS起動時に<A HREF="isasoption.html#IS65">-is65オプション</A>を指定した時のOPTI疑似命令のデフォルト値は1、指定しない時のデフォルト値は5となっています。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="is65.html">IS65</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	is65
+	opti	2		; アブソリュート、ロング、ダイレクトの
+	:			; 順に最適化する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

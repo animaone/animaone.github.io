@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>MACRO</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>MACRO</H2>
+
+<font size=-1>[ <A HREF="lprefix.html">前ページへ</A> | <A HREF="mradix.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>マクロに一連の命令を定義します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>&lt;マクロ名&gt;	MACRO	[仮引数][,仮引数] ... [,仮引数]<!-- <マクロ名>	MACRO	[仮引数][,仮引数] ... [,仮引数] -->
+		[命令]
+		ENDM
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;マクロ名&gt;<!-- <マクロ名> -->に指定されたマクロに、[命令]の部分に記述された一連の命令を定義します。</P>
+<P>&lt;マクロ名&gt;<!-- <マクロ名> -->は、マクロを展開する時のキーワードとなります。そのため、ニーモニックや疑似命令と同じ名前は付けることはできません。また、使用できる文字や文字数はシンボルと同じ扱いになります。</P>
+<P>[仮引数]に仮引数を記述することにより、マクロに引数を与えることができます。与えられた仮引数は、[命令]に記述された仮引数と同じ名前の部分に値を代入します。なお、複数個の仮引数を指定する場合は、それぞれの[仮引数]をカンマ（,）で区切ってください。</P>
+<P>[命令]には、マクロ定義したいニーモニックや疑似命令を記述します。また、[命令]の中で更に別のマクロを呼び出す（マクロ定義のネスティング）ことができます。マクロ定義のネスティングは最大256回まで行うことができます。</P>
+<P>[命令]の最後には、必ずMACRO疑似命令と対になるENDM疑似命令を記述する必要があります。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="macroname.html">&lt;マクロ名&gt;<!-- <マクロ名> --></A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>mov	macro	dest,src	; マクロ定義
+	lda	src
+	sta	dest
+	endm
+	:
+	mov	symbol2,symbol1	; マクロ展開
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

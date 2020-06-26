@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>EQU</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>EQU</H2>
+
+<font size=-1>[ <A HREF="endif.html">前ページへ</A> | <A HREF="errtag.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>シンボルに値を定義します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>&lt;名前&gt;	EQU	&lt;式&gt;<!-- <名前>	EQU	<式> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;名前&gt;<!-- <名前> -->の部分に記述したシンボルに&lt;式&gt;<!-- <式> -->の値を割り当てるもので、定義後&lt;名前&gt;<!-- <名前> -->を参照することにより、その&lt;式&gt;<!-- <式> -->の値を得ることができます。なお、EQU疑似命令は&lt;名前&gt;<!-- <名前> -->を再定義することができませんが、<A HREF="substitute.html">=疑似命令</A>は&lt;名前&gt;<!-- <名前> -->を再定義することができます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="substitute.html">=</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>sample	equ	$10		; シンボル名sampleに$10を割り当てる
+	lda	#sample		; 10Hをレジスタにロード
+sample	equ	$20		; 再定義できないのでエラーが発生する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ELSE</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ELSE</H2>
+
+<font size=-1>[ <A HREF="dspm.html">前ページへ</A> | <A HREF="end.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>IFで始まる疑似命令のアセンブル条件が評価されない時評価します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ELSE
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ELSE疑似命令の前に記述されているIFで始まる疑似命令のアセンブル条件が評価されない時、次の<A HREF="endif.html">ENDIF疑似命令</A>までのブロックをアセンブルします。ELSE疑似命令は、必ずIFで始まる疑似命令と<A HREF="endif.html">ENDIF疑似命令</A>の間に記述しなければいけません。</P>
+<PRE>	if	&lt;条件&gt;<!-- <条件> -->
+	:			; アセンブル条件が評価された時にアセン
+	:			; ブルされる
+	else			; IF疑似命令とENDIF疑似命令の間に記述
+	:			; アセンブル条件が評価されない時にアセ
+	:			; ンブルされる
+	endif
+</PRE></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="if.html">IF/IFN</A>、<A HREF="ife.html">IFE</A>、<A HREF="ifb.html">IFB</A>、<A HREF="ifnb.html">IFNB</A>、<A HREF="ifdef.html">IFDEF</A>、<A HREF="ifndef.html">IFNDEF</A>、<A HREF="endif.html">ENDIF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ifn	1		; IFN疑似命令のアセンブル条件が真
+	lda	#$10		; この部分はアセンブルされる
+	else
+	lda	#$20		; この部分はアセンブルされない
+	endif
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

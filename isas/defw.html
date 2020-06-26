@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DEFW/DW</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DEFW/DW</H2>
+
+<font size=-1>[ <A HREF="defs.html">前ページへ</A> | <A HREF="dspif.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>2バイト単位（下位バイト、上位バイトの順）、または4バイト単位（V810SF時のみ）でデータをメモリに配置します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DEFW	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+<P>または</P>
+<PRE>	DW	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>V810SF以外のプロセッサ用としてアセンブルする時には、&lt;式&gt;<!-- <式> -->には2バイトのデータを与えることができ、下位バイト、上位バイトの順にメモリに配置されます。次に説明するDEFD/DD疑似命令とはメモリに配置するデータの順番が異なります。</P>
+<P>また、V810SFプロセッサ用としてアセンブルする時には、4バイトのデータ与えることができ、下位バイトから順にメモリに配置されます。複数の&lt;式&gt;<!-- <式> -->を与える時は、それぞれの&lt;式&gt;<!-- <式> -->をカンマ（,）で区切ってください。</P>
+<P>なお、DEFW疑似命令とDW疑似命令はスペルのみ異なり、動作は同じです。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="defb.html">DEFB/DB</A>、<A HREF="defh.html">DEFH/DH</A>、<A HREF="defd.html">DEFD/DD</A>、<A HREF="defl.html">DEFL/DL</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	defw	$1234		; メモリ上に34H、12Hの順に配置
+	isv810
+	defw	$12345678	; メモリ上に78H、56H、34H、12Hの順に配
+	:			; 置（V810SF時）
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

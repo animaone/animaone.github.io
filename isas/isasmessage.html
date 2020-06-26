@@ -1,0 +1,1144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISASのメッセージ</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISASのメッセージ</H2>
+
+<font size=-1>[ <A HREF="warninglevel.html">前ページへ</A> | <A HREF="islkmessage.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISASが出力するメッセージについて説明します。メッセージの説明では、1行目に英語メッセージとエラーまたはウォーニングの種類、2行目に日本語メッセージ、3行目以降にメッセージの説明や対処方法等について記述しています。なお、英語メッセージはデフォルト、またはISAS起動時に<A HREF="isasoption.html#ENGLISH">-usオプション</A>を指定、日本語メッセージは<A HREF="isasoption.html#JAPANESE">-jpオプション</A>を指定した時に表示されます。</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Already PUBALL.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>既にPUBALL状態です。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><A HREF="puball.html">PUBALL疑似命令</A>を指定後に、<A HREF="puboff.html">PUBOFF疑似命令</A>が指定されています。<A HREF="puball.html">PUBALL疑似命令</A>を指定するとローカルシンボルを除く全てのシンボルを外部定義シンボルとして宣言するので、<A HREF="puboff.html">PUBOFF疑似命令</A>を指定して外部定義シンボルの宣言を解除することはできません。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD><B>An alignment has available only at next-line of first-group.</B></TD>
+<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD><B>アライメントは最初のグループの直後のみ有効です。</B></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD COLSPAN=2>ロケーションのアライメントを調整するための<a href="even.html">EVEN疑似命令</a>が、正しい位置に記述されていません。<a href="even.html">EVEN疑似命令</a>は、モジュール内で<a href="group.html">GROUP疑似命令</a>が記述されてから初めてオペコードが記述されるまでの間、または<a href="org.html">ORG疑似命令</a>を記述した後に記述する必要があります。
+
+<pre>rom0	group	0
+	even	2		; 正しい記述
+	ld	a,$10		; GROUP疑似命令以降初めてのオペコード
+	:
+</pre>
+
+<pre>rom0	group	0
+	:
+	ret
+	org	$2000		; ORG疑似命令
+	even	2		; 正しい記述
+</pre>
+
+上記以外の部分に<a href="even.html">EVEN疑似命令</a>を記述した場合、アライメント調整が正しく行われる保証ができないためこの警告が出力されます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>An operand includes uncertain symbol.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>未解決のシンボルは評価できません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>式で使用するシンボルはアセンブル時に既知である必要があります。このエラーが発生する時は、式に外部定義されているシンボルを使用していることが考えられます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Binary file read failure.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>バイナリーファイルの読み込みに失敗しました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><A HREF="libbin.html">LIBBIN疑似命令</A>によってバイナリーファイルを読み込んでいる時にエラーが発生しました。<A HREF="binset.html">BINSET疑似命令</A>によって指定されたサイズのデータが読み込めなかったことが原因です。バイナリーファイルのサイズを確認し、正しい値を<A HREF="binset.html">BINSET疑似命令</A>で指定してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not create temporary.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>テンポラリーファイルが作成できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISASは、アセンブル時にカレントディレクトリ、または<A HREF="value.html#ISTMP">ISTMP、TEMP、TMP</A>の何れかの環境変数が指定されている時はその指定されたディレクトリに[]内に表示されたファイル名のテンポラリーファイルを作成しますが、ディスクの容量不足によってこのファイルが作成できない時にエラーが発生します。ディスクの空き容量を確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not declare to external.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>既に定義されているシンボルは外部参照宣言できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>既に定義されているシンボルと同じ名前で、<A HREF="extern.html">EXTERN疑似命令</A>によって外部参照として宣言されています。[]内には外部参照シンボルと同一名のシンボルが表示されます。
+
+<PRE>symbol	equ	$10
+	:
+	extern	symbol		; ここでエラーが発生します
+	:
+</PRE>
+
+外部参照シンボル、または定義しているシンボルの何れかの名前を変更してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not define external symbol.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>外部参照シンボルは定義できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><A HREF="extern.html">EXTERN疑似命令</A>によって既に外部参照として宣言されているシンボルと同じ名前のシンボルが再度定義されています。[]内には外部参照シンボルと同一名のシンボルが表示されます。
+
+<PRE>	extern	symbol
+	:
+symbol	lda	#$00		; ここでエラーが発生します
+	:
+</PRE>
+
+このような場合は、外部参照シンボル、または定義しているシンボルの何れかの名前を変更してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not define macro in macro.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(1)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>マクロの中でマクロを定義できません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロ定義内で他のマクロが定義されています。マクロ定義内では他のマクロは定義できません。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not devide by 0.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>０で除算する事はできません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>0で除算している式があります。0で除算することはできません。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not open file.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルがオープンできません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたファイルが見つからないためオープンすることができません。指定したファイル名やそのディレクトリパスを確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not redefine symbol.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>再定義できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>同じ名前のシンボルが二ヶ所以上で定義されています。[]に表示されているシンボル名を変更してください。また、このメッセージが表示される時は以下のような場合が考えられます。
+
+<UL>
+<LI>シンボルに再定義した値を代入したい時に<A HREF="equ.html">EQU疑似命令</A>を使用している場合は、<A HREF="equ.html">EQU疑似命令</A>ではなく<A HREF="substitute.html">=疑似命令</A>を使用してください。
+<LI>ISASがシンボルを判断する時、デフォルトでは全て大文字として判断します。大文字と小文字を分けて判断する時は、<A HREF="capsoff.html">CAPSOFF/SMALL疑似命令</A>を指定してください。
+<LI>マクロ展開によってシンボルが再定義される場合には特に注意が必要です。例えば次のようなマクロが展開された場合、"test"マクロが展開されるとローカルシンボル"_symbol"が続けて定義されるのでウォーニングが出力されてしまいます。
+
+<PRE>test	macro			; マクロ定義
+_symbol				; マクロ内のローカルシンボルを定義
+	endm
+
+	test			; マクロ展開
+	test			; マクロ展開
+</PRE>
+
+このような時は、マクロ定義内の先頭で<A HREF="local.html">LOCAL疑似命令</A>を指定して、マクロ内で定義されたシンボルをマクロ定義内でのみ有効とします。
+
+<PRE>test	macro			; マクロ定義
+	local	_symbol		; マクロ内でのみ有効とする
+_symbol				; マクロ内のローカルシンボルを定義
+	endm
+</PRE>
+</UL>
+</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not write file.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルに出力できません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISASが出力するファイル（オブジェクトファイル、リストファイル、エラータグファイル）がディスクに正常に出力できませんでした。ディスクの容量不足が考えられるため、ファイルの出力先ディスクの空き容量を確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Conflict register.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>命令展開の中でレジスタが衝突しています。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>V810SFの命令展開時にアセンブラが使用する汎用レジスタと同一のレジスタが既に使用されています。例えば、
+
+<PRE>	isv810
+	rsvreg	1
+	cmp	65536,r1	; 命令展開される部分
+</PRE>
+
+この時、cmp命令の部分は次のように命令展開されるため、既に使用されているR1レジスタの内容が命令展開によって変更されてしまいます。
+
+<PRE>	movhi	65536'hi1,r0,r1
+	movea	65536'lo,r1,r1
+	cmp	r1,r1		; 比較する右オペランドのr1が既に変更されている
+</PRE>
+
+なお、命令展開によって使用されるレジスタは<A HREF="rsvreg.html">RSVREG疑似命令</A>によって指定することができます。詳しくは"<A HREF="pseudo.html">第５章　疑似命令</A>"の"<A HREF="rsvreg.html">RSVREG（V810SF用）</A>"の項目を参照してください。
+</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Duplicate symbol in macro.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>マクロ内でシンボルが重複しています。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロ定義中のパラメータ置換用シンボルおよびローカルシンボルで、同じ名前のシンボルが使用されています。[]内に表示された同名のシンボル名を変更してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Expression stack over flow.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>計算に必要なスタックを使い果たしました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ソースファイル内で四則演算等の計算式が長すぎる時に発生します。このような時は、計算式を短くしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>File create failure.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルの作成に失敗しました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたファイルが作成できませんでした。ファイル名やディレクトリパスを確認してください。また、MS-DOSまたはPC DOSの環境変数FILESの値が小さい時にもこのエラーが発生する場合があるので、環境変数FILESの値が小さすぎないか確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>File read failure.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルの読み込みに失敗しました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたファイルが正常に読み込めません。ファイルの有無、およびファイル名やディレクトリパスを確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Fit to correct range.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>正しいレンジに合わせました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>特定の命令において、記述できる値の範囲に制限があるにも関わらずその制限を越えて記述した時に、制限内に収まるようにマスクされました。例えば、V810SFプロセッサのLD命令では16ビットのディスプレースメントが指定できますが、この16ビットの範囲を超えた値を指定するとISASは自動的に16ビットでマスクし、同時に警告を表示します。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Forward reference.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>前方参照はできません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>オペランドの演算記述において、既知でないシンボルが使用されています。シンボルが定義されていないか、前方参照、または外部参照されているシンボルが使用されています。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>GROUP symbol error.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>グループで定義されたシンボルです。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><A HREF="group.html">GROUP疑似命令</A>によってグループ宣言されたグループ名を、再度シンボルとして定義しています。グループ名、またはシンボル名の何れかの名前を変更してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Ignore character [].</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>キャラクターを無視しました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>イミディエイトアドレシングの指定で、シャープ（#）の後にシャープ、エクスクラメーション（!）、またはチルダ（~）が記述されている時に表示されます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Illegal operand type.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>不法なオペランドタイプです。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ニーモニックがサポートしていないモードのオペランドが記述されています。例えば、イミディエイトアドレッシングを用意していないJMP命令でオペランドにイミディエイトデータを記述した時に発生します。
+
+<PRE>	jmp	#$10		; これはエラーです
+</PRE></TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Improper addressing.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>不適切なアドレッシングです。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>未解決のオペランドのアドレッシングモードとオペコードがサポートしているアドレッシングモードとが一致していません。アドレッシングを確定するために、プリフィックスを指定してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Improper operand type.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>不正なオペランドタイプです。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>オペコードがサポートしていないアドレッシングタイプをオペランドに発見した時に発生します。オペコードがサポートしている正しいアドレッシングモードを記述してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Improper range.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>不適切なレンジです。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>2パス目のアセンブルで確定されたアドレッシングの値が、1パス目で指定されたアドレッシングと異なる時に発生します。例えば、次のような場合が考えられます。
+
+<PRE>	lda	.ABSADRS	; ダイレクトアドレッシングの指定 
+	:
+ABSADRS	equ	0ffh+1		; ダイレクトアドレッシングの有効範囲を越えてい
+	:			; る
+</PRE>
+
+1パス目では、シンボルABSADRSはダイレクトアドレッシングが指定されているため、2バイト命令としてコードの領域を確保します。しかし、<A HREF="equ.html">EQU疑似命令</A>でダイレクトアドレッシングの有効範囲（1バイト）を越えた値が指定されているため、2パス目で2バイト命令が生成できないためにエラーが発生します。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Improper scope.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(1)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>不適切な階層です。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>通常出力されないウォーニングです。このメッセージが出力した時には、お手数ですが弊社までご連絡下さるようお願い致します。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Incorrect alignment op-code.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>オペコードのアライメントが正しくありません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>V810SFプロセッサ用として使用時に、オペコードが奇数番地から配置されている命令があります。<A HREF="org.html">ORG疑似命令</A>や<A HREF="offset.html">OFFSET疑似命令</A>を使用してオペコードを偶数番地から配置してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Incorrect alignment pointer.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>アライメントが正しくないポインタがあります。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>V810SFプロセッサ用として使用時に、奇数番地のシンボルをアドレッシングしている命令があります。<A HREF="org.html">ORG疑似命令</A>や<A HREF="offset.html">OFFSET疑似命令</A>を使用してアドレッシングしているシンボルを偶数番地から配置してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Long expression.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>式が長すぎます。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>オペランドの文字数が384文字を越えています。オぺランドフィールドに記述できる文字数は384文字までです。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Macro reference limit over.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>これ以上マクロを展開できません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロが256回以上ネスティングされているため、マクロ展開することができません。マクロ定義内で自分自身のマクロがネスティングされていないか確認してください。なお、マクロの定義は最大256回までネスティングすることができます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Macro table overflow.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>マクロのテーブルが一杯です。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>定義しているマクロの数が多すぎるため、マクロテーブルに全て登録することができません。必要なマクロのみを定義するか、ISAS起動時に指定する<A HREF="isasoption.html#MACRO">-mオプション</A>の1番目の値（登録マクロ数）を大きくしてください。なお、定義できるマクロ数はデフォルト512個、最大8192個です。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Macro text buffer overflow.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>マクロのテキストバッファが一杯です。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>定義しているマクロの内容が大きすぎるため、マクロのテキストバッファに全て登録することができません。必要なマクロのみを登録したり、マクロ内に記述しているシンボルの長さ等を短くしてください。なお、マクロ内のコメントを削除してもマクロのテキストバッファに影響は与えません。<BR>
+また、ISAS起動時に指定する<A HREF="isasoption.html#MACRO">-mオプション</A>の2番目の値（マクロバッファサイズ）を大きくしてください。なお、定義できるマクロバッファのサイズはデフォルト32768バイト、最大ではメモリが存在する分だけ指定できます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Missing operand.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>演算値またはシンボルに誤りがあります。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>演算値またはシンボルを記述すべき部分に、[]内に表示されている演算子が記述された時に発生します。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Missing operator.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>演算子に誤りがあります。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>演算子を記述すべき部分に、[]内に表示されている演算子以外（演算値またはシンボル）が記述された時に発生します。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Missing symbol.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルの頭文字には数字を指定できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたシンボルの頭文字に数字が使用されています。シンボルの頭文字には"@"、"$"、"_"、"A"から"Z"、および"a"から"z"の文字を使用してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>No macro name.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>マクロ名がありません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><A HREF="macro.html">MACRO疑似命令</A>を記述している行のシンボルフィールドにマクロ名が記述されていません。マクロを定義する時には、必ずマクロ名を指定する必要があります。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Not defining macro.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>マクロ定義中ではありません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><A HREF="macro.html">MACRO疑似命令</A>によってマクロ定義を開始していないにも係わらず、マクロ定義中に使用する[]に表示されている疑似命令が使用されています。例えば、マクロ定義以外でENDM疑似命令を使用した時に発生します。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Not enough memory.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>メモリーが足りません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISASを動作させるために必要なメモリが足りません。ISASを動作させるためには、アプリケーションが実行できるコンピュータのコンベンショナルメモリとして500Kバイト以上必要です。また、ISAS起動時に指定する<A HREF="isasoption.html#SYMBOL">-s（シンボルテーブルサイズの指定）</A>、<A HREF="isasoption.html#BUFFER">-b（入出力ファイルバッファサイズの指定）</A>、および<A HREF="isasoption.html#MACRO">-m（マクロ数、マクロバッファサイズの指定）</A>オプションを小さくして、ISASが使用するメモリサイズを少なくしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Not enough symbol tables.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルテーブルが足りません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>使用しているグローバルシンボルおよびローカルシンボルの数が多すぎるため、シンボルテーブルに全て登録することができません。必要なシンボルのみを定義するか、ISAS起動時に指定する<A HREF="isasoption.html#SYMBOL">-sオプション</A>の値を大きくしてください。なお、定義できるシンボル数はデフォルト4091個、最大65535個です。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>[] not yet support.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>まだ[]はサポートしていません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISASで指定されている予約語が使用されました。[]内に表示されている予約語以外の名前を使用してください。予約語とは、IS65との互換性の確保や将来のために用意している疑似命令で、IF1、IF2、KANJI、ERROR、NERROR、ONMEM、OFFMEM、FINAL、ON816、およびOFF816が予約語として用意されています。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Op-code decoded.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>命令展開しました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>V810SFの特定の命令を命令展開しました。<BR>
+ISASは、V810SFプロセッサ用アセンブラとして使用した時にデフォルトで命令展開を行います。展開される命令は、<A HREF="extend.html#MOV">mov</A>、<A HREF="extend.html#LD">ld/in</A>、<A HREF="extend.html#ST">st/out</A>、<A HREF="extend.html#ADD">add</A>、<A HREF="extend.html#ADDI">addi</A>、<A HREF="extend.html#CMP">cmp</A>、<A HREF="extend.html#DIV">div/divu/mul/mulu/not/sub</A>、<A HREF="extend.html#MOVEA">movea</A>、<A HREF="extend.html#AND">and/or/xor</A>、<A HREF="extend.html#ANDI">andi/ori/xori</A>、および<A HREF="extend.html#JMP">jmp命令</A>であり、<A HREF="rsvreg.html">RSVREG疑似命令</A>によって展開の有無を指定することができます。また、<A HREF="decon.html">DECON疑似命令</A>によって条件分岐命令を命令展開するかどうかを指定することができます。<BR>
+各疑似命令の使用方法については"<A HREF="pseudo.html">第５章　疑似命令</A>"の各項目を、また命令展開規則の詳細については"<A HREF="extend.html">付録２　V810SF命令展開</A>"を参照してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Op-code redefine.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>[]は既に定義されています。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロ定義の時に、既に存在する命令の名前がマクロ名に使用されています。[]内に表示された名前以外のマクロ名に変更してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD><B>Operand is misleading.[] Parenthesis was ignored.</B></TD>
+<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD><B>誤解しやすいオペランドタイプです。[] 括弧は無視されます。</B></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD COLSPAN=2>オペランドで演算子の括弧として記述している括弧（( )）が無意味な記述のため、ISASは括弧を無視してアセンブルします。例えば、DMGプロセッサのLD命令で次のように記述したファイルをアセンブルします。
+
+<pre>	iddmg
+	ld	hl,$10		; 正しい記述
+	ld	hl,($10)	; 括弧を取っても出力されるコードに違いのない記述ため警告される
+</pre>
+
+2行目の命令の記述は括弧を取っても出力されるコードに違いのない記述のため、警告を出力し括弧を無視してアセンブルします。
+
+<pre>C:\&gtisas -w3 test.s
+INTELLIGENT SYSTEMS Assembler  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+test.s :3: WARNING Operand is misleading.[($10)] Parenthesis was ignored.
+warnings = 1
+
+C:\&gt
+</pre>
+
+</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Out of range.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>レンジオーバーです。目的のアドレスに届きません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>相対命令のアドレスが、-128バイトから+127バイトの範囲を越えています。この範囲に入るように配置し直してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Redeclare external symbol.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>外部参照シンボルを再宣言しました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>すでに<A HREF="extern.html">EXTERN疑似命令</A>によって外部参照宣言しているシンボルを、<A HREF="extern.html">EXTERN疑似命令</A>以外のグローバル定義疑似命令によって宣言されています。[]内に表示されているシンボルを修正してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Some parameters were not assigned.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>いくつかのパラメータがありません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロ定義しているパラメータの数より、マクロ参照しているパラメータの数が足りません。マクロ参照する時は、必ずマクロ定義しているパラメータの数だけ指定してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Symbol definition failure in macro.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>マクロ内のシンボル定義で失敗しました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロ定義用に用意されているシンボルバッファを全て使用したために、マクロ内でのシンボル定義ができません。マクロ定義内では、パラメータ置換用シンボルとローカルシンボルが使用できますが、これらのシンボルのために確保されたバッファを全て使用しました。バッファは、シンボル数256個、およびシンボルバッファ1024バイトが用意されます。シンボル数を減らすか、シンボル名の長さを短くしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Syntax error.[ELSE]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>文法エラー。[ELSE]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><a HREF="if.html">IF疑似命令</A>と<A HREF="endif.html">ENDIF疑似命令</A>の間以外で<A HREF="else.html">ELSE疑似命令</A>が発見されました。<A HREF="if.html">IF</A>～<A HREF="else.html">ELSE</A>～<A HREF="endif.html">ENDIF疑似命令</A>の記述順が正しいか確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Syntax error.[ENDIF]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>文法エラー。[ENDIF]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2><A HREF="if.html">IF疑似命令</A>と対とならない<A HREF="endif.html">ENDIF疑似命令</A>が発見されました。<A HREF="if.html">IF疑似命令</A>と<A HREF="endif.html">ENDIF疑似命令</A>が対となっているか確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Tempolary file write failure.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>中間コードの書き込みに失敗しました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISASはアセンブル時に中間コードのテンポラリファイルを出力しますが、このファイルの書き込みが正常に行われませんでした。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Terminate character not found.["]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>文字列終端を示すクォーテーションが見つかりません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>文字列の終わりに指定するダブルクォーテーション（"）がありません。文字列は必ずダブルクォーテーションで囲むように記述してください。なお、文字列内にダブルクォーテーションを記述したい時は、ダブルクォーテーションを続けて記述します。
+
+<PRE>	db	"これは""テスト""です."
+</PRE>
+
+この結果、「これは"テスト"です.」というデータを作成することができます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD><B>The first alignment value must be largest value of all assigned values.</B></TD>
+<TD ALIGN=RIGHT VALINE=TOP>:Warning(2)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD><B>最初のアライメント値は、すべてのアライメント値の中で最大の値でなければいけません。</B></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+<TD COLSPAN=2>
+グループ内で複数の<a href="even.html">EVEN疑似命令</a>が指定されている時に、最初の<a href="even.html">EVEN疑似命令</a>で指定したアライメント値より大きな値を指定した<a href="even.html">EVEN疑似命令</a>が最初の<a href="even.html">EVEN疑似命令</a>以降に記述されています。このような時には、最初の<a href="even.html">EVEN疑似命令</a>で指定するアライメント値をそれ以降の<a href="even.html">EVEN疑似命令</a>で指定されているアライメント値の最大値を指定してください。
+
+<pre>rom0	group	0
+	even	2		; この最初のEVEN疑似命令では、以降のEVEN疑似命
+	:			; 令で4を指定しているので警告される
+	even	4		; 以降のEVEN疑似命令
+	:
+</pre>
+
+なお、途中で<a href="org.html">ORG疑似命令</a>が指定されると、以降のアライメント調整は<a href="org.html">ORG疑似命令</a>で指定したアドレスから行われるので、上記制限には該当しません。
+</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Too long op-code.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>オペコード領域が長すぎます。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>オペコードフィールドに記述している内容が長すぎます。オペコードフィールドに記述できる文字数は64文字までです。このエラーが発生した時はオペコード、疑似命令、またはマクロ名に誤りがあることが考えられます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Too long operand.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>オペランド領域が長すぎます。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>オペランドフィールドに記述している内容が長すぎます。オペランドフィールドに記述できる文字数は384文字までです。このエラーが発生した時は、オペランド、疑似命令に対するパラメータ、またはコメントの記述を短くしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Too long parameters.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>パラメータが長すぎます。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロのパラメータに記述している内容が長すぎます。オペランドフィールドに記述できる文字数は384文字までです。このエラーが発生した時は、マクロに対するパラメータの記述を短くしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Too long symbol.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルが長すぎます。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>宣言しているシンボル名が長すぎます。シンボル名の長さは、グローバルシンボルは32文字まで、ローカルシンボルは27文字までですので、シンボル名をこれらの制限数より短くしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Too many assigned parameters.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning(3)</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>パラメータが多すぎます。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>マクロ定義しているパラメータの数より、マクロ参照している部分にパラメータの数が多すきます。マクロ参照する時は、必ずマクロ定義しているパラメータの数だけ指定してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Unbalance left parenthesis [(].</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>釣り合っていない左括弧があります「(」。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>右括弧の数より左括弧の数が多く記述されています。対となる括弧を確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Unbalance right parenthesis [)].</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>釣り合っていない右括弧があります「)」。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>左括弧の数より右括弧の数が多く記述されています。対となる括弧を確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Undefined group.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>グループが定義されていません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ソースファイル内に<A HREF="group.html">GROUP疑似命令</A>が一つも宣言されていません。ソースファイルの先頭には、必ず<A HREF="group.html">GROUP疑似命令</A>を使用してグループを宣言する必要があります。また、<A HREF="even.html">EVEN疑似命令</A>が<A HREF="group.html">GROUP疑似命令</A>より先に宣言している場合もこのエラーが発生します。必ず、<A HREF="even.html">EVEN疑似命令</A>は<A HREF="group.html">GROUP疑似命令</A>より後に記述してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Undefined symbol.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルが見つかりません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたシンボルが見つかりません。シンボル名の確認や、参照しているシンボルが外部で定義されている場合は<A HREF="extern.html">EXTERN疑似命令</A>で外部参照しているシンボルであることを指定してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Unknown op-code.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>命令が理解できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたオペコードの記述に誤りがあります。正しいニーモニック、疑似命令、またはマクロ名を記述してください。また、オペコードは2カラム目以降のオペコードフィールドに記述する必要があります。プログラムの書式については、"第３章　ソースファイル"の"<A HREF="program.html">プログラムの書式</A>"を参照してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Unusual expression.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>異常な式です。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>現在サポートしていない演算子が式の中で使用されています。ISASでサポートしている演算子は、"第４章　式"の"<A HREF="operator.html">演算子</A>"を参照してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<HR>
+
+</BODY>
+</HTML>

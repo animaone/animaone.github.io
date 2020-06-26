@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>EVALBITS</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>EVALBITS</H2>
+
+<font size=-1>[ <A HREF="errtag.html">前ページへ</A> | <A HREF="even.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>定数を評価する時の有効ビット数を指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	EVALBITS	&lt;式&gt;<!-- <式> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>EVALBITS疑似命令は、IS65との互換を採るために用意した疑似命令です。演算処理を行う時に定数の有効ビット数を、IS65では16ビットで処理を行っていたのに対し、ISASでは32ビットで処理しています。例えば、アドレスの演算においてIS65ではバンクに影響を与えることはありませんでしたが、ISASではバンクにまで影響を与えます。</P>
+<P>&lt;式&gt;<!-- <式> -->には、定数を評価する時の有効ビット数を0から32までの値で指定します。なお、ISAS起動時に<A HREF="isasoption.html#IS65">-is65オプション</A>を指定するとEVALBITS 16となり、<A HREF="isasoption.html#IS65">-is65オプション</A>を指定しない時はEVALBITS 32となるため、通常この疑似命令を指定する必要はありません。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	is65
+	evalbits	16	; 16ビットで定数を評価する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

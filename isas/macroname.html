@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>&lt;マクロ名&gt;<!-- <マクロ名> --></TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>&lt;マクロ名&gt;<!-- <マクロ名> --></H2>
+
+<font size=-1>[ <A HREF="substitute.html">前ページへ</A> | <A HREF="isasmotion.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>マクロ定義されたマクロを展開します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	&lt;マクロ名&gt;	[実引数][,実引数] ... [,実引数]<!-- <マクロ名>	[実引数][,実引数] ... [,実引数] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>マクロ定義によって定義された&lt;マクロ名&gt;<!-- <マクロ名> -->をオペコードフィールドに記述することにより、定義したマクロを展開します。マクロの展開は、予めマクロ定義を行っておく必要があります。</P>
+<P>[実引数]は、マクロ定義で指定された仮引数と左から順に対応し、仮引数と同じ名前の部分に[実引数]の値を代入します。</P>
+<P>なお、実引数の数とマクロ定義した時の仮引数の数は一致していなくてもかまいませんが、実引数の数が仮引数の数より多い場合は余った実引数は無視され、少ない場合は不足する仮引数は空文字（長さ0の文字列）とみなされます。また仮引数のあるマクロに対して実引数をまったく指定しないこともできます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="macro.html">MACRO</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>mov	macro	dest,src	; マクロ定義
+	lda	src
+	sta	dest
+	endm
+	:
+	mov	symbol2,symbol1	; マクロ展開
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

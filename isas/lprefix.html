@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>LPREFIX</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>LPREFIX</H2>
+
+<font size=-1>[ <A HREF="local.html">前ページへ</A> | <A HREF="macro.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>ローカルシンボルを示すプリフィックスを指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	LPREFIX	&lt;文字&gt;<!-- <文字> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ISASは、通常アンダーバー（_）の文字（この文字をプリフィックスといいます）で始まるシンボルをローカルシンボルとして判断します。LPREFIX疑似命令は、このローカルシンボルを示すプリフィックスを異なる文字に変更することができます。</P>
+<P>&lt;文字&gt;<!-- <文字> -->には、英字またはクエスチョンマーク（?）の一文字をシングルクォーテーションで括って指定します。また、&lt;文字&gt;<!-- <文字> -->にスペースを指定するとローカルシンボルが使用できないようにすることが可能です。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	lprefix	'L'		; 'L'で始まるシンボルをローカルシンボル
+				; として判断する
+Ltest				; これはローカルシンボルである
+_test				; これはグローバルシンボルである
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

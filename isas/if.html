@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>IF/IFN</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>IF/IFN</H2>
+
+<font size=-1>[ <A HREF="group.html">前ページへ</A> | <A HREF="if16a.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>アセンブル条件が真の時評価します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	IF	&lt;式&gt;<!-- <式> -->
+</PRE>
+<P>または</P>
+<PRE>	IFN	&lt;式&gt;<!-- <式> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>アセンブル条件の&lt;式&gt;<!-- <式> -->が真の時、つまり&lt;式&gt;<!-- <式> -->の値が0以外の時、次の<A HREF="else.html">ELSE疑似命令</A>または<A HREF="endif.html">ENDIF疑似命令</A>までのブロックをアセンブルします。</P>
+<P>なお、IF疑似命令とIFN疑似命令はスペルのみ異なり、動作は同じです。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="ife.html">IFE</A>、<A HREF="ifb.html">IFB</A>、<A HREF="ifnb.html">IFNB</A>、<A HREF="ifdef.html">IFDEF</A>、<A HREF="ifndef.html">IFNDEF</A>、<A HREF="else.html">ELSE</A>、<A HREF="endif.html">ENDIF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	if	1		; アセンブル条件が真であるためアセンブ
+	lda	#$00		; ルされる
+	endif
+	if	0		; アセンブル条件が偽であるためアセンブ
+	sta	#$00		; ルされない
+	endif
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>OFFCNUM</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>OFFCNUM</H2>
+
+<font size=-1>[ <A HREF="offbankgroup.html">前ページへ</A> | <A HREF="offpolish.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>C言語ライクな定数指定を無効にします。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	OFFCNUM
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>C言語と同じように16進数の定数を表わす時に、定数の直前に"0x"の基数演算子を指定することはできません。また、同様に2進数を"0b"、8進数を"0o"で表現することはできません。ただし、従来の基数演算子は使用することができます。</P>
+<P>なお、基数演算子の詳細については、"第４章　式"の"<A HREF="fix.html">定数</A>"の項目を参照してください。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="oncnum.html">ONCNUM</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	offcnum
+	sta	#0x10		; エラーとなる
+	stx	#$10		; これは16進数の定数として判断する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

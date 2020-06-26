@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DEFH/DH</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DEFH/DH</H2>
+
+<font size=-1>[ <A HREF="defd.html">前ページへ</A> | <A HREF="defl.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>2バイト単位（下位バイト、上位バイトの順）でデータをメモリに配置します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DEFH	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+<P>または</P>
+<PRE>	DH	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;式&gt;<!-- <式> -->には、2バイトのデータを与えることができ、下位バイト、上位バイトの順にメモリに配置されます。複数の&lt;式&gt;<!-- <式> -->を与える時は、それぞれの&lt;式&gt;<!-- <式> -->をカンマ（,）で区切ってください。V810SFプロセッサ用としてアセンブルする時、DEFW/DW疑似命令は4バイト単位でデータをメモリに配置するので、2バイト単位でデータを配置したい時に、このDEFH/DH疑似命令を使用します。</P>
+<P>なお、DEFH疑似命令とDH疑似命令はスペルのみ異なり、動作は同じです。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="defb.html">DEFB/DB</A>、<A HREF="defw.html">DEFW/DW</A>、<A HREF="defd.html">DEFD/DD</A>、<A HREF="defl.html">DEFL/DL</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	defh	$1234		; メモリ上に34H、12Hの順に配置
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

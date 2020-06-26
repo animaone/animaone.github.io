@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ONBANKGROUP</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ONBANKGROUP</H2>
+
+<font size=-1>[ <A HREF="on16i.html">前ページへ</A> | <A HREF="oncnum.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD><A HREF="org.html">ORG疑似命令</A>によるロケーションカウンタを、<A HREF="group.html">GROUP疑似命令</A>で指定したバンクグループに属させます。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ONBANKGROUP
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P><A HREF="group.html">GROUP疑似命令</A>によって指定されたバンクアドレスと<A HREF="org.html">ORG疑似命令</A>によって指定されたロケーションカウンタから、絶対アドレスを判断します。このため、<A HREF="group.html">GROUP疑似命令</A>によってバンクアドレスを、<A HREF="org.html">ORG疑似命令</A>によってロケーションカウンタを指定する必要があります。通常、65816のようにバンク管理されたプログラムを作成する時に使用します。</P>
+<P>なお、ISAS起動時に<A HREF="isasoption.html#IS65">-is65オプション</A>が指定された時は、デフォルトでONBANKGROUP疑似命令が指定されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="group.html">GROUP</A>、<A HREF="offbankgroup.html">OFFBANKGROUP</A>、<A HREF="org.html">ORG</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	onbankgroup
+bank80	group	$80		; バンクの指定
+	org	$8000		; アドレスの指定
+	:			; モジュールは80Hバンクの8000H番地から
+	:			; 配置される
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

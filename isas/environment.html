@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>動作環境</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>動作環境</H2>
+
+<font size=-1>[ <A HREF="edition.html">前ページへ</A> | <A HREF="setup.html">次ページへ</A> ]</font>
+<HR>
+
+<p>ISASとISLKを動作させるためには、次に示す環境を用意して頂く必要があります。</p>
+
+<H3><A NAME="MSDOS">MS-DOS版</A></H3>
+<P>MS-DOS版を使用する時の動作環境は次のとおりです。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>項目</TH>
+<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>コンピュータ</TD>
+<TD>Intel社製8086以上のCPUを搭載し、MS-DOSまたはPC DOSが動作すること。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>メモリ</TD>
+<TD>コンベンショナルメモリに500Kバイト以上の使用可能メモリが確保されていること。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>ディスク</TD>
+<TD>インストール用に1Mバイト以上、およびテンポラリ用に500Kバイト以上の空き領域が必要。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>OS</TD>
+<TD>MS-DOSまたはPC DOS Version 5.0以上。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="DOS4GW">DOS/4GW版</A></H3>
+<P>DOS/4GW版を使用する時の動作環境は次のとおりです。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>項目</TH>
+<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>コンピュータ</TD>
+<TD>Intel社製80386以上のCPUを搭載したIBM-PC/AT互換機でMS-DOSまたはPC DOSが動作、または日本電気社製PC-9800シリーズ、および富士通社製FMR-70でMS-DOSが動作すること。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>メモリ</TD>
+<TD>コンベンショナルメモリに200Kバイト以上、拡張メモリに2Mバイト以上の使用可能メモリが確保されていること。なお、拡張メモリは4Mバイト以上用意して頂くことを推奨します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>ディスク</TD>
+<TD>インストール用に1Mバイト以上、およびテンポラリ用に500Kバイト以上の空き領域が必要。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP>OS</TD>
+<TD>MS-DOSまたはPC DOS Version 5.0以上。</TD>
+</TR>
+</TABLE>
+
+<P>DOS/4GW版のISASやISLKはDOSエクステンダDOS4GW.EXEのDPMI（Dos Protected Mode Interface）によって拡張メモリを使用します。このため、EMS（Expanded Memory Specification）や他のDPMIサーバによってXMS（eXtended Memory Specification）メモリの空き領域が確保できない時は、DOS/4GW版のISASやISLKを起動させることができません。使用可能な拡張メモリを再度確認し、HIMEM.SYSやEMM386.EXE等のメモリマネージャの設定を変更してください。なお、HIMEM.SYSとEMM386.EXEの詳細については、MS-DOSまたはPC DOSのマニュアル等を参照してください。</P>
+
+<h3><a name="WINDOWS">Windows版</a></h3>
+<p>Windows版を使用する時の動作環境は次のとおりです。</p>
+<table width=100% border=1>
+<tr bgcolor=gray>
+<th align=left valign=top nowrap width=150>項目</th>
+<th align=left valign=top nowrap>説明</th>
+</tr>
+<tr align=left valign=top>
+<td nowrap>コンピュータ</td>
+<td>Intel社製80486以上のCPUを搭載し、Microsoft Windows 95、またはMicrosoft Windows NT 4.0が正常に動作すること。</td>
+</tr>
+<tr align=left valign=top>
+<td nowrap>メモリ</td>
+<td>32Mバイト以上を推奨。</td>
+</tr>
+<tr align=left valign=top>
+<td nowrap>ハードディスク</td>
+<td>20Mバイト以上の空き領域が必要。</td>
+</tr>
+</table>
+
+<h3><a name="LINUX">Linux版</a></h3>
+<p>Linux版を使用する時の動作環境は次のとおりです。</p>
+<table width=100% border=1>
+<tr bgcolor=gray>
+<th align=left valign=top nowrap width=150>項目</th>
+<th align=left valign=top nowrap>説明</th>
+</tr>
+<tr align=left valign=top>
+<td nowrap>コンピュータ</td>
+<td>Linux Kernel 2.30が正常に動作すること。（ただし、Debian1.3でのみ動作確認）</td>
+</tr>
+<tr align=left valign=top>
+<td nowrap>メモリ</td>
+<td>16Mバイト以上を推奨。</td>
+</tr>
+<tr align=left valign=top>
+<td nowrap>ハードディスク</td>
+<td>10Mバイト以上の空き領域が必要。</td>
+</tr>
+</table>
+<p>Linux環境の場合、環境の設定によっては動作しない場合があります。このような場合には、恐れ入りますが弊社までご相談くださるようお願い致します。</p>
+
+<HR>
+
+</BODY>
+</HTML>

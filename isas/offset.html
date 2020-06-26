@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>OFFSET</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>OFFSET</H2>
+
+<font size=-1>[ <A HREF="offrng.html">前ページへ</A> | <A HREF="on16a.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>相対アドレスでロケーションカウンタを指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	OFFSET	&lt;式&gt;<!-- <式> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>現在のロケーションカウンタから&lt;式&gt;<!-- <式> -->で指定したアドレス分だけロケーションカウンタを進めます。</P>
+<P><A HREF="onbankgroup.html">ONBANKGROUP疑似命令</A>が指定されている時は、&lt;式&gt;<!-- <式> -->には2バイトのアブソリュートアドレスを指定します。2バイト以上のアドレスを指定した時は下位2バイトのみが有効となります。また、<A HREF="offbankgroup.html">OFFBANKGROUP疑似命令</A>が指定されている時は、バンクアドレスを含む3バイトのロングアドレスを指定します。バンクアドレスが省略された時は0バンクアドレスとみなされます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="group.html">GROUP</A>、<A HREF="onbankgroup.html">ONBANKGROUP</A>、<A HREF="offbankgroup.html">OFFBANKGROUP</A>、<A HREF="org.html">ORG</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	onbankgroup
+bank80	group	$80		; 80Hバンクの指定
+	org	$8000		; 8000H番地に配置する
+	lda	#$00		; これは2バイト命令
+	offset	$10		: 8012番地に配置される
+	:
+	offbankgroup
+bank81	group
+	offset	$00:$20		; OFFBANKGROUP疑似命令指定時は、バンク
+	:			; アドレスを含む3バイトで指定
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

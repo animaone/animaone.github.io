@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>演算子</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>演算子</H2>
+
+<font size=-1>[ <A HREF="prefix.html">前ページへ</A> | <A HREF="macrooperator.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISASでは、次の各種演算子を用意しています。なお、演算の結果オーバーフローまたはアンダーフローが発生しても無視されます。</P>
+
+<H3><A NAME="BACK">後置単項演算子</A></H3>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=100>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=200>機能</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>'b</TD>
+	<TD NOWRAP>1バイトへの変換</TD>
+	<TD>n'bの時、((n)&amp;$ff)の値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>'w</TD>
+	<TD NOWRAP>2バイトへの変換</TD>
+	<TD>n'wの時、((n)&amp;$ffff)の値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>'l</TD>
+	<TD NOWRAP>4バイトへの変換</TD>
+	<TD>n'lの時、((n)&amp;$ffffffff)の値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>'lo</TD>
+	<TD NOWRAP>下位2バイトの取得</TD>
+	<TD>n'loの時、(n)'wの値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>'hi</TD>
+	<TD NOWRAP>上位2バイトの取得</TD>
+	<TD>n'hiの時、((n)&gt;&gt;16)'wの値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>'hi1</TD>
+	<TD NOWRAP>上位2バイト+ビット15の取得</TD>
+	<TD>n'hi1の時、(((n)&gt;&gt;16)'w+((n)&gt;&gt;15)&amp;$1)の値をとります。</TD>
+</TR>
+</TABLE>
+
+<P>なお、'lo、'hi、'hi1の後置単項演算子はV810SFプロセッサ用の演算子です。</P>
+
+<H3><A NAME="FRONT">前置単項演算子</A></H3>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=100>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=200>機能</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>!</TD>
+	<TD NOWRAP>否定</TD>
+	<TD>!nの時、nが真の時は偽となり、nが偽の時は真となります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>~</TD>
+	<TD NOWRAP>1の補数</TD>
+	<TD>~nの時、nをビット毎に1と0を反転させます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>+</TD>
+	<TD NOWRAP>正</TD>
+	<TD>+nの時、nの正の値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>-</TD>
+	<TD NOWRAP>負</TD>
+	<TD>-nの時、nの負の値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>:</TD>
+	<TD NOWRAP>上位バイトの取得</TD>
+	<TD>:nまたは^nの時、((n)&gt;&gt;16)'bの値をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&gt;</TD>
+	<TD NOWRAP>上位アドレスの取得</TD>
+	<TD>&gt;nの時、((n)&gt;&gt;8)'bの値をとります。例えば、&gt;$1234の時は$12を結果として出力します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&lt;</TD>
+	<TD NOWRAP>下位アドレスの取得</TD>
+	<TD>&lt;nの時、(n)'bの値をとります。例えば、&lt;$1234の時は$34を結果として出力します。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="DOUBLE">二項演算子</A></H3>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=100>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=200>機能</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>*</TD>
+	<TD NOWRAP>乗算</TD>
+	<TD>n1*n2の時、n1にn2を掛けます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>/</TD>
+	<TD NOWRAP>除算</TD>
+	<TD>n1/n2の時、n1をn2で割ります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>%</TD>
+	<TD NOWRAP>剰余算</TD>
+	<TD>n1%n2の時、n1をn2で割った余りをとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>+</TD>
+	<TD NOWRAP>加算</TD>
+	<TD>n1+n2の時、n1にn2を加えます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>-</TD>
+	<TD NOWRAP>減算</TD>
+	<TD>n1-n2の時、n1からn2を引きます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>:</TD>
+	<TD NOWRAP>バンク</TD>
+	<TD>n:mの時、((n)&lt;&lt;16|(m)'w)の値をとります。例えば、$80:$8000の時は$80バンクの$8000番地を表わしています。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="SHIFT">シフト演算子</A></H3>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=100>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=200>機能</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&lt;&lt;</TD>
+	<TD NOWRAP>左シフト</TD>
+	<TD>n1&lt;&lt;n2の時、n1を左にn2ビット分シフトします。シフト時は下位ビットから0が補充されます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&gt;&gt;</TD>
+	<TD NOWRAP>右シフト</TD>
+	<TD>n1&gt;&gt;n2の時、n1を右にn2ビット分シフトします。シフト時は上位ビットから0が補充されます。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="COMPARE">比較演算子</A></H3>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=100>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=200>機能</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&lt;</TD>
+	<TD NOWRAP>小さい</TD>
+	<TD>n1&lt;n2の時、n1がn2より小さい時に真となります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&lt;=</TD>
+	<TD NOWRAP>等しいか、小さい</TD>
+	<TD>n1&lt;=n2の時、n1がn2と等しいか、より小さい時に真となります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&gt;</TD>
+	<TD NOWRAP>大きい</TD>
+	<TD>n1&gt;n2の時、n1がn2より大きい時に真となります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&gt;=</TD>
+	<TD NOWRAP>等しいか、大きい</TD>
+	<TD>n1&gt;=n2の時、n1がn2と等しいか、より大きい時に真となります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>==</TD>
+	<TD NOWRAP>等しい</TD>
+	<TD>n1==n2の時、n1がn2と等しい時に真となります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>!=</TD>
+	<TD NOWRAP>等しくない</TD>
+	<TD>n1!=n2の時、n1がn2と等しくない時に真となります。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="BIT">ビット演算子</A></H3>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=100>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=200>機能</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&amp;</TD>
+	<TD NOWRAP>ビット毎の論理積</TD>
+	<TD>n1&amp;n2の時、n1とn2のビット毎の論理積（AND）をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>^</TD>
+	<TD NOWRAP>ビット毎の排他的論理和</TD>
+	<TD>n1^n2の時、n1とn2のビット毎の排他的論理和（XOR）をとります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>|</TD>
+	<TD NOWRAP>ビット毎の論理和</TD>
+	<TD>n1|n2の時、n1とn2のビット毎の論理和（OR）をとります。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="LOGIC">論理演算子</A></H3>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=100>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=200>機能</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>&amp;&amp;</TD>
+	<TD NOWRAP>論理積</TD>
+	<TD>n1&amp;&amp;n2の時、n1とn2が共に真の時は真となり、何れか一方または両方が偽の時は偽となります。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>||</TD>
+	<TD NOWRAP>論理和</TD>
+	<TD>n1||n2の時、n1またはn2が真の時は真となり、両方が偽の時は偽となります。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="ORDER">演算子の優先順位</A></H3>
+<P>演算子には次の表のような優先順位があります。また優先順位が同じ時には演算方向を規定する結合規則があります。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>優先順位</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>種類</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>結合規則</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>1</TD>
+	<TD NOWRAP>( )</TD>
+	<TD NOWRAP>括弧</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>2</TD>
+	<TD NOWRAP>'b 'w 'l 'lo 'hi 'hi1</TD>
+	<TD NOWRAP>後置単項演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>3</TD>
+	<TD NOWRAP>! ~ + - : ^ &gt; &lt;</TD>
+	<TD NOWRAP>前置単項演算子</TD>
+	<TD NOWRAP>←</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>4</TD>
+	<TD NOWRAP>* / %</TD>
+	<TD NOWRAP>二項演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>5</TD>
+	<TD NOWRAP>+ - :</TD>
+	<TD NOWRAP>二項演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>6</TD>
+	<TD NOWRAP>&lt;&lt; &gt;&gt;</TD>
+	<TD NOWRAP>シフト演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>7</TD>
+	<TD NOWRAP>&lt; &lt;= &gt; &gt;=</TD>
+	<TD NOWRAP>比較演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>8</TD>
+	<TD NOWRAP>== !=</TD>
+	<TD NOWRAP>比較演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>9</TD>
+	<TD NOWRAP>&amp;</TD>
+	<TD NOWRAP>ビット演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>10</TD>
+	<TD NOWRAP>^</TD>
+	<TD NOWRAP>ビット演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>11</TD>
+	<TD NOWRAP>|</TD>
+	<TD NOWRAP>ビット演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>12</TD>
+	<TD NOWRAP>&amp;&amp;</TD>
+	<TD NOWRAP>論理演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>13</TD>
+	<TD NOWRAP>||</TD>
+	<TD NOWRAP>論理演算子</TD>
+	<TD NOWRAP>→</TD>
+</TR>
+</TABLE>
+
+<P>結合規則の"→"は左から右へ評価され、"←"は右から左へ評価されることを表わします。なお、'lo、'hi、'hi1の後置単項演算子はV810SFプロセッサ専用の演算子です。</P>
+
+<HR>
+
+</BODY>
+</HTML>

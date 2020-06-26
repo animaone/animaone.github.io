@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>GLOBAL</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>GLOBAL</H2>
+
+<font size=-1>[ <A HREF="extern.html">前ページへ</A> | <A HREF="group.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>シンボルを外部定義および外部参照として宣言します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	GLOBAL	&lt;名前&gt;[,名前] ... [,名前]<!-- <名前>,<名前>, ... ,<名前> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ソースファイル内で定義または参照しているシンボルが、他のソースファイルで定義または参照していることをアセンブラに通知します。&lt;名前&gt;<!-- <名前> -->には、外部定義または外部参照するシンボル名を記述します。複数の&lt;名前&gt;<!-- <名前> -->を与える時は、それぞれの&lt;名前&gt;<!-- <名前> -->をカンマ（,）で区切ってください。</P>
+<P>このGLOBAL疑似命令は、<A HREF="public.html">PUBLIC疑似命令</A>、および<A HREF="extern.html">EXTERN疑似命令</A>のように外部定義／参照で使い分ける必要がないため、簡単に記述することができます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="public.html">PUBLIC</A>、<A HREF="puball.html">PUBALL</A>、<A HREF="pubon.html">PUBON</A>、<A HREF="puboff.html">PUBOFF</A>、<A HREF="extern.html">EXTERN</A>、<A HREF="local.html">LOCAL</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>ソースファイル1
+	global	symbol,buf	; 外部定義と外部参照をまとめて宣言
+symbol				; シンボルを定義
+	lda	buf		; シンボルを参照
+
+ソースファイル2
+	global	symbol,buf
+	jsr	symbol		; シンボルを参照
+	:
+buf	db	$10		; シンボルを定義
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

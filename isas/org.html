@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ORG</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ORG</H2>
+
+<font size=-1>[ <A HREF="opti.html">前ページへ</A> | <A HREF="page.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>絶対アドレスでロケーションカウンタを指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ORG	&lt;式&gt;<!-- <式> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ロケーションカウンタを&lt;式&gt;<!-- <式> -->に絶対アドレスで指定します。</P>
+<P><A HREF="onbankgroup.html">ONBANKGROUP疑似命令</A>が指定されている時は、&lt;式&gt;<!-- <式> -->には2バイトのアブソリュートアドレスを指定します。2バイト以上のアドレスを指定した時は下位2バイトのみが有効となります。また、<A HREF="offbankgroup.html">OFFBANKGROUP疑似命令</A>が指定されている時は、バンクアドレスを含む3バイトのロングアドレスを指定します。バンクアドレスが省略された時は0バンクアドレスとみなされます。</P>
+<P>ORG疑似命令は複数個指定しても良く、また低位アドレスから高位アドレスへの順に指定する必要もありません。ただし、モジュールが重なった時は上書きされるため、後から指定されたモジュールが有効となります。</P>
+<P>バンクの先頭に配置されるモジュールの先頭には、このORG疑似命令によってロケーションカウンタを必ず指定する必要があります。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="group.html">GROUP</A>、<A HREF="onbankgroup.html">ONBANKGROUP</A>、<A HREF="offbankgroup.html">OFFBANKGROUP</A>、<A HREF="offset.html">OFFSET</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	onbankgroup
+bank80	group	$80		; 80Hバンクの指定
+	org	$8000		; 8000H番地に配置する
+	:
+	offbankgroup
+bank81	group
+	org	$0:$9000	; 0Hバンクの9000H番地に配置する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

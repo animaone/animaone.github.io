@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISDMGからの移行</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISDMGからの移行</H2>
+
+<font size=-1>[ <A HREF="move65.html">前ページへ</A> | <A HREF="source.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ここでは、ISDMGからISASに変更する時に必要な情報について説明しています。</P>
+
+<H3><A NAME="ASSEMBLE">ISDMG用ソースファイルをISASでアセンブルする時は</A></H3>
+<P>ISDMG用に作られたソースファイルをISASでアセンブルする時には、ISAS起動時に<A HREF="isasoption.html#ISDMG">-isdmgオプション</A>を指定してください。このオプションを指定すると、ISASは内部的に次の疑似命令を指定し、ISASでISDMG用のファイルを正常にアセンブルすることができます。</P>
+
+<PRE>	isdmg		; 命令セットをDMGプロセッサ用に切り替える
+	onbankgroup	; グループ指定にバンクアドレスが含まれる
+	offpolish	; 演算子の優先順位を無視する
+	evalbits 16	; 定数評価時の有効ビットを16ビットとする
+</PRE>
+
+<P>なお、これらの疑似命令の詳細については、<A HREF="pseudo.html">第５章　疑似命令</A>の各疑似命令の項目を参照してください。</P>
+
+<H3><A NAME="CHANGE">ISDMG用ソースファイルをISAS用に変更する時は</A></H3>
+<P>ISASの機能を有効に使用するためには、ISAS用にソースファイルを変更する必要があります。ISDMG用のソースファイルをISAS用に変更する時には、以下の項目に注意して作業を進めてください。
+
+<UL>
+<LI><P>ISDMGでは<A HREF="operator.html#ORDER">演算子の優先順位</A>に係わらず左から順に式を評価しますが、ISASでは<A HREF="operator.html#ORDER">演算子の優先順位</A>に従って式を評価します。</P>
+
+<LI><P>シンボルを確保するために必要なメモリが不足した時、ISASは動的にメモリを増やすことは行っていないので、<A HREF="isasoption.html#SYMBOL">-sオプション</A>でシンボルテーブルを増やしてください。この時、指定するシンボルテーブルの値が大きい程、かつその値が素数である程高速にアセンブルされます。</P>
+
+<LI><P>デフォルトではエラー情報は、デフォルトで標準出力に出力されます。なお、<A HREF="errtag.html">ERRTAG疑似命令</A>によって、指定のファイルにエラー情報を出力する事ができます。</P>
+</UL>
+</P>
+
+<HR>
+
+</BODY>
+</HTML>

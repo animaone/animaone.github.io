@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>NDSPIF</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>NDSPIF</H2>
+
+<font size=-1>[ <A HREF="mradix.html">前ページへ</A> | <A HREF="ndspm.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>条件疑似命令の条件が真のブロックのみリスティングファイルに出力します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	NDSPIF
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>条件疑似命令内のブロックの内、条件疑似命令の条件が真のブロック部分のみをリスティングファイルに出力します。この疑似命令は、<A HREF="dspif.html">DSPIF疑似命令</A>によって指定されたリスティングファイルへの無条件出力指定を抑制する時に使用します。</P>
+<P>なお、<A HREF="dspif.html">DSPIF疑似命令</A>とNDSPIF疑似命令が共に指定されていない時は、<A HREF="dspif.html">DSPIF疑似命令</A>を指定した時と同じように条件疑似命令の全てのブロックがリスティングファイルに出力されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="dspif.html">DSPIF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ndspif
+	if	1
+	:			; 条件が真のブロック部分のためリスティ
+	:			; ングファイルに出力される
+	else
+	:			; 条件が偽のブロック部分のためリスティ
+	:			; ングファイルには出力されない
+	endif
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

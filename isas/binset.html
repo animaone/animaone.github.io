@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>BINSET</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>BINSET</H2>
+
+<font size=-1>[ <A HREF="assumev810sf.html">前ページへ</A> | <A HREF="capsoff.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD><A HREF="libbin.html">LIBBIN疑似命令</A>で読み込むファイルのオフセットとサイズを指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	BINSET	&lt;オフセット&gt;[,サイズ]<!-- <オフセット>[,サイズ] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P><A HREF="libbin.html">LIBBIN疑似命令</A>により読み込まれるバイナリファイルのオフセットとサイズを指定します。</P>
+<P>&lt;オフセット&gt;<!-- <オフセット> -->には、<A HREF="libbin.html">LIBBIN疑似命令</A>によって読み込まれるバイナリファイルの先頭からのオフセットを指定します。ファイルサイズ以上の値を&lt;オフセット&gt;<!-- <オフセット> -->に指定した場合は、&lt;オフセット&gt;<!-- <オフセット> -->に0が指定されたと見なされます。</P>
+<P>[サイズ]には、<A HREF="libbin.html">LIBBIN疑似命令</A>によって指定されるバイナリファイルの読み込みサイズを指定します。[サイズ]に0を指定、または[サイズ]を省略した時は、ファイルの最後までを読み込みます。ただし、<a href="is65bin.html">IS65BIN疑似命令</a>を指定、またはISAS起動時に<a href="isasoption.html#IS65">-is65オプション</a>を指定した時には、&lt;オフセット&gt;<!-- <オフセット> -->から8000Hバイト分、またはバイナリファイルの&lt;オフセット&gt;<!-- <オフセット> -->からのサイズが8000Hバイトに満たない時は、&lt;オフセット&gt;<!-- <オフセット> -->からファイルの最後までを読み込みます。</p>
+<P>なお、<A HREF="libbin.html">LIBBIN疑似命令</A>の詳細については、"<A HREF="pseudo.html">第５章　疑似命令</A>"の"<A HREF="libbin.html">LIBBIN</A>"の項目を参照してください。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><a href="is65bin.html">IS65BIN</a>、<a href="isasbin.html">ISASBIN</a>、<A HREF="libbin.html">LIBBIN</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	binset	$0,$100		; バイナリファイルの先頭から100Hバイト
+				; 分を読み込む指定
+	libbin	char.bin	; 読み込むバイナリファイル
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

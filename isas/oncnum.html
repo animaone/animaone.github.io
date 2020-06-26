@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ONCNUM</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ONCNUM</H2>
+
+<font size=-1>[ <A HREF="onbankgroup.html">前ページへ</A> | <A HREF="onpolish.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>C言語ライクな定数指定を有効にします。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ONCNUM
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ONCNUM疑似命令を指定することにより、C言語と同じように16進数の定数を表わす時に、定数の直前に"0x"の基数演算子を指定することができます。また、2進数には"0b"、8進数には"0o"を付加して表現することができます。もちろん、従来の基数演算子も合わせて使用することができます。</P>
+<P>なお、基数演算子の詳細については、"第４章　式"の"<A HREF="fix.html">定数</A>"の項目を参照してください。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="offcnum.html">OFFCNUM</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	oncnum
+	sta	#0x10		; 16進数の定数として判断する
+	stx	#$10		; これも16進数の定数として判断する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

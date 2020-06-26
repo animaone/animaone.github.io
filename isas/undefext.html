@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>UNDEFEXT</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>UNDEFEXT</H2>
+
+<font size=-1>[ <A HREF="undeferr.html">前ページへ</A> | <A HREF="wdprefix.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>未定義シンボルを外部参照シンボルとみなします。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	UNDEFEXT
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>参照しているシンボルが、ソースファイル内で<A HREF="extern.html">EXTERN疑似命令</A>または<A HREF="global.html">GLOBAL疑似命令</A>によって外部参照シンボルとして宣言されていない時、そのシンボルを自動的に外部参照シンボルとして宣言します。<A HREF="undeferr.html">UNDEFERR疑似命令</A>が指定されると、UNDEFEXT疑似命令は解除されます。</P>
+<P>なお、UNDEFEXT疑似命令、および<A HREF="undeferr.html">UNDEFERR疑似命令</A>が指定されていない時は、<A HREF="undeferr.html">UNDEFERR疑似命令</A>が指定された時と同じように、未定義シンボルに対してエラーを出力します。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="undeferr.html">UNDEFERR</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	undefext
+	lda	sample		; シンボル名sampleが未定義だが、自動的
+	:			; に外部参照シンボルとみなしエラーは発
+	:			; 生しない
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>命令展開</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>命令展開</H2>
+
+<font size=-1>[ <A HREF="isxformat2.html">前ページへ</A> | <A HREF="usedos4gw.html">次ページへ</A> ]</font>
+<HR>
+
+<p>ここでは、V810SF用アセンブラとしてISASを使用した時の、アセンブル時に行われる命令展開の規則について説明します。</p>
+<p>まず、命令展開の説明内で使用している記号の意味を説明します。</p>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>記号</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>意味</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>imm</TD>
+	<TD>32ビットのイミディエイト</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>imm16</TD>
+	<TD>16ビットのイミディエイト</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>imm5</TD>
+	<TD>5ビットのイミディエイト</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>zero</TD>
+	<TD>ゼロレジスタ</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>reg1、reg2</TD>
+	<TD>ゼロレジスタ以外の汎用レジスタ</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>resv</TD>
+	<TD><A HREF="rsvreg.html">RSVREG疑似命令</A>によって予約されたレジスタ</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>disp</TD>
+	<TD>32ビットのディスプレースメント</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>disp16</TD>
+	<TD>16ビットのディスプレースメント</TD>
+</TR>
+</TABLE>
+
+<P>なお、'lo、'hi、'hi1等の<A HREF="operator.html#BACK">後置単項演算子</A>によって修飾された式は、強制的に符号なし16bit、または符号付き15bit値として扱われ、disp16またはimm16のオペランドを扱う命令に展開されます。ただし、<A HREF="assumev810sf.html">ASSUME疑似命令</A>によって修飾されたオペランドはこの限りではありません。</P>
+
+<H3><A NAME="MOV">mov命令</A></H3>
+<P>mov命令（mov imm,reg2）は次のように命令展開されます。</P>
+
+<UL>
+<LI>immが-16～15の範囲内の時
+<PRE>	mov	imm5,reg2
+</PRE>
+<LI>immが-16～15の範囲外で-32,768～32,767の範囲内の時
+<PRE>	movea	imm16,zero,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,zero,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="LD">ld/in命令</A></H3>
+<P>ld/in命令（CMD disp[reg1],reg2）は次のように命令展開されます。説明内でのCMDはld.b、ld.h、ld.w、またはin.b、in.h、in.w命令を表わします。</P>
+
+<UL>
+<LI>dispが-32,768～32,767の範囲内の時
+<PRE>	CMD	disp16 [reg1],reg2
+</PRE>
+<LI>dispが-32,768～32,767の範囲外の時
+<PRE>	movhi	(disp)'hi1,reg1,resv
+	CMD	(disp)'lo[resv],reg2
+</PRE>
+</UL>
+
+<H3><A NAME="ST">st/out命令</A></H3>
+<P>st/out命令（CMD reg2,disp[reg1]）は次のように命令展開されます。説明内でのCMDはst.b、st.h、st.w、またはout.b、out.h、out.w命令を表わします。</P>
+
+<UL>
+<LI>dispが-32,768～32,767の範囲内の時
+<PRE>	CMD	reg2,disp16 [reg1]
+</PRE>
+<LI>dispが-32,768～32,767の範囲外の時
+<PRE>	movhi	(disp)'hi1,reg1,resv
+	CMD	reg2,(disp)'lo[resv]
+</PRE>
+</UL>
+
+<H3><A NAME="ADD">add命令</A></H3>
+<P>add命令（add imm,reg2）は次のように命令展開されます。</P>
+
+<UL>
+<LI>immが-16～15の範囲内の時
+<PRE>	add	imm5,reg2
+</PRE>
+<LI>immが-16～15の範囲外で-32,768～32,767の範囲内の時
+<PRE>	addi	imm16,reg2,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,zero,resv
+	add	resv,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,resv
+	add	resv,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="ADDI">addi命令</A></H3>
+<P>addi命令（addi imm,reg1,reg2）は次のように命令展開されます。なお、reg1とreg2に同じレジスタを指定した時は、add imm,reg2と判断してアセンブルします。</P>
+
+<UL>
+<LI>immが-32,768～32,767の範囲内の時
+<PRE>	addi	imm16,reg1,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,zero,reg2
+	add	reg1,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,reg2
+	add	reg1,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="CMP">cmp命令</A></H3>
+<P>cmp命令（cmp imm,reg2）は次のように命令展開されます。</P>
+
+<UL>
+<LI>immが-16～15の範囲内の時
+<PRE>	cmp	imm5,reg2
+</PRE>
+<LI>immが-16～15の範囲外で-32,768～32,767の範囲内の時
+<PRE>	movea	imm16,zero,resv
+	cmp	resv,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,zero,resv
+	cmp	resv,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,resv
+	cmp	resv,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="DIV">div/divu/mul/mulu/not/sub命令</A></H3>
+<P>div/divu/mul/mulu/not/sub命令（CMD imm,reg）は次のように命令展開されます。説明内でのCMDはdiv、divu、mul、mulu、not、またはsub命令を表わします。</P>
+
+<UL>
+<LI>immが0の時
+<PRE>	CMD	zero,reg2
+</PRE>
+<LI>immが0以外-16～15の範囲内の時
+<PRE>	mov	imm5,resv
+	CMD	resv,reg2
+</PRE>
+<LI>immが0以外-16～15の範囲外で-32,767～32,768の範囲内の時
+<PRE>	movea	imm16,zero,resv
+	CMD	resv,reg2
+</PRE>
+<LI>immが0以外-32,768～32,767の範囲外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,zero,resv
+	CMD	resv,reg2
+</PRE>
+<LI>immが0以外-32,768～32,767の範囲外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,resv
+	CMD	resv,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="MOVEA">movea命令</A></H3>
+<P>movea命令（movea imm,reg1,reg2）は次のように命令展開されます。なお、reg1にゼロレジスタを指定した時は、mov imm,reg2と判断してアセンブルします。</P>
+
+<UL>
+<LI>immが-32,768～32,767の範囲内の時
+<PRE>	movea	imm16,reg1,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,reg1,reg2
+</PRE>
+<LI>immが-32,768～32,767の範囲外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,reg1,resv
+	movea	(imm)'lo,resv,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="AND">and/or/xor命令</A></H3>
+<P>and/or/xor命令（CMD imm,reg2）は次のように命令展開されます。説明内でのCMDiはandi、ori、xori命令を、CMDはand、or、xor命令を表わします。</P>
+
+<UL>
+<LI>immが0の時
+<PRE>	CMD	zero,reg2
+</PRE>
+<LI>immが0以外1～65,535の範囲内の時
+<PRE>	CMDi	imm16,reg2,reg2
+</PRE>
+<LI>immが0以外-16～-1の範囲内の時
+<PRE>	mov	imm5,resv
+	CMD	resv,reg2
+</PRE>
+<LI>immが0以外-32,768～-17の範囲内の時
+<PRE>	movea	imm16,zero,resv
+	CMD	resv,reg2
+</PRE>
+<LI>上記以外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,zero,resv
+	CMD	resv,reg2
+</PRE>
+<LI>上記以外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,resv
+	CMD	resv,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="ANDI">andi/ori/xori命令</A></H3>
+<P>andi/ori/xori命令（CMDi imm,reg1,reg2）は次のように命令展開されます。説明内でのCMDiはandi、ori、xori命令を、CMDはand、or、xor命令を表わします。なお、reg1とreg2に同じレジスタを指定した時は、CMD imm,reg2と判断してアセンブルします。</P>
+
+<UL>
+<LI>immが1～65,535の範囲内の時
+<PRE>	CMDi	imm16,reg1,reg2
+</PRE>
+<LI>immが-16～-1の範囲内の時
+<PRE>	mov	imm5,reg2
+	CMD	reg1,reg2
+</PRE>
+<LI>immが-32,768～-17の範囲内の時
+<PRE>	movea	imm16,zero,reg2
+	CMD	reg1,reg2
+</PRE>
+<LI>上記以外でimmの下位16bitが0の時
+<PRE>	movhi	(imm)'hi,zero,reg2
+	CMD	reg1,reg2
+</PRE>
+<LI>上記以外でimmの下位16bitが0以外の時
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,reg2
+	CMD	reg1,reg2
+</PRE>
+</UL>
+
+<H3><A NAME="JMP">jmp命令</A></H3>
+<P>jmp命令（jmp imm）は次のように命令展開されます。</P>
+<PRE>	movhi	(imm)'hi1,zero,resv
+	movea	(imm)'lo,resv,resv
+	jmp	[resv]
+</PRE>
+
+<H3><A NAME="BCOND">Bcond命令</A></H3>
+<P>Bcond命令（Bcond imm）は、<A HREF="decon.html">DECON疑似命令</A>を指定した時に次のように命令展開されます。なお、説明内でのBcondはbgt、bge、blt、ble、bh、bnh、bl、bnl、be、bne、bv、bnv、bn、bp、bc、bnc、bz、またはbnz命令を表わします。</P>
+
+<UL>
+<LI>分岐先アドレスが未解決、または-256～255の範囲外の時
+<PRE>	Bncond	*+6	; 条件分岐命令の条件を反転
+	jr	imm
+</PRE>
+<LI>上記以外の時
+<PRE>	Bcond	imm
+</PRE>
+</UL>
+
+<HR>
+
+</BODY>
+</HTML>

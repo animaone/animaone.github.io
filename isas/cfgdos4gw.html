@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>Configuring DOS/4GW</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>Configuring DOS/4GW</H2>
+
+<font size=-1>[ <A HREF="usedos4gw.html">前ページへ</A> ]</font>
+<HR>
+
+<P>This section explains how to use the DOS4G environment variable to suppress the banner that is displayed by DOS/4GW at startup. It also explains how to use the DOS16M environment variable to select the switch mode setting, if necessary, and to specify the range of extended memory in which DOS/4GW will operate. DOS/4GW is based on Rational Systems'DOS/16M 16-bit Protected-Mode support; hence the DOS16M environment variable name remains unchanged.</P>
+
+<H3><A NAME="BANNER">Suppressing the DOS/4GW Banner</A></H3>
+
+<P>The banner that is displayed by DOS/4GW at startup can be suppressed by issuing the following command;</P>
+
+<PRE>set DOS4G=quiet
+</PRE>
+
+<P>Do not insert a space between DOS4G and the equal sign. A space to the right of the equal sign is optional.</P>
+
+<H3><A NAME="SETTING">Changing the Switch Mode Setting</A></H3>
+
+<P>In almost all cases, DOS/4GW programs can detect the type of machine that is running and automatically choose an appropriate real- to protected-mode switch technique. For the few cases in which this default setting does not work we provide the DOS16M DOS environment variable, which overrides the default setting.</P>
+
+<P>Change the switch mode settings by issuing the following command:</P>
+
+<PRE>set DOS16M=value
+</PRE>
+
+<P>Do not insert a space between DOS16M and the equal sign. A space to the right of the equal sign is optional.</P>
+
+<P>The table below lists the machines and the settings you would use with them. Many settings have mnemonics, listed in the column "Alternate Name", that you can use instead of the number. Settings that you must set with the DOS16M variable have the notation req'd in the first column. Settings you may use are marked option, and settings that will automatically be set are marked auto.</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>Status</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>Machine</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>Setting</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>Alternate Name</TH>
+	<TH ALIGN=LEFT VALIGN=TOP>Comment</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>auto</TD>
+	<TD NOWRAP>386/486 w/DPMI</TD>
+	<TD NOWRAP>0</TD>
+	<TD NOWRAP>None</TD>
+	<TD>Set automatically if DPMI is active</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>req'd</TD>
+	<TD NOWRAP>NEC 98-series</TD>
+	<TD NOWRAP>1</TD>
+	<TD NOWRAP>9801</TD>
+	<TD>Must be set for NEC 98-series</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>auto</TD>
+	<TD NOWRAP>PS/2</TD>
+	<TD NOWRAP>2</TD>
+	<TD NOWRAP>None</TD>
+	<TD>Set automatically for PS/2</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>auto</TD>
+	<TD NOWRAP>386/486</TD>
+	<TD NOWRAP>3</TD>
+	<TD NOWRAP>386,80386</TD>
+	<TD>Set automatically for 386 or 486</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>auto</TD>
+	<TD NOWRAP>386</TD>
+	<TD NOWRAP>INBORAD</TD>
+	<TD NOWRAP>None</TD>
+	<TD>386 with Intel Inboard</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>req'd</TD>
+	<TD NOWRAP>Fujitsu FMR-70</TD>
+	<TD NOWRAP>5</TD>
+	<TD NOWRAP>None</TD>
+	<TD>Must be set for Fujitsu FMR-70</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>auto</TD>
+	<TD NOWRAP>386/486 w/VCPI</TD>
+	<TD NOWRAP>11</TD>
+	<TD NOWRAP>None</TD>
+	<TD>Set automaticakky if VCPI detected</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>req'd</TD>
+	<TD NOWRAP>Hitachi B32</TD>
+	<TD NOWRAP>14</TD>
+	<TD NOWRAP>None</TD>
+	<TD>Must be set for Hitachi B32</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>req'd</TD>
+	<TD NOWRAP>OKI if800</TD>
+	<TD NOWRAP>15</TD>
+	<TD NOWRAP>None</TD>
+	<TD>Must be set for OKI if800</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>option</TD>
+	<TD NOWRAP>IBM PS/55</TD>
+	<TD NOWRAP>16</TD>
+	<TD NOWRAP>None</TD>
+	<TD>May be needed for some PS/55s</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="USAGE">Fine Control of Memory Usage</A></H3>
+
+<P>In addition to setting the switch mode as described above, the DOS16M environment variable enables you to specify which portion of extended memory DOS/4GW will use. The variable also allows you to instruct DOS/4GW to search for extra memory and use it if it is present.</P>
+
+<H4>Specifying a Range of Extended Memory</H4>
+<P>Normally, you don't need to specify a range of memory with the DOS16M variable. You must use the variable, however, in the following cases:</P>
+
+<UL>
+<LI>You are running on a Fujitsu FMR-series, NEC 98-series, OKI if800-series or Hitachi B-series machine.
+<LI>You have older programs that use extended memory but don't follow one of the standard disciplines.
+<LI>You want to shell out of DOS/4GW to use another program that requires extended memory.
+</UL>
+
+<P>If none of these conditions applies to you, you can skip this section.</P>
+
+<P>The general syntax is:</P>
+
+<PRE>set DOS16M=[switch_mode][@start_address[-end_address]][:size]
+</PRE>
+
+<P>In the syntax shown above, start_address, end_address and size represent numbers, expressed in decimal or in hexadecimal (hex requires a 0x prefix). The number may end with a K to indicate an address or size in kilobytes, or an M to indicate megabytes. If no suffix is given, the address or size is assumed to be in kilobytes. If both a size and a range are specified, the more restrictive interpretation is used.</P>
+
+<P>The most flexible strategy is to specify only a size. However, if you are running with other software that does not follow a convention for indicating its use of extended memory, and these other programs start before DOS/4GW, you will need to calculate the range of memory used by the other programs and specify a range for DOS/4GW programs to use.</P>
+
+<P>DOS/4GW ignores specifications (or parts of specifications) that conflict with other information about extended memory use. Below are some examples of memory usage control:</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>set dos16m=1@2m-4m</TD>
+	<TD>Mode 1, for NEC 98-series machines, and use extended memory between 2.0 and 4.0MB.</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>set dos16m=:1m</TD>
+	<TD>Use the last full megabyte of extended memory, or as much as available limited to 1MB.</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>set dos16m=@2m</TD>
+	<TD>Use any extended memory available above 2MB.</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>set dos16m=@0-5m</TD>
+	<TD>Use any abailable extended memory from 0.0 (really 1.0) to 5.0MB.</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>set dos16m=:0</TD>
+	<TD>Use no extended memory.</TD>
+</TR>
+</TABLE>
+
+<P>As a default condition DOS/4GW applications take all extended memory that is not otherwise in use. Multiple DOS/4GW programs that execute simultaneously will share the reserved range of extended memory. Any non-DOS/4GW programs started while DOS/4GW programs are executing will find that extended memory above the start of the DOS/4GW range is unavailable, so they may not be able to run. This is very safe. There will be a conflict only if the other program does not check the BIOS configuration call (Interrupt 15H function 88H, get extended memory size).</P>
+
+<P>The default memory allocation strategy is to use extended memory if available, and overflow into DOS (low) memory.</P>
+
+<P>In a VCPI or DPMI environment, the start_address and end_address arguments are not meaningful. DOS/4GW memory under these protocols is not allocated according to specific addresses because VCPI and DPMI automatically prevent address conflicts between extended memory programs. You can specify a size for memory managed by VCPI or DPMI, but DOS/4GW will not necessarily allocate this memory from the highest available extended memory address, as it does for memory managed under other protocols.</P>
+
+<H4>Using Extra Memory</H4>
+<P>Some machines contain extra non-extended, non-conventional memory just below 16MB. When DOS/4GW runs on a Compaq 386, it automatically uses this memory because the memory is allocated according to a certain protocol, which DOS/4GW follows. Other machines have no protocol for allocating this memory. To use the extra memory that may exist on these machines, set DOS16M with the + option.</P>
+
+<PRE>set DOS16M=+
+</PRE>
+
+<P>Setting the + option causes DOS/4GW to search for memory in the range from FA0000 to FFFFFF and determine whether the memory is usable. DOS/4GW does this by writing into the extra memory and reading what is has written. In some cases, this memory is mapped for DOS or BIOS usage, or for other system uses. If DOS/4GW finds extra memory that is mapped this way, and is not marked read- only, it will write into that memory. This will cause a crash, but won't have any other effect on your system.</P>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISPREFIX（65816用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISPREFIX（65816用）</H2>
+
+<font size=-1>[ <A HREF="isdmg.html">前ページへ</A> | <A HREF="issfx.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>INTELLIGENT SYSTEMS社用のプリフィックスを使用します。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ISPREFIX
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD>
+<P>ダイレクトアドレッシング、アブソリュートアドレッシング、およびロングアドレッシングを明示的するためのプリフィックスに、INTELLIGENT SYSTEMS社用のプリフィックスを使用します。次に示すプリフィックスをシンボルの直前に記述することにより、特定のアドレッシングを指定することができます。</P>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD>ダイレクトアドレッシング</TD>
+<TD>.（ピリオド）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD>アブソリュートアドレッシング</TD>
+<TD>!（エクスクラメーション）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD>ロングアドレッシング</TD>
+<TD>~（チルダ）</TD>
+</TR>
+</TABLE>
+
+<P>なお、ISPREFIX疑似命令および<A HREF="wdprefix.html">WDPREFIX疑似命令</A>の何れの疑似命令も指定しない時は、INTELLIGENT SYSTEMS社用のプリフィックスを使用する指定になります。</P>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="is65.html">IS65</A>、<A HREF="wdprefix.html">WDPREFIX</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	is65
+	extern	reg0, symbol
+	isprefix
+	lda	.reg0		; ダイレクトアドレッシング
+	lda	!reg0		; アブソリュートアドレッシング
+	lda	~symbol		; ロングアドレッシング
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

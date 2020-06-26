@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DECOFF（V810SF用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DECOFF（V810SF用）</H2>
+
+<font size=-1>[ <A HREF="comm.html">前ページへ</A> | <A HREF="decon.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD><A HREF="decon.html">DECON疑似命令</A>の指定を解除します。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DECOFF
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P><A HREF="decon.html">DECON疑似命令</A>の指定を解除し、条件分岐命令でロングブランチするように命令展開しないことをアセンブラに通知します。</P>
+<P>この疑似命令を記述した後の条件分岐命令で、-256から255を越える相対アドレスに分岐する時、または1パス目で分岐先アドレスが不明な時は、命令展開が行われないために"Out of range.[]（レンジオーバーです。目的のアドレスに届きません。[]）"のエラーが出力されます。</P>
+<P>なお、<A HREF="decon.html">DECON疑似命令</A>やDECOFF疑似命令が指定されていない時は、デフォルトでは命令展開されない指定になっています。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="isv810.html">ISV810</A>、<A HREF="decon.html">DECON</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	isv810
+	decon	branch
+	:
+	decoff			; DECON疑似命令の指定を解除
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>セットアップ</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>セットアップ</H2>
+
+<font size=-1>[ <A HREF="environment.html">前ページへ</A> | <A HREF="value.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISASとISLKを使用される前に、最低限以下のセットアップを行なう必要があります。</P>
+
+<H3><A NAME="COPY">システムファイルのコピー</A></H3>
+<P>まず、システムディスクからユーザのハードディスク等にシステムファイルをコピーします。コピーは<a href="edition.html">エディション</a>の項目で示した全てのシステムファイルを同じディレクトリにコピーするようにしてください。また、コピー後はシステムディスクを大切に保管してください。この作業は、バックアップの目的においてのみ行なうことを許可し、この目的以外でのコピーは禁止されています。</P>
+
+<H3><A NAME="SET">環境変数の設定</A></H3>
+<P>ISASとISLKには、<A HREF="value.html#ISAS">ISAS</A>、<A HREF="value.html#ISLK">ISLK</A>、<A HREF="value.html#ISINC">ISINC</A>、<a href="value.html#ISLIB">ISLIB</a>、<A HREF="value.html#ISTMP">ISTMP/TEMP/TMP</A>、および<A HREF="value.html#PATH">PATH</A>の環境変数が用意されていますが、この内<A HREF="value.html#PATH">PATH</A>コマンドで検索リストにISAS.ISLKのシステムファイルをコピーしたディレクトリを追加してください。例えば、ISASとISLKのシステムファイルをCドライブのISASディレクトリにコピーした時は次のように指定します。</P>
+
+<PRE>C:\&gt;path=%path%;c:\isas
+</PRE>
+
+<P>その他の環境変数は必要に応じて設定します。なお、環境変数の詳細については<A HREF="value.html">環境変数</A>の項目を参照してください。</P>
+
+<HR>
+
+</BODY>
+</HTML>

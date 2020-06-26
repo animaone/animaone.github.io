@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>RSVREG（V810SF用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>RSVREG（V810SF用）</H2>
+
+<font size=-1>[ <A HREF="radix.html">前ページへ</A> | <A HREF="title.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>V810SF命令展開の有無の指定、および命令展開時にアセンブラが使用する汎用レジスタを指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	RSVREG	&lt;レジスタ&gt;<!-- <レジスタ> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;レジスタ&gt;<!-- <レジスタ> -->には、0から31までの値を指定します。&lt;レジスタ&gt;<!-- <レジスタ> -->に0を指定した時は命令展開は行われません。また、&lt;レジスタ&gt;<!-- <レジスタ> -->に1から31までの値を指定した時は、r&lt;レジスタ&gt;<!-- <レジスタ> -->の汎用レジスタを命令展開時に使用するレジスタとして予約します。</P>
+<P>V810SFでは、32ビットの定数値をレジスタに代入する命令コード、および32ビットのディスプレースメントを用いてメモリを参照する命令コードは用意されていません。このため、ISASではこれらのニーモニックを用意し、アセンブル時に既存のV810SFの命令コードに展開してアセンブルします。RSVREG疑似命令は、この命令展開時にアセンブラが使用する汎用レジスタを指定します。</P>
+<P>なお、イミディエイト値を与えるオペランドの先頭に、ピリオド（.）またはスラッシュ（/）のプリフィックスを付加すると命令展開は行われません。命令展開の詳細については、"<A HREF="extend.html">付録２　V810SF命令展開</A>"を参照してください。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="isv810.html">ISV810</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	isv810
+	rsvreg	1		; r1レジスタを命令展開時に使用する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

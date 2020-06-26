@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ONRNG</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ONRNG</H2>
+
+<font size=-1>[ <A HREF="onpolish.html">前ページへ</A> | <A HREF="opti.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>レンジ情報の出力を許可します。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ONRNG
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ONRNG疑似命令の記述以降のプログラムのレンジ情報を、ISASが出力するオブジェクトファイルに出力します。</P>
+<P>レンジ情報とは、記述された内容がプログラムなのかデータなのかを記録したものです。ONRNG疑似命令を指定することにより、この疑似命令を指定した部分をデバッガでデバッグする時、プログラム領域は逆アセンブル表示で、またデータ領域は<A HREF="defb.html">DEFB/DB</A>、<A HREF="defh.html">DEFH/DH</A>、<A HREF="defw.html">DEFW/DW</A>、<A HREF="defd.html">DEFD/DD</A>、<A HREF="defl.html">DEFL/DL</A>、または<A HREF="defs.html">DEFS/DS疑似命令</A>によって表示されます。</P>
+<P>なお、ONRNG疑似命令および<A HREF="offrng.html">OFFRNG疑似命令</A>が指定されていない時は、常にレンジ情報が出力されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="offrng.html">OFFRNG</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	onrng
+	db	$10,$20		; デバッグ時にもこのように逆アセンブル
+	:			; される
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

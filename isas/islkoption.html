@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>起動オプション</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>起動オプション</H2>
+
+<font size=-1>[ <A HREF="islkmotion.html">前ページへ</A> | <A HREF="response.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISLKの起動オプションの詳細について説明します。なお、起動オプションの指定は大文字と小文字を判断するので、記述には注意してください。</P>
+
+<H3><A NAME="SYMBOL">-s &lt;n&gt;</A></H3><!-- -s <n> -->
+<p>メモリ上に確保するシンボルテーブル数を指定します。</p>
+<p>ISLKは、リンク時に外部参照するシンボルをメモリ上に確保したテーブルに展開します。-sオプションは、このシンボルテーブル数を変更する時に使用します。&lt;n&gt;<!-- <n> -->には、65535までのシンボルテーブル数を10進数の値で指定することができます。また、値の直前に"$"または"0x"を付けることにより16進数の値で指定することもできます。なお、シンボルテーブル数のデフォルトは、MS-DOS版で4091個、MS-DOS版以外で65521個となっています。リンク時に"Not enough symbol tables.（シンボルテーブルが足りません。）"のエラーメッセージが出力された時には、この-sオプションでシンボルテーブル数を増やして対処することができます。</p>
+<p>例えば、シンボルテーブル数を8000個に増やすには次のように指定します。</p>
+
+<PRE>C:\&gt;islk -s 8000 ...
+</PRE>
+
+<H3><A NAME="BUFFER">-b &lt;n&gt;</A></H3><!-- -b <n> -->
+<P>入出力ファイル用のバッファサイズをバイト単位で指定します。</P>
+<P>ISASは、オブジェクトファイルを読み込むための入力用バッファ、およびISXファイルやテンポラリファイルを書き込むための出力用バッファの二つを使用します。-bオプションの指定によって、これら一つ当たりのバッファサイズを指定することができます。</P>
+<P>例えば、入力ファイル用と出力ファイル用のそれぞれのファイルバッファのサイズを8192バイトに変更するには次のように指定します。</P>
+
+<PRE>C:\>islk -b 8192 ...
+</PRE>
+
+<P>このバッファサイズを大きくすると、リンクに要する時間は短縮されますが、多くのメモリを必要とします。ユーザの動作環境等を確認の上、"Not enough memory.（メモリーが足りません。）"のエラーが出力されない値を指定してください。なお、-bオプションが指定されない時のデフォルトのバッファサイズの値はMS-DOS版で16384バイト、MS-DOS版以外で32768バイトです。</P>
+
+<H3><A NAME="OBJECT">-o &lt;xxx&gt;</A></H3><!-- -o <xxx> -->
+<P>ISLKが出力するISXファイル名、またはオブジェクトファイル名を指定します。</P>
+<P>ファイル名に拡張子を付けないで記述した場合は、自動的に".isx"の拡張子名を付けたISXファイルを出力します。また、".o"以外の拡張子を付けた場合は、指定されたファイル名でISXファイルを出力します。もちろん、ファイル名にドライブ名やディレクトリパスを指定することもできます。-oオプションを省略した時は、リンクの初めに指定されたオブジェクトファイル名の拡張子を".isx"に変更したファイル名をISXファイルとして出力します。</P>
+<P>例えば、出力するISXファイル名を"sample.isx"にするには次のように指定します。</P>
+
+<PRE>C:\&gt;islk -o sample.isx ...
+</PRE>
+
+<P>また、ファイル名に".o"の拡張子を付けた場合は、複数のオブジェクトファイルを一つのオブジェクトファイルにまとめることができます。</P>
+
+<PRE>C:\&gt;islk -o sample.o sub1.o sub2.o
+</PRE>
+
+<P>この例では、"sub1.o"と"sub2.o"の二つのオブジェクトファイルを、一つのオブジェクトファイル"sample.o"にまとめています。</P>
+
+<H3><A NAME="DEFINE">-D &lt;symbol&gt;[=value]</A></H3><!-- -D <symbol>[=value] -->
+<P>&lt;symbol&gt;<!-- <symbol> -->で指定されたシンボルを宣言し、そのシンボルに[value]で指定された値を定義します。</P>
+<P>通常、外部参照シンボルは他のソースファイルで外部定義しなければなりませんが、-Dオプションを用いることによりリンク時にシンボルを宣言することができます。このため、ソースファイルの内容を変更することなくアドレスや定数の値を簡単に設定することがきます。</P>
+<P>例えば、次のように何れのソースファイル内でも定義していないシンボルtempを使用する場合には、</P>
+
+<PRE>	extern	temp		; シンボルtempを外部参照シンボルとして定義
+	lda	temp		; 何れのソースファイル内でも定義されていないシンボルを使用
+	:
+</PRE>
+
+<p>-Dオプションでシンボルtempを定義し値を指定することにより、正常にリンクすることができます。</p>
+
+<PRE>C:\&gt;islk -D temp=$8000 ...
+</PRE>
+
+<p>なお、-Dオプションで宣言されたシンボルは大文字と小文字を判別したシンボルとして宣言されます。そのため、そのシンボルを参照する部分での<a href="capsoff.html">CAPSOFF/SMALL疑似命令</a>や<a href="capson.html">CAPSON疑似命令</a>によるシンボルの大文字と小文字の判別状態に合わせてシンボルを記述しなければならないので注意してください。</p>
+
+<pre>	capsoff
+	lda	temp		; CAPSOFF疑似命令により"temp"として判断する
+</pre>
+
+<p>この場合は、<a href="capsoff.html">CAPSOFF疑似命令</a>により小文字のシンボル"temp"として判断されるため、-Dオプションも"-D temp=$8000"のように小文字で指定します。</p>
+
+<pre>	capson
+	lda	temp		; CAPSON疑似命令により"TEMP"として判断する
+</pre>
+
+<p>また、この場合には、<a href="capson.html">CAPSON疑似命令</a>により大文字のシンボル"TEMP"として判断されるので、"-D TEMP=$8000"と大文字で指定しなければなりません。</p>
+
+<H3><A NAME="GROUP">-G &lt;symbol&gt;[=value]</A></H3><!-- -G <symbol>[=value] -->
+<P>&lt;symbol&gt;で指定されたグループの先頭アドレスを[value]で宣言します。</P>
+<P>同じ名前のグループは、リンク時に指定されたオブジェクトファイルの順に配置され、同一グループ毎に一つのモジュールにまとめられます。このため、初めて現れるグループの先頭には、必ず<A HREF="org.html">ORG疑似命令</A>によって絶対アドレスを指定しなければなりません。ただし、-Gオプションを使用することにより、ソースファイル内に絶対アドレスを記述することなく、リンク時にこのアドレスを指定することができます。</P>
+<P>例えば、グループcommonをリンク時に$1000番地から配置したい時は、次のようにソースファイルに記述します。</P>
+
+<PRE>common	group	$00		; グループcommonを宣言
+	:			; ORG疑似命令は記述しない
+	:
+</PRE>
+
+<P>そして、次のようにリンク時に-Gオプションを指定することで、リロケータブルにグループを絶対アドレスに配置することができます。</P>
+
+<PRE>C:\&gt;islk -G common=$1000 ...
+</PRE>
+
+<P>また、この-Gオプションで指定したグループは、他の-Gオプションで指定したグループのアドレスと重複した領域がないかを自動的にチェックします。リンク時に他のグループと重複しているグループが発見されると、ISLKは次のようにウォーニングを出力します。</P>
+
+<PRE>C:\&gt;islk4g sample.o -G text=$ffff0000 -G data=$ffff2000 -G bss=$05000000
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+        Area of [text] group = FFFF:0000 - FFFF:2BA5 conflict
+WARNING! 1 group(s) conflict area detected.
+
+C:\&gt;
+</PRE>
+
+<P>このような時には、次のように-vオプションを指定すると、どのグループのアドレスと重なっているかを簡単に確認することができます。だたし、ISLKの-Gオプションで指定していないグループはチェックされないので注意してください。</P>
+
+<PRE>C:\&gt;islk4g sample.o -G text=$ffff0000 -G data=$ffff2000 -G bss=$05000000 -v
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+output file : sample.isx
+
+*** phase 1 ***
+ sample.o
+*** phase 2 ***
+ sample.o
+symbol:167
+        Area of [text] group = FFFF:0000 - FFFF:2BA5 conflict
+        Area of [data] group = FFFF:2000 - FFFF:22C7
+        Area of [bss] group = 0500:0000 - 0500:9157
+        End of [vec] group = FFFF:0017
+WARNING! 1 group(s) conflict area detected.
+range:23
+
+C:\&gt;
+</PRE>
+
+<p>なお、-Gオプションで宣言されたグループ名は大文字と小文字を判別した名前として宣言されます。そのため、そのグループ名を参照する部分での<a href="capsoff.html">CAPSOFF/SMALL疑似命令</a>や<a href="capson.html">CAPSON疑似命令</a>によるグループ名の大文字と小文字の判別状態に合わせてグループ名を記述しなければならないので注意してください。</p>
+
+<pre>	capsoff
+temp	group			; CAPSOFF疑似命令により"temp"として判断する
+</pre>
+
+<p>この場合は、<a href="capsoff.html">CAPSOFF疑似命令</a>により小文字のグループ名"temp"として判断されるため、-Gオプションも"-G temp=$8000"のように小文字で指定します。</p>
+
+<pre>	capson
+temp	group				; CAPSON疑似命令により"TEMP"として判断する
+</pre>
+
+<p>また、この場合には、<a href="capson.html">CAPSON疑似命令</a>により大文字のグループ名"TEMP"として判断されるので、"-G TEMP=$8000"と大文字で指定しなければなりません。</p>
+
+<H3><A NAME="ERROR">-e &lt;xxx&gt;</A></H3><!-- -e <xxx> -->
+<P>エラーの出力デバイスを指定します。</P>
+<P>&lt;xxx&gt;で指定したデバイスにエラーやウォーニングのメッセージを出力します。&lt;xxx&gt;には、次のデバイスを指定することができます。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>&lt;xxx&gt;</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>デバイス</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>stdout</TD>
+	<TD>標準出力（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>stderr</TD>
+	<TD>標準エラー出力</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>stdout、stderr以外</TD>
+	<TD>ファイル</TD>
+</TR>
+</TABLE>
+
+<P>例えば、標準エラー出力のデバイスにエラーを出力するには次のように指定します。</P>
+
+<PRE>C:\&gt;islk -e stderr test.o
+C:\&gt;
+</PRE>
+
+<H3><A NAME="NOLOGO">-nologo</A></H3>
+<P>ISLKが起動する時に画面に表示されるタイトルやバージョン、およびコピーライトを表示しません。</P>
+<P>-nologoオプションを指定しない時は、次のようなタイトル等が表示されます。</P>
+
+<PRE>C:\&gt;islk sample
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+
+C:\&gt;
+</PRE>
+
+<P>-nologoオプションを指定することにより、タイトル等は表示されないようになります。ただし、エラーやウォーニングのメッセージは-nologo指定時でも表示されます。</P>
+
+<PRE>C:\&gt;islk -nologo sample
+sample.s ERROR Unresolved external.[LOOP]
+fatal errors = 1
+
+C:\&gt;
+</PRE>
+
+<H3><A NAME="VERBOSE">-v</A></H3>
+<P>リンク処理の途中経過を表示します。</P>
+<P>ISLKの動作状況を確認したい時に指定するだけで、通常このオプションを使用することはありません。</P>
+
+<PRE>C:\&gt;islk -v sample
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+output file : sample.isx
+
+*** phase 1 ***
+ sample.o
+*** phase 2 ***
+ sample.o
+symbol:167
+        End of [BANK00] group = 0000:3063
+        End of [BANK01] group = 0001:1250
+range:23
+
+C:\&gt;
+</PRE>
+
+<H3><A NAME="NODEBUG">-n</A></H3>
+<P>ISXファイルにデバッグ情報を出力しません。</P>
+<P>ISXファイルには、シンボリックデバッグのためのシンボル情報とレンジ情報、また、ソースレベルデバッグのためのデバッグ情報が格納されています。-nオプションは、これらのデバッグ情報をISXファイルに出力しないようにします。動作確認のみ行う時などには、デバッグのための情報は不要となるので、コンパクトなISXファイルを短時間に出力する時に使用します。</P>
+<P>なお、-nオプションを指定して作成したISXファイルをデバッガに読み込んでもシンボリックデバッグやソースレベルデバッグはできません。</P>
+
+<PRE>C:\&gt;islk -n sample
+</PRE>
+
+<H3><A NAME="TIME">-t</A></H3>
+<P>リンクに用した時間を表示します。</P>
+<P>以下の例では、リンクに要した時間は43秒であることが分かります。</P>
+
+<PRE>C:\&gt;islk -t sample
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+linkage time = 00:00:43
+
+C:\&gt;
+</PRE>
+
+<H3><A NAME="OLDISX">-x24</A></H3>
+<P>従来のSHVCデバッガ用ISXファイルを作成します。</P>
+<P>ISLKは、デフォルトで拡張ISXファイルを出力します。これはソースレベルデバッグを行うためのデバッグ情報が含まれたISXファイルであり、従来のSHVCデバッガではロードすることはできません。ISXファイルを従来のSHVCデバッガにロードする時は、ISLK起動時に-x24オプションを指定する必要があります。</P>
+
+<PRE>C:\&gt;islk -x24 sample
+</PRE>
+
+<h3><a name="LIB">-L &lt;xxx&gt;</a></h3><!-- -L <xxx> -->
+<p>リンクするオブジェクトファイルを検索するディレクトリパスを指定します。</p>
+<p>リンク時にオブジェクトファイルが見つからなかった時、ISLKは-Lオプションで指定されたディレクトリパスに従ってファイルを検索します。例えば、CドライブのLIBディレクトリを検索するには次のように指定します。</p>
+
+<pre>C:\&gt;islk -L c:\lib ...
+</pre>
+
+<p>また、複数のディレクトリを指定する時は、検索するパスを順次記述しそれぞれセミコロン（;）で区切ることにより指定することができます。</p>
+
+<pre>C:\&gt;islk -L c:\lib1;c:\lib2 ...
+</pre>
+
+<p>なお、<a href="value.html#ISLIB">ISLIB環境変数</a>が指定されていても、-Lオプションで指定したディレクトリを優先して検索し、目的のファイルが見つからなかった時にISLIB環境変数で指定したディレクトリが検索されます。</p>
+
+<H3><A NAME="JAPANESE">-jp</A></H3>
+<P>エラーやウォーニングのメッセージを日本語で表示します。</P>
+
+<PRE>C:\&gt;islk -jp sample
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+sample.s ERROR シンボルが解決されていません。[LOOP]
+fatal errors = 1
+
+C:\&gt;
+</PRE>
+
+<P>なお、-jpオプションが指定されていない時は、英語でメッセージを表示します。</P>
+
+<H3><A NAME="ENGLISH">-us</A></H3>
+<P>エラーやウォーニングのメッセージを英語で表示します。</P>
+
+<PRE>C:\&gt;islk -us sample
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+sample.s ERROR Unresolved external.[LOOP]
+fatal errors = 1
+
+C:\&gt;
+</PRE>
+
+<P>なお、デフォルトでは英語でメッセージを表示します。</P>
+
+<H3><A NAME="WARNING">-w bank-over</A></H3>
+<P>バンクの領域サイズを越えてプログラムを作成した時にウォーニングを出力します。</P>
+<P>65816プロセッサのプログラムを開発する時、バンクを越えてプログラムを配置することは許されません。-w bank-overオプションは、バンクを越えてプログラムが配置された時にウォーニングを出力することをISLKに指示します。</P>
+<P>このオプションを指定し、プログラムがバンクを越えた時には次のように表示されます。</P>
+
+<PRE>C:\&gt;islk -w bank-over sample
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+WARNING Bank over.[00:FFFE==&gt;01:0002]
+warnings = 1
+
+C:\&gt;
+</PRE>
+
+<P>65816プロセッサのプログラムを開発する時には、安全のためにこのオプションを指定すると良いでしょう。</P>
+
+<HR>
+
+</BODY>
+</HTML>

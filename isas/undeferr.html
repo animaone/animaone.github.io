@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>UNDEFERR</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>UNDEFERR</H2>
+
+<font size=-1>[ <A HREF="title.html">前ページへ</A> | <A HREF="undefext.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>未定義シンボルを発見した時にエラーを出力します。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	UNDEFERR
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>未定義シンボルを発見した時、ISASに"Undefined symbol.（シンボルが見つかりません。）"のエラーを出力するように指示します。<A HREF="undefext.html">UNDEFEXT疑似命令</A>が指定されると、UNDEFERR疑似命令は解除されます。</P>
+<P>なお、<A HREF="undefext.html">UNDEFEXT疑似命令</A>、およびUNDEFERR疑似命令が指定されていない時は、UNDEFERR疑似命令が指定された時と同じように、未定義シンボルに対してエラーを出力します。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="undefext.html">UNDEFEXT</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	undeferr
+	lda	sample		; シンボル名sampleが未定義のためエラー
+	:			; が発生
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

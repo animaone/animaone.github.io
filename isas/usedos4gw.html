@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>Memory Use</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>Memory Use</H2>
+
+<font size=-1>[ <A HREF="extend.html">前ページへ</A> | <A HREF="cfgdos4gw.html">次ページへ</A> ]</font>
+<HR>
+
+<P>This section explains how a DOS/4GW application uses the memory on an 386-based PC/AT. The basic memory layout of an AT machine consists of 640KB of DOS memory. 384KB of upper memory, and an undetermined amount of extended memory.DOS memory and upper memory together compose real memory, the memory that can be addressed when the processor is ruuning in real mode.</P>
+
+<PRE>	┌───────┐
+	│   Extended	│
+	│    Memory	│
+  1MB →├───────┤
+	│     Upper	│← ROMs and Hardware
+	│    Momory	│
+640KB →├───────┤
+	│      DOS	│← DOS and Real-Mode Software
+	│    Memory	│
+  1KB →├───────┤
+	│		│← Interrupt Vectors
+	└───────┘
+
+	Basic Memory Layout
+</PRE>
+
+<P>Under DOS/4GW, the first megabyte of physical memory - the real memory - is mapped as a shared linear address space. This allows your application to use absolute addresses in real memory, to access video RAM or BIOS ROM, for example. Because the real memory is available to all processes, you are not guaranteed to be able to allocate a particular area in real memory: another process may have allocated it already.</P>
+
+<P>Most code and data is placed in a paged linear address space starting at 4MB. The linear address space starts at 4MB, the first address in the second page table, to avoid conflicts with VCPI system software.</P>
+
+<P>This split mapping - an executable that is linked to start at 4MB in the linear address space, with the first MB in the address space mapped to the first MB of physical memory - is called a split flat model.</P>
+
+<PRE>	┌───────┐		┌───────┐
+	│		│↑		│		│Process code
+	├───────┤		│		│and data
+	│		│Mapped	│		│
+	├───────┤as	  4MB →├───────┤
+	│		│needed	│		│1～4MBunmapped
+	├───────┤		│  VCPI code	│for VCPI
+	│  4KB pages	│↓		│		│compatibility
+  1MB →├───────┤		├───────┤
+	│		│↑		│		│↑
+DOS and	│		│		│		│
+RealMode├───────┤		├───────┤
+Software│		│Mapped	│		│Mapped into
+	│		│to all	│		│process as
+	│		│processes	│		│needed
+	│		│		│		│
+	│		│	  4KB →├───────┤
+	├───────┤↓		│		│↓
+  1KB →└───────┘		└───────┘
+
+	Physical Memory/Linear Address Space
+</PRE>
+
+<P>The 1KB label in the diagram indicates the top of the real-mode interrupt vectors. 4MB marks the end of the first page.</P>
+
+<HR>
+
+</BODY>
+</HTML>

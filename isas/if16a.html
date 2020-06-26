@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>IF16A（65816用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>IF16A（65816用）</H2>
+
+<font size=-1>[ <A HREF="if.html">前ページへ</A> | <A HREF="if16i.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>アキュームレータの操作が16ビットモードの時評価します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	IF16A
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ON16A疑似命令によってアキュームレータの操作が16ビットモードの時、次の<A HREF="else.html">ELSE疑似命令</A>または<A HREF="endif.html">ENDIF疑似命令</A>までをアセンブルします。なお、IF16A疑似命令の記述の後には必ず<A HREF="endif.html">ENDIF疑似命令</A>が必要です。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="is65.html">IS65</A>、<A HREF="on16a.html">ON16A</A>、<A HREF="off16a.html">OFF16A</A>、<A HREF="on16i.html">ON16I</A>、<A HREF="off16i.html">OFF16I</A>、<A HREF="ifn16a.html">IFN16A</A>、<A HREF="if16i.html">IF16I</A>、<A HREF="ifn16i.html">IFN16I</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	is65
+	on16a			; アキュームレータの16ビットモードの指
+	:			; 定
+	if16a			; ON16A疑似命令が指定されているためアセ
+	lda	srcbuf		; ンブル処理される
+	sta	destbuf
+	endif
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

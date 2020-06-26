@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>EXTERN</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>EXTERN</H2>
+
+<font size=-1>[ <A HREF="even.html">前ページへ</A> | <A HREF="global.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>シンボルを外部参照として宣言します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	EXTERN	&lt;名前&gt;[,名前] ... [,名前]<!-- <名前>[,名前] ... [,名前] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ソースファイル内で参照しているシンボルが、他のソースファイルで定義されていることをアセンブラに通知します。&lt;名前&gt;<!-- <名前> -->には、外部参照されるシンボル名を記述します。複数の&lt;名前&gt;<!-- <名前> -->を与える時は、それぞれの&lt;名前&gt;<!-- <名前> -->をカンマ（,）で区切ってください。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="public.html">PUBLIC</A>、<A HREF="puball.html">PUBALL</A>、<A HREF="pubon.html">PUBON</A>、<A HREF="puboff.html">PUBOFF</A>、<A HREF="global.html">GLOBAL</A>、<A HREF="local.html">LOCAL</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>ソースファイル1
+	public	sample		; 定義しているシンボルsampleが外部で参
+	:			; 照されるため外部定義シンボル宣言する
+sample	ds	$55
+
+ソースファイル2
+	extern	sample		; 参照しているシンボルsampleが外部で定
+	:			; 義されるため外部参照シンボル宣言する
+	lda	sample
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>疑似命令</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>疑似命令</H2>
+
+<font size=-1>[ <A HREF="macrooperator.html">前ページへ</A> | <A HREF="assume65816.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISASでは、次の疑似命令を使用することができます。なお、以下の疑似命令の他に、ISASには予約語として用意されている疑似命令があります。これは、IS65との互換性を確保するために用意された疑似命令であり、ISASでは無視されます。もちろん悪影響は与えず、デフォルトではウォーニングも出力されません。ただし、ISAS起動時に<A HREF="isasoption.html#WARNING">-w3オプション</A>を指定すると、"[] Not yet support.（まだ[]はサポートしていません。）"のウォーニングが出力されます。なお、予約語として用意されている疑似命令には、IF1、IF2、KANJI、ERROR、NERROR、ONMEM、OFFMEM、FINAL、ON816、およびOFF816があります。</P>
+
+<H3><A NAME="ADDRESS">アドレス疑似命令</A></H3>
+<P>ロケーションカウンタを操作する疑似命令です。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="group.html">GROUP</A></TD>
+	<TD>グループを宣言します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="onbankgroup.html">ONBANKGROUP</A></TD>
+	<TD><A HREF="org.html">ORG疑似命令</A>によるロケーションカウンタを、<A HREF="group.html">GROUP疑似命令</A>で指定したバンクグループに属させます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="offbankgroup.html">OFFBANKGROUP</A></TD>
+	<TD><A HREF="org.html">ORG疑似命令</A>によるロケーションカウンタを現在のバンクグループに属させません。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="org.html">ORG</A></TD>
+	<TD>絶対アドレスでロケーションカウンタを指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="offset.html">OFFSET</A></TD>
+	<TD>相対アドレスでロケーションカウンタを指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="even.html">EVEN</A></TD>
+	<TD>アセンブル時のロケーションを2バイト境界または4バイト境界にアライメントします。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="SYMBOL">シンボル疑似命令</A></H3>
+<P>シンボル定義に関する疑似命令です。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="equ.html">EQU</A></TD>
+	<TD>シンボルに値を定義します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="substitute.html">=</A></TD>
+	<TD>再定義可能なシンボルに値を定義します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="capson.html">CAPSON</A></TD>
+	<TD>シンボルの英文字を、全て大文字として判断します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="capsoff.html">CAPSOFF/SMALL</A></TD>
+	<TD>シンボルの英文字を、小文字と大文字を別文字として判断します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="lprefix.html">LPREFIX</A></TD>
+	<TD>ローカルシンボルを示すプリフィックスを指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="def.html">DEF</A></TD>
+	<TD>シンボルに文字列を定義します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="public.html">PUBLIC</A></TD>
+	<TD>シンボルを外部定義として宣言します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="extern.html">EXTERN</A></TD>
+	<TD>シンボルを外部参照として宣言します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="global.html">GLOBAL</A></TD>
+	<TD>シンボルを外部定義および外部参照として宣言します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="local.html">LOCAL</A></TD>
+	<TD>シンボルを内部定義として宣言します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="puball.html">PUBALL</A></TD>
+	<TD>ソースファイル内の全ての定義シンボルを外部定義シンボルとして宣言します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="pubon.html">PUBON</A></TD>
+	<TD><A HREF="pubon.html">PUBON疑似命令</A>以降に定義されたシンボルを外部定義シンボルとして宣言します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="puboff.html">PUBOFF</A></TD>
+	<TD><A HREF="pubon.html">PUBON疑似命令</A>によって指定された外部定義シンボルの宣言を解除します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="undefext.html">UNDEFEXT</A></TD>
+	<TD>未定義シンボルを外部参照シンボルとみなします。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="undeferr.html">UNDEFERR</A></TD>
+	<TD>未定義シンボルを発見した時にエラーを出力します。（デフォルト）</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="AREA">領域疑似命令</A></H3>
+<P>メモリに特定のデータを配置、または領域を確保するための疑似命令です。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="defb.html">DEFB/DB</A></TD>
+	<TD>1バイト単位でデータをメモリに配置します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="defh.html">DEFH/DH</A></TD>
+	<TD>2バイト単位（下位バイト、上位バイトの順）でデータをメモリに配置します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="defw.html">DEFW/DW</A></TD>
+	<TD>2バイト単位（下位バイト、上位バイトの順）、または4バイト単位（V810SF時のみ）でデータをメモリに配置します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="defd.html">DEFD/DD</A></TD>
+	<TD>2バイト単位（上位バイト、下位バイトの順）でデータをメモリに配置します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="defl.html">DEFL/DL</A></TD>
+	<TD>3バイト単位でデータをメモリに配置します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="defs.html">DEFS/DS</A></TD>
+	<TD>指定された大きさの領域をメモリに確保します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="comm.html">COMM</A></TD>
+	<TD>共有領域をメモリに確保します。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="CONTROL">制御疑似命令</A></H3>
+<P>ISASを制御するための疑似命令です。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="end.html">END</A></TD>
+	<TD>プログラムの終了を指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="onrng.html">ONRNG</A></TD>
+	<TD>レンジ情報の出力を許可します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="offrng.html">OFFRNG</A></TD>
+	<TD>レンジ情報の出力を禁止します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="is65.html">IS65</A></TD>
+	<TD>命令セットを65816プロセッサ用に切り替えます。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="isdmg.html">ISDMG</A></TD>
+	<TD>命令セットをDMGプロセッサ用に切り替えます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="issfx.html">ISSFX</A></TD>
+	<TD>命令セットをSuper-FXプロセッサ用に切り替えます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="issnd.html">ISSND</A></TD>
+	<TD>命令セットをSPC700プロセッサ用に切り替えます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="isv810.html">ISV810</A></TD>
+	<TD>命令セットをV810SFプロセッサ用に切り替えます。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="is65bin.html">IS65BIN</A></TD>
+	<TD><a href="binset.html">BINSET疑似命令</a>のパラメータの指定をIS65のBINSET疑似命令と同じ指定方法にします。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="isasbin.html">ISASBIN</A></TD>
+	<TD><a href="binset.html">BINSET疑似命令</a>のパラメータの指定をISAS標準の指定方法にします。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="lib.html">LIB/FILE/INCLUDE</A></TD>
+	<TD>指定したソースファイルを<A HREF="lib.html">LIB/FILE/INCLUDE疑似命令</A>の位置に挿入します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="binset.html">BINSET</A></TD>
+	<TD><A HREF="libbin.html">LIBBIN疑似命令</A>で読み込むファイルのオフセットとサイズを指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="libbin.html">LIBBIN</A></TD>
+	<TD>指定したバイナリファイルを<A HREF="libbin.html">LIBBIN疑似命令</A>の位置に挿入します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="onpolish.html">ONPOLISH</A></TD>
+	<TD>式を演算子の優先順位によって評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="offpolish.html">OFFPOLISH</A></TD>
+	<TD>式を演算子の優先順位に係わらず左から順に評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="radix.html">RADIX</A></TD>
+	<TD>定数に基数演算子を省略した時の基数を指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="oncnum.html">ONCNUM</A></TD>
+	<TD>C言語ライクな定数指定を有効にします。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="offcnum.html">OFFCNUM</A></TD>
+	<TD>C言語ライクな定数指定を無効にします。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="evalbits.html">EVALBITS</A></TD>
+	<TD>定数を評価する時の有効ビット数を指定します。</TD>
+</TR>
+<tr aligh=left valign=top>
+<td nowrap><a href="mradix.html">MRADIX</a></td>
+<td>マクロ内の実引数にマクロ演算子<a href="macrooperator.html#PERCENT">%</a>を用いて数値を与える時の基数を指定します。</td>
+</tr>
+</TABLE>
+
+<H3><A NAME="CONDITION">条件疑似命令</A></H3>
+<P>条件疑似命令とは、特定の条件を満たした時にソースファイルをアセンブルするかどうかを指定する疑似命令です。</P>
+<P>条件疑似命令を記述する時は、必ずIFで始まる疑似命令と対となるENDIF疑似命令を記述する必要があります。</P>
+
+<PRE>	if	flag		; IF疑似命令
+	:
+	endif			; ENDIF疑似命令を必ず記述する
+</PRE>
+
+<P>ELSE疑似命令を記述する時は、これらの疑似命令の間に記述します。</P>
+
+<PRE>	if	flag		; IF疑似命令
+	:
+	else			; ELSE疑似命令はIF疑似命令とENDIF疑似命令の間に
+	:			; 記述する
+	endif			; ENDIF疑似命令
+</PRE>
+
+<P>また、条件疑似命令をネスティングさせることができます。</P>
+
+<PRE>	if	flag1		; IF疑似命令
+	if	flag2		; ネスティングされたIF疑似命令
+	:
+	endif			; 2番目のIF疑似命令と対になる
+	endif			; 始めのIF疑似命令と対になる
+</PRE>
+
+<P>ネスティングは、ISASが使用するスタックの許す限り、つまりアセンブル時にエラーが出力されない限り記述することができます。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="if.html">IF/IFN</A></TD>
+	<TD>アセンブル条件が真の時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ife.html">IFE</A></TD>
+	<TD>アセンブル条件が偽の時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ifb.html">IFB</A></TD>
+	<TD>アセンブル条件が空白の時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ifnb.html">IFNB</A></TD>
+	<TD>アセンブル条件が空白以外の時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ifdef.html">IFDEF</A></TD>
+	<TD>アセンブル条件が定義されている時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ifndef.html">IFNDEF</A></TD>
+	<TD>アセンブル条件が定義されていない時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="else.html">ELSE</A></TD>
+	<TD>IFで始まる疑似命令のアセンブル条件が評価されない時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="endif.html">ENDIF</A></TD>
+	<TD>IFで始まる疑似命令で指定した条件範囲を終了します。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="MACRO">マクロ疑似命令</A></H3>
+<P>一連の命令を一つにまとめたものをマクロといいます。また、マクロに一連の命令を登録することをマクロ定義といい、定義したマクロには必ずマクロ名と呼ばれる名前が付きます。このマクロ名を必要な場所に記述するだけで、定義したマクロを簡単に展開することができるので、視認性の高いプログラムを記述することができます。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="macro.html">MACRO</A></TD>
+	<TD>マクロに一連の命令を定義します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="macroname.html">&lt;マクロ名&gt;<!-- <マクロ名> --></A></TD>
+	<TD>マクロ定義されたマクロを展開します。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="LIST">リスティング疑似命令</A></H3>
+<P>リスティングファイルの出力に関する疑似命令です。なお、アセンブル時にエラーが発生した時はリスティングファイルは出力されないので注意してください。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="page.html">PAGE</A></TD>
+	<TD>リスティングファイルの1ページの行数、および改ページを指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="title.html">TITLE</A></TD>
+	<TD>リスティングファイルの各ページのヘッダを指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="list.html">LIST</A></TD>
+	<TD>リスティングファイルへの出力を指定します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="nlist.html">NLIST</A></TD>
+	<TD>リスティングファイルへの出力を抑制します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="dspif.html">DSPIF</A></TD>
+	<TD>条件疑似命令の全てのブロックをリスティングファイルに出力します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ndspif.html">NDSPIF</A></TD>
+	<TD>条件疑似命令の条件が真のブロックのみリスティングファイルに出力します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="dspm.html">DSPM</A></TD>
+	<TD>マクロの展開内容をリスティングファイルに出力します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ndspm.html">NDSPM</A></TD>
+	<TD>マクロの展開内容をリスティングファイルに出力しません。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="errtag.html">ERRTAG</A></TD>
+	<TD>エラータグファイルを出力します。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="FOR65816">65816用疑似命令</A></H3>
+<P>ISASを65816プロセッサ用アセンブラとして使用する時に有効な疑似命令です。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="assume65816.html">ASSUME</A></TD>
+	<TD>現在のDBR（データバンクレジスタ）およびDR（ダイレクトページレジスタ）の値をアセンブラに通知します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="isprefix.html">ISPREFIX</A></TD>
+	<TD>INTELLIGENT SYSTEMS社用のプリフィックスを使用します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="wdprefix.html">WDPREFIX</A></TD>
+	<TD>Western Design Center社用のプリフィックスを使用します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="on16a.html">ON16A</A></TD>
+	<TD>アキュームレータの操作を16ビットで処理します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="off16a.html">OFF16A</A></TD>
+	<TD>アキュームレータの操作を8ビットで処理します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="on16i.html">ON16I</A></TD>
+	<TD>インデックスレジスタの操作を16ビットで処理します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="off16i.html">OFF16I</A></TD>
+	<TD>インデックスレジスタを8ビットで処理します。（デフォルト）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="if16a.html">IF16A</A></TD>
+	<TD>アキュームレータの操作が16ビットモードの時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ifn16a.html">IFN16A</A></TD>
+	<TD>アキュームレータの操作が8ビットモードの時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="if16i.html">IF16I</A></TD>
+	<TD>インデックスレジスタの操作が16ビットモードの時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="ifn16i.html">IFN16I</A></TD>
+	<TD>インデックスレジスタの操作が8ビットモードの時評価します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="opti.html">OPTI</A></TD>
+	<TD>1パス目アセンブル時に未解決シンボルのオペランド長を指定します。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="FORSPC700">SPC700用疑似命令</A></H3>
+<P>ISASをSPC700プロセッサ用アセンブラとして使用する時に有効な疑似命令です。なお、SPC700用疑似命令を使用する時は、<A HREF="issnd.html">ISSND疑似命令</A>を指定した後に記述してください。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="assumespc700.html">ASSUME</A></TD>
+	<TD>ダイレクトページフラグを制御します。</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="FORV810SF">V810SF用疑似命令</A></H3>
+<P>ISASをV810SFプロセッサ用アセンブラとして使用する時に有効な疑似命令です。なお、V810SF用疑似命令を使用する時は、<A HREF="isv810.html">ISV810疑似命令</A>を指定した後に記述してください。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>疑似命令</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="assumev810sf.html">ASSUME</A></TD>
+	<TD>メモリ参照命令のディスプレースメントにオフセット算出することをアセンブラに通知します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="rsvreg.html">RSVREG</A></TD>
+	<TD>V810SF命令展開の有無の指定、および命令展開時にアセンブラが使用する汎用レジスタを指定します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="decon.html">DECON</A></TD>
+	<TD>条件分岐命令でロングブランチするように命令展開することをアセンブラに通知します。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="decoff.html">DECOFF</A></TD>
+	<TD><A HREF="decon.html">DECON疑似命令</A>の指定を解除します。（デフォルト）</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

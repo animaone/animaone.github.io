@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DSPIF</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DSPIF</H2>
+
+<font size=-1>[ <A HREF="defw.html">前ページへ</A> | <A HREF="dspm.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>条件疑似命令の全てのブロックをリスティングファイルに出力します。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DSPIF
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>条件疑似命令内に記述している全てのブロックの内容をリスティングファイルに出力します。この疑似命令は、<A HREF="ndspif.html">NDSPIF疑似命令</A>によって指定されたリスティングファイルへの条件出力を解除する時に使用します。</P>
+<P>なお、DSPIF疑似命令と<A HREF="ndspif.html">NDSPIF疑似命令</A>が共に指定されていない時は、DSPIF疑似命令を指定した時と同じように条件疑似命令の全てのブロックがリスティングファイルに出力されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="ndspif.html">NDSPIF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	dspif
+	if	1
+	:			; リスティングファイルに出力される
+	else
+	:			; リスティングファイルに出力される
+	endif
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>
