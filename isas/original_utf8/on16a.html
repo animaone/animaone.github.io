@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ON16A（65816用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ON16A（65816用）</H2>
+
+<font size=-1>[ <A HREF="offset.html">前ページへ</A> | <A HREF="on16i.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>アキュームレータの操作を16ビットで処理します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ON16A
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ON16A疑似命令を指定した後に記述されたアキュームレータを操作する命令を処理する時、データの有効範囲を16ビットで処理することをアセンブラに通知します。</P>
+<P>ON16A疑似命令の指定は、<A HREF="off16a.html">OFF16A疑似命令</A>によって解除することができます。なお、ON16A疑似命令および<A HREF="off16a.html">OFF16A疑似命令</A>が記述されていない時は、アキュームレータの操作を8ビットとして処理します。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="is65.html">IS65</A>、<A HREF="off16a.html">OFF16A</A>、<A HREF="on16i.html">ON16I</A>、<A HREF="off16i.html">OFF16I</A>、<A HREF="if16a.html">IF16A</A>、<A HREF="ifn16a.html">IFN16A</A>、<A HREF="if16i.html">IF16I</A>、<A HREF="ifn16i.html">IFN16I</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	is65
+	on16a
+	lda	#$1234		; アキュームレータを16ビットで処理
+	:
+	off16a
+	lda	#$12		; アキュームレータを8ビットで処理
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

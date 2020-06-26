@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>COMM</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>COMM</H2>
+
+<font size=-1>[ <A HREF="capson.html">前ページへ</A> | <A HREF="decoff.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>共有領域をメモリに確保します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>&lt;名前&gt;	COMM	&lt;サイズ&gt;[,アライメント]<!-- <名前>	COMM	<サイズ>[,アライメント] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>COMM疑似命令によって指定された領域は、リンク時にグループの最後にまとめて領域を確保します。この時、同一グループ内で同じ&lt;名前&gt;<!-- <名前> -->をCOMM疑似命令によって指定した領域は、同じものと判断し共有の領域を確保します。また、<A HREF="defs.html">DEFS/DS疑似命令</A>によって確保される領域を示すシンボルが&lt;名前&gt;<!-- <名前> -->と同じ時にはこの領域を使用し、COMM疑似命令によって新たに領域を確保されることはありません。このように、COMM疑似命令を使用することにより効率良くメモリを使用することができます。</P>
+<P>&lt;名前&gt;<!-- <名前> -->には確保する領域を示すシンボルを、&lt;サイズ&gt;<!-- <サイズ> -->には確保する領域のサイズをバイト単位で指定します。また、[アライメント]には確保する領域を再配置するためのアライメント値を記述します。再配置とは、指定の領域を偶数アドレス、または4の倍数アドレスから配置するように調整することをいい、COMM疑似命令はリンク時に<A HREF="group.html">GROUP疑似命令</A>で指定されたグループの先頭からの絶対的なロケーションに対して再配置を行ないます。[アライメント]に2を指定すると偶数アドレスから、4を指定すると4の倍数アドレスから再配置されます。なお、[アライメント]を省略した時は再配置は行われません。</P>
+<P>ISASとISLKでは、COMM疑似命令によって共有する領域のサイズをチェックしていません。このため、COMM疑似命令で同一の&lt;名前&gt;<!-- <名前> -->を指定、または<A HREF="defs.html">DEFS/DS疑似命令</A>によって確保される領域を示すシンボルと同じ&lt;名前&gt;<!-- <名前> -->をCOMM疑似命令で指定する時は、それぞれ確保する領域のサイズに同じ値を指定するように注意してください。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="defs.html">DEFS/DS</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>ソースファイル1
+work	group
+temp	comm	10,2		; 共有領域の確保
+	:
+
+ソースファイル2
+work	group
+temp	comm	10,2		; 共有領域の確保
+	:
+</PRE>
+<P>この例では、それぞれのファイルで指定されたtempの領域は同一の領域として判断され、workグループの最後に偶数アドレスから10バイトのみ確保されます。</P>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

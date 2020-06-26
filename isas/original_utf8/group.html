@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>GROUP</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>GROUP</H2>
+
+<font size=-1>[ <A HREF="global.html">前ページへ</A> | <A HREF="if.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>グループを宣言します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>&lt;名前&gt;	GROUP	[式]<!-- <名前>	GROUP	[式] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>グループとは、任意のプログラムを一つにまとめた単位をいいます。一つのグループは一つのバンクに対応し、リンク時には同じ名前のグループ毎に特定のバンクに配置されます。</P>
+<P>&lt;名前&gt;<!-- <名前> -->には、グループ名を指定します。[式]には、<A HREF="onbankgroup.html">ONBANKGROUP疑似命令</A>を指定した場合のみ、グループを配置するバンクアドレスを指定します。</P>
+<P><A HREF="onbankgroup.html">ONBANKGROUP疑似命令</A>が指定されている時は、グループを[式]で指定されたバンクアドレスに割り付けます。なお、[式]が省略された場合は、0バンクアドレスとみなされます。また、<A HREF="offbankgroup.html">OFFBANKGROUP疑似命令</A>が指定されている時は、[式]を指定する必要はありません。バンクアドレスは、<A HREF="org.html">ORG疑似命令</A>で指定されたアドレスが採用されます。</P>
+<P>GROUP疑似命令は、ソースファイル毎に分割されたモジュールをどのグループに割り付けるかを定義する疑似命令であり、各ソースファイルの先頭やモジュール毎に分割したい所で記述するようにしてください。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="onbankgroup.html">ONBANKGROUP</A>、<A HREF="offbankgroup.html">OFFBANKGROUP</A>、<A HREF="org.html">ORG</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	onbankgroup		; ONBANKGROUPの指定
+bank7	group	7		; モジュールをグループ名"bank7"に割り付
+	:			; け、7バンクに配置する
+	:
+	offbankgroup		; OFFBANKGROUPの指定
+bank8	group			; グループ名のみを指定
+	org	8:8000		; 8バンクの8000H番地に配置する
+
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

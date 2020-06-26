@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>NLIST</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>NLIST</H2>
+
+<font size=-1>[ <A HREF="ndspm.html">前ページへ</A> | <A HREF="off16a.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>リスティングファイルへの出力を抑制します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	NLIST
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>NLIST疑似命令以降に記述された内容をリスティングファイルに出力しません。この疑似命令は、<A HREF="list.html">LIST疑似命令</A>によって指定されたリスティングファイルへの出力を抑制する時に使用します。</P>
+<P>なお、<A HREF="list.html">LIST疑似命令</A>とNLIST疑似命令が共に指定されていない時は、<A HREF="list.html">LIST疑似命令</A>を指定した時と同じようにプログラムの内容はリスティングファイルに出力されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="list.html">LIST</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	nlist			; リスティングファイルへの出力を禁止
+	:			: この部分はリスティングファイルには出
+	:			; 力されない
+	list			; リスティングファイルへの出力を許可
+	:			; この部分はリスティングファイルには出
+	:			; 力される
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

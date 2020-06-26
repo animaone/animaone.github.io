@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>レスポンスファイル</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>レスポンスファイル</H2>
+
+<font size=-1>[ <A HREF="islkoption.html">前ページへ</A> | <A HREF="islkstatus.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISLKのパラメータをレスポンスファイルを用いて指定することができます。</P>
+<P>リンクするオブジェクトファイルが多く、MS-DOSまたはPC DOSのコマンドライン行に全て記述できない場合、このレスポンスファイルを使用することにより解決することができます。</P>
+<P>レスポンスファイルはテキストファイルであり、ISLKのパラメータ部分をエディタ等で記述します。</P>
+
+<PRE>-o sample.isx main sub1 sub2 sub3
+</PRE>
+
+<P>このように記述したレスポンスファイルを、例えば"sample.lnk"というファイル名で用意します。用意したレスポンスファイルは、次のように使用することでリンクを行うことができます。</P>
+
+<PRE>C:¥>islk @sample.lnk
+</PRE>
+
+<P>また、レスポンスファイルは複数行にわたって記述してもかまいません。</P>
+
+<PRE>-o sample.isx
+main sub1 sub2 sub3
+</PRE>
+
+<HR>
+
+</BODY>
+</HTML>

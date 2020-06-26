@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>マクロ演算子</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>マクロ演算子</H2>
+
+<font size=-1>[ <A HREF="operator.html">前ページへ</A> | <A HREF="pseudo.html">次ページへ</A> ]</font>
+<HR>
+
+<P>マクロを定義する時や呼び出す時には、以下のマクロ演算子を使用することができます。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>マクロ演算子</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>説明</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>備考</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="#AMPERSAND">&amp;<!-- & --></A></TD>
+	<TD NOWRAP>文字列に引数を連結する</TD>
+	<TD NOWRAP>マクロ定義時に使用</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="#EXCLAMATION">!</A></TD>
+	<TD NOWRAP>キャラクタリテラルの指定</TD>
+	<TD NOWRAP>マクロ定義時に使用</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="#PERCENT">%</A></TD>
+	<TD NOWRAP>実引数の評価</TD>
+	<TD NOWRAP>マクロ定義時に使用</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="#BRACKET">&lt;&gt;<!-- <> --></A></TD>
+	<TD NOWRAP>実引数の明示化</TD>
+	<TD NOWRAP>マクロ呼び出し時に使用</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="AMPERSAND">&amp;</A></H3>
+<P>文字列にアッパサンド（&amp;）直後の引数を連結します。マクロ定義内で次の書式に従って記述してください。
+
+<UL>
+<LI>&lt;文字列&gt;&amp;&lt;仮引数&gt;<!-- <文字列>&<仮引数> -->
+</UL>
+
+&amp;の直後に記述している&lt;仮引数&gt;<!-- <仮引数> -->を&amp;と共に実引数に置き換え、その実引数を&lt;文字列&gt;<!-- <文字列> -->に連結して新たな名前や文字列を作ります。</P>
+<P>以下に&amp;を使用して、マクロ展開される時にアレンジしたシンボル名を定義するマクロ定義例を示します。</P>
+
+<PRE>errmsg	macro	no,msg
+err&no	db	msg			; 文字列errに仮引数noを連結指定
+	endm
+	:
+	errmsg	1,"Invalid format"	; 仮引数noに実引数1を指定
+	errmsg	2,"Invalid data"	; 仮引数noに実引数2を指定
+</PRE>
+
+<P>このようにして定義、呼び出されたマクロは、次のように新たなシンボル名を定義するようにマクロ展開されます。</P>
+
+<PRE>err1	db	"Invalid format"
+err2	db	"Invalid data"
+</PRE>
+
+<H3><A NAME="EXCLAMATION">!</A></H3>
+<P>キャラクタリテラルを指定します。マクロ定義内で次の書式に従って記述してください。
+
+<UL>
+<LI>!&lt;文字&gt;<!-- <文字> -->
+</UL>
+
+キャラクタリテラルとは、マクロの引数に使用できない文字を実引数として使用したい時に、その文字を認識させるために直前に付加する感嘆符（!）のことをいいます。認識できない文字には、カンマ（,）、アッパサンド（&amp;）、感嘆符（!）、パーセント（%）、小なり括弧（&lt;）、および大なり括弧（&gt;）があり、&lt;文字&gt;<!-- <文字> -->にこれらの文字を使用する時にキャラクタリテラルを使用する必要があります。</P>
+<P>例えば、65816プロセッサで上位8ビットの値を取得する時には&lt;を使用しますが、マクロの引数に上位8ビット値の取得指定をしたい時には、次のようにキャラクタリテラルを使用することにより実引数に&lt;を使用できるようになります。</P>
+
+<PRE>test	macro	data
+	lda	#data
+	endm
+	:
+	test	!&lt;symbol		; 小なり括弧（&lt;）を含む引数を指定
+
+	lda	#&lt;sumbol		; マクロ展開された内容
+</PRE>
+
+<H3><A NAME="PERCENT">%</A></H3>
+<P>実引数を評価した値をマクロに渡します。マクロ定義内で次の書式に従って記述してください。
+
+<UL>
+<LI>%&lt;式&gt;<!-- <式> -->
+</UL>
+
+通常、マクロに与えられた実引数は文字列として扱われて仮引数と置き換えられますが、&lt;式&gt;<!-- <式> -->の直前にパーセント（%）を記述した式をマクロの仮引数に指定した場合、&lt;式&gt;<!-- <式> -->を評価した値を16進数表記に変換した文字列を仮引数に渡します。なお、%に続く&lt;式&gt;<!-- <式> -->は絶対値で評価できる必要があります。</P>
+
+<PRE>maxdata	macro	max			; マクロ定義
+	db	"Maximum No = %max"
+	endm
+	:
+maxno	equ	1000
+	maxdata	maxno			; マクロ呼び出し
+</PRE>
+
+<P>このようなマクロを呼び出すと、次のように展開されます。</P>
+
+<PRE>	db	"Maximum No = $3e8"
+</PRE>
+
+<H3><A NAME="BRACKET">&lt;&gt;<!-- <> --></A></H3>
+<P>実引数を明示化して一つの実引数として判断します。マクロを呼び出す時に次の書式に従って記述してください。なお、外側の&lt;&gt;<!-- <> -->はマクロ演算子を示します。
+
+<UL>
+<LI>&lt;&lt;文字列&gt;&gt;<!-- <<文字列>> -->
+</UL>
+
+<P>マクロに与える実引数は、カンマ（,）によって実引数の区切りを判断します。また、スペース（ ）はフィールドの区切りとして判断するため、これらの文字を含む文字列をマクロの実引数として指定することができません。このような時は、文字列を&lt;&gt;<!-- <> -->で括ることにより実引数として指定することができるようになります。なお、&lt;&gt;<!-- <> -->はマクロ展開で実引数が置き換わる時に&lt;&gt;<!-- <> -->が取り去られます。</P>
+<P>ここで、次のようにカンマやスペースを含む文字列をマクロの実引数に指定した時の例を見てみましょう。</P>
+
+<PRE>setstr	macro	str
+	db	"str"
+	endm
+	:
+	setstr	&lt;INTELLIGENT SYSTEMS Co., Ltd.&gt;
+	setstr	INTELLIGENT SYSTEMS Co., Ltd.
+</PRE>
+
+<P>始めのマクロの呼び出しでは、&lt;&gt;<!-- <> -->によって文字列を括っているので正常に展開されています。</P>
+
+<PRE>	db	"INTELLIGENT SYSTEMS Co., Ltd."
+</PRE>
+
+<P>しかし、二番目のマクロの呼び出しでは、文字列を&lt;&gt;<!-- <> -->で括っていなかったのでスペースが削除され、またカンマ以降が展開されていません。</P>
+
+<PRE>	db	"INTELLIGENTSYSTEMSCo."
+</PRE>
+
+<HR>
+
+</BODY>
+</HTML>

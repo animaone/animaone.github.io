@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>OFFBANKGROUP</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>OFFBANKGROUP</H2>
+
+<font size=-1>[ <A HREF="off16i.html">前ページへ</A> | <A HREF="offcnum.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD><A HREF="org.html">ORG疑似命令</A>によるロケーションカウンタを現在のバンクグループに属させません。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	OFFBANKGROUP
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P><A HREF="org.html">ORG疑似命令</A>によって指定されたロケーションカウンタを、3バイトのロングアドレスと判断します。このため、常に<A HREF="org.html">ORG疑似命令</A>によって指定された値が絶対アドレスと判断され、<A HREF="group.html">GROUP疑似命令</A>でバンクアドレスを指定する必要はありません。</P>
+<P>なお、ISAS起動時に<A HREF="isasoption.html#IS65">-is65オプション</A>が指定されていない時は、デフォルトでOFFBANKGROUP疑似命令が指定されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="group.html">GROUP</A>、<A HREF="onbankgroup.html">ONBANKGROUP</A>、<A HREF="org.html">ORG</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	offbankgroup
+bank3	group
+	org	$3:$8000	; モジュールは3Hバンクの8000H番地から配
+	:			; 置される
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

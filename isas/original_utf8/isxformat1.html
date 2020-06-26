@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISXファイルフォーマット</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISXファイルフォーマット</H2>
+
+<font size=-1>[ <A HREF="isxfile.html">前ページへ</A> | <A HREF="isxformat2.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISXファイルは、次のようなフォーマットになっています。</P>
+
+<TABLE BORDER=0 CELLPADDING=4>
+<TR ALIGN=LEFT VALIGN=TOP>
+<td nowrap width=20></td>
+<TD NOWRAP width=200 BGCOLOR=GRAY>バイナリ情報</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>プログラムコードとデータ、およびそれらをメモリ上に配置するためのバイナリ情報が格納されています。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<td nowrap width=20></td>
+<TD NOWRAP BGCOLOR=GRAY>シンボル情報</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>シンボリックデバッグに必要なシンボル名と、そのシンボルのアドレス、またはデータの値が格納されています。</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<td nowrap width=20></td>
+<TD NOWRAP BGCOLOR=GRAY>レンジ情報</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>データ定義領域、およびアキュームレータやインテックスのビットモードを示した領域の情報が格納されています。</TD>
+</TR>
+</TABLE>
+
+<P>なお、ISLK起動時に<A HREF="islkoption.html#NODEBUG">-nオプション</A>を指定すると、ISXファイルにはシンボル情報とレンジ情報は出力されません。</P>
+
+<H3><A NAME="BINARY">バイナリ情報</A></H3>
+<P>バイナリ情報は、レコードタイプ01Hで始まるレコードです。バンク配置情報の値が7FH以下の時と、80H以上でフォーマットが異なります。</P>
+
+<p>
+<ul>
+<li>バンク配置情報の値が7FH以下の時
+</ul>
+</p>
+
+<TABLE BORDER=0 CELLPADDING=4>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP width=200 BGCOLOR=GRAY>レコードタイプ（01H）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>ブロック</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP BGCOLOR=GRAY>バンク（00H〜7FH）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>アドレス</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>データ長</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>n</TD>
+<TD NOWRAP BGCOLOR=GRAY>データ（nバイト）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20></TD>
+<TD NOWRAP BGCOLOR=GRAY></TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>配置するデータがある場合、上記ブロックが繰り返される</TD>
+</TR>
+</TABLE>
+
+<p>
+<ul>
+<li>バンク配置情報の値が80H以上の時
+</ul>
+</p>
+
+<TABLE BORDER=0 CELLPADDING=4>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP width=200 BGCOLOR=GRAY>レコードタイプ（01H）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>ブロック</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>バンク</TD>
+	<TD NOWRAP>（80H）<BR>（80H〜FFH）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>アドレス</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>データ長</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>n</TD>
+<TD NOWRAP BGCOLOR=GRAY>データ（nバイト）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20></TD>
+<TD NOWRAP BGCOLOR=GRAY></TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>配置するデータがある場合、上記ブロックが繰り返される</TD>
+</TR>
+</TABLE>
+
+<H3><A NAME="SYMBOL">シンボル情報</A></H3>
+<P>シンボル情報は、レコードタイプ04Hで始まるレコードです。</P>
+
+<TABLE BORDER=0 CELLPADDING=4>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP width=200 BGCOLOR=GRAY>レコードタイプ（04H）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>ヘッダ</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>シンボル数</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP BGCOLOR=GRAY>シンボル長</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>ブロック</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>n</TD>
+<TD NOWRAP BGCOLOR=GRAY>シンボル名（nバイト）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP BGCOLOR=GRAY>フラグ</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP BGCOLOR=GRAY>バンク</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>アドレス</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20></TD>
+<TD NOWRAP BGCOLOR=GRAY></TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>シンボル数-1分上記ブロックが繰り返される</TD>
+</TR>
+</TABLE>
+
+<P>他のアセンブラによって出力されたシンボルファイルをISXファイルのフォーマットに変換するプログラムを作成する場合、フラグの部分には10Hをセットしてください。</P>
+
+<H3><A NAME="RANGE">レンジ情報</A></H3>
+<P>レンジ情報は、レコードタイプ03Hで始まるレコードです。</P>
+
+<TABLE BORDER=0 CELLPADDING=4>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP width=200 BGCOLOR=GRAY>レコードタイプ（03H）</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>ヘッダ</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>レンジ数</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP BGCOLOR=GRAY>バンク</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>ブロック</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>開始アドレス</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>2</TD>
+<TD NOWRAP BGCOLOR=GRAY>
+	<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+	<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>終了アドレス</TD>
+	<TD NOWRAP>（Low）<BR>（High）</TD>
+	</TR>
+	</TABLE>
+</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20>1</TD>
+<TD NOWRAP BGCOLOR=GRAY>レンジ種</TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP width=20></TD>
+<TD NOWRAP BGCOLOR=GRAY></TD>
+<TD NOWRAP WIDTH=10></TD>
+<TD>レンジ数-1分上記ブロックが繰り返される</TD>
+</TR>
+</TABLE>
+
+<P>レンジ種には、データを指定した疑似命令の種類が1バイトのASCII文字で記述されています。なお、レンジ種のE、F、G、およびHは、ISASを65816プロセッサ用として使用した時のみ出力されます。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>レンジ種</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>意味</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>A</TD>
+	<TD><A HREF="defb.html">DEFB/DB疑似命令</A>でシングルクォーテーション（' '）、またはダブルクォーテーション（" "）で指定されたデータ領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>B</TD>
+	<TD><A HREF="defb.html">DEFB/DB疑似命令</A>で1バイトデータが指定されたデータ領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>W</TD>
+	<TD><A HREF="defw.html">DEFW/DW疑似命令</A>で指定されたデータ領域、またはV810SFプロセッサ時に<A HREF="defh.html">DEFH/DH疑似命令</A>で指定されたデータ領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>D</TD>
+	<TD><A HREF="defd.html">DEFD/DD疑似命令</A>で指定されたデータ領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>L</TD>
+	<TD><A HREF="defl.html">DEFL/DL疑似命令</A>で指定されたデータ領域、またはV810SFプロセッサ時に<A HREF="defw.html">DEFW/DW疑似命令</A>で指定されたデータ領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>S</TD>
+	<TD><A HREF="defs.html">DEFS/DS疑似命令</A>で指定された領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>C</TD>
+	<TD>命令が配置されたコード領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>E</TD>
+	<TD>65816プロセッサ時に<A HREF="off16a.html">OFF16A</A>、<A HREF="off16i.html">OFF16I疑似命令</A>で指定されたコード領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>F</TD>
+	<TD>65816プロセッサ時に<A HREF="off16a.html">OFF16A</A>、<A HREF="on16i.html">ON16I疑似命令</A>で指定されたコード領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>G</TD>
+	<TD>65816プロセッサ時に<A HREF="on16a.html">ON16A</A>、<A HREF="off16i.html">OFF16I疑似命令</A>で指定されたコード領域</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>H</TD>
+	<TD>65816プロセッサ時に<A HREF="on16a.html">ON16A</A>、<A HREF="on16i.html">ON16I疑似命令</A>で指定されたコード領域</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

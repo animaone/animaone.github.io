@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>EVEN</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>EVEN</H2>
+
+<font size=-1>[ <A HREF="evalbits.html">前ページへ</A> | <A HREF="extern.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>アセンブル時のロケーションを2バイト、4バイト、8バイト、16バイト、32バイト、または64バイトの境界にアライメントします。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	EVEN	[式]
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>EVEN疑似命令直後に記述されたコードまたはデータのロケーションを、2バイト、4バイト、8バイト、16バイト、32バイト、または64バイトの境界にアライメント（配置）します。</P>
+<P>EVEN疑似命令は、アセンブル時に<A HREF="group.html">GROUP疑似命令</A>で指定されたグループの先頭からの相対的なロケーションに対して指定された境界から配置します。このため、<A HREF="group.html">GROUP疑似命令</A>を記述した直後にEVEN疑似命令を記述する必要があります。EVEN疑似命令を記述する前に<A HREF="group.html">GROUP疑似命令</A>が記述されていないと、"Undefined group.（グループが定義されていません。）"のエラーが発生するので注意してください。</P>
+<PRE>text	group			; GROUP疑似命令を指定
+	even	4		; GROUP疑似命令の直後にEVEN疑似命令を指
+				; 定
+</PRE>
+<P>また、<A HREF="org.html">ORG疑似命令</A>によって絶対アドレスが指定されている時は、その指定アドレスからのロケーションに対して配置されます。</P>
+<P>[式]には、2、4、8、16、32、または64の値を指定します。それぞれ、2バイト、4バイト、8バイト、16バイト、32バイト、64バイトの境界から配置することを示します。2バイト境界とは偶数アドレスから配置され、4バイト境界は4の倍数アドレスから配置されるように、指定したバイト数の倍数アドレスから配置されることをいいます。また、[式]を省略した時は、2を指定した時と同じように2バイト境界から配置されます。</P>
+<p>なお、この疑似命令によって指定されているアライメント以外から配置されている命令を再配置した時は、命令の直前に00Hのコードが挿入されます。</p>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="group.html">GROUP</A>、<A HREF="org.html">ORG</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>test	group
+	org	$8000
+	db	$00		; 1バイトデータ
+	even	2		; 2バイト境界への配置指定
+	:			; この命令は偶数アドレスから再配置され
+	:			; る
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

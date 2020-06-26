@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>プリフィックス</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>プリフィックス</H2>
+
+<font size=-1>[ <A HREF="fix.html">前ページへ</A> | <A HREF="operator.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISASでは、65816プロセッサの特殊なアドレッシングに対応するため、次に示すプリフィックスを用意しています。これらのプリフィックスをシンボルの直前に記述することにより、特定のアドレッシングを指定することができます。プリフィックスの指定方法には、INTELLIGENT SYSTEMS社用とWestern Design Center社用の2種類があります。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>アドレッシング</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>INTELLIGENT SYSTEMS社</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>Western Design Center社</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="#DIRECT">ダイレクト</A></TD>
+	<TD NOWRAP>.（ピリオド）</TD>
+	<TD NOWRAP>&lt;<!-- < -->（小なり記号）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="#ABSOLUTE">アブソリュート</A></TD>
+	<TD NOWRAP>!（エクスクラメーション）</TD>
+	<TD NOWRAP>&gt;<!-- > -->（大なり記号）</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP><A HREF="#LONG">ロング</A></TD>
+	<TD NOWRAP>‾（チルダ）</TD>
+	<TD NOWRAP>^（キャレット）</TD>
+</TR>
+</TABLE>
+
+<P>INTELLIGENT SYSTEMS社用のプリフィックスを使用する時は<A HREF="isprefix.html">ISPREFIX疑似命令</A>を、Western Design Center社用のプリフィックスを使用する時は<A HREF="wdprefix.html">WDPREFIX疑似命令</A>を指定してください。なお、何れの疑似命令も指定しない場合は、INTELLIGENT SYSTEMS社用のプリフィックスを使用する指定となります。詳しくは、"第５章　疑似命令"の"<A HREF="isprefix.html">ISPREFIX</A>"および"<A HREF="wdprefix.html">WDPREFIX</A>"の項目を参照してください。</P>
+
+<H3><A NAME="DIRECT">ダイレクトアドレッシング</A></H3>
+<P>65816プロセッサでは、256バイトのメモリを1ページとしたページ管理を行います。この内、0ページ（アドレス00HからFFHまでの領域）は他のページとは異なり、この0ページをアクセスする命令を2バイト命令として生成します。ISASは、オペランドに記述したアドレスが0ページかどうかを評価することにより、最適な命令長を自動的に決定します。ただし、外部参照するシンボルについてはISASはそのシンボルが0ページかどうかを認識することができません。このような時に、0ページのシンボルであることを明示するためにダイレクトアドレッシング用のプリフィックスを指定します。
+
+<UL>
+<LI>.symbol　（INTELLIGENT SYSTEMS社）
+<LI>&lt;symbol<!-- <symbol -->　（Western Design Center社）
+</UL>
+
+例えば、ダイレクトアドレッシング用プリフィックスは次のように使用します。</P>
+
+<PRE>	extern	reg0		; 外部参照されているため自動判別できない
+	lda	.reg0		; 0ページのシンボルであることを明示的に示す
+</PRE>
+
+<H3><A NAME="ABSOLUTE">アブソリュートアドレッシング</A></H3>
+<P>前記のダイレクトアドレッシングの項目で、ISASは65816プロセッサではシンボルの持つ値が0（00H）から255（FFH）までの時、そのシンボルの値を参照する命令等では自動的にダイレクトアドレッシングとしてオブジェクトコードを生成することを説明しました。しかし、このような時でもアブソリュートアドレッシングのオブジェクトコードを生成したい時は、アブソリュートアドレッシング用のプリフィックスを指定してください。
+
+<UL>
+<LI>!symbol　（INTELLIGENT SYSTEMS社）
+<LI>&gt;symbol<!-- >symbol -->　（Western Design Center社）
+</UL>
+
+例えば、アブソリュートアドレッシング用プリフィックスは次のように使用します。</P>
+
+<PRE>	org	$00
+reg0	ds	$01		; 0ページのシンボル
+	lda	!reg0		; アブソリュートアドレッシングの指定
+</PRE>
+
+<P>上記の例では、本来lda命令はダイレクトアドレッシングのオブジェクトコードを出力しますが、アブソリュートアドレッシング用プリフィックスを指定しているため、アブソリュートアドレッシングのオブジェクトコードが出力されます。</P>
+
+<H3><A NAME="LONG">ロングアドレッシング</A></H3>
+<P>65816プロセッサでは、64Kバイト以上のメモリ領域にアクセスするためのロングアドレッシングのモードがあります。ISASでは、このロングアドレッシングを指定するためのプリフィックスを用意しています。
+
+<UL>
+<LI>‾symbol　（INTELLIGENT SYSTEMS社）
+<LI>^symbol　（Western Design Center社）
+</UL>
+
+例えば、ロングアドレッシング用プリフィックスは次のように使用します。</P>
+
+<PRE>	extern	symbol
+	lda	‾symbol		; ロングアドレッシングの指定
+</PRE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ウォーニングレベル</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ウォーニングレベル</H2>
+
+<font size=-1>[ <A HREF="drawmessage.html">前ページへ</A> | <A HREF="isasmessage.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISASが出力するウォーニングは、その重要度によって表示するかどうかを指定することができます。この重要度をウォーニングレベルといいます。メッセージの説明には、ウォーニングレベルを示す値が"Warning()"の括弧内に記述されています。また、ウォーニングレベルによるウォーニング表示の有無の指定は、ISAS起動時の<A HREF="isasoption.html#WARNING">-wオプション</A>で指定します。</P>
+<P>なお、ウォーニングレベルと<A HREF="isasoption.html#WARNING">-wオプション</A>のパラメータ&lt;n&gt;<!-- <n> -->との関係は次のとおりです。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>&lt;n&gt;</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>内容</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>ウォーニングレベル</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>1</TD>
+	<TD>ウォーニングが発生しても、ウォーニングメッセージは表示されません。</TD>
+	<TD><BR></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>2</TD>
+	<TD>ウォーニングが発生した時、重要度の高いウォーニングメッセージのみ表示します。</TD>
+	<TD>ウォーニングレベル2のみ</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD>3</TD>
+	<TD>ウォーニングが発生した時、全てのウォーニングメッセージを表示します。</TD>
+	<TD>ウォーニングレベル2および3</TD>
+</TR>
+</TABLE>
+
+<P>なお、デフォルトでは<n>の値は2となっているため、ウォーニングレベル2のウォーニングメッセージのみが表示されます。</P>
+
+<HR>
+
+</BODY>
+</HTML>

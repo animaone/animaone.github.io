@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>メッセージの表示</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>メッセージの表示</H2>
+
+<font size=-1>[ <A HREF="islkstatus.html">前ページへ</A> | <A HREF="warninglevel.html">次ページへ</A> ]</font>
+<HR>
+
+<P>メッセージには、エラー（Error）とウォーニング（Warning）があります。エラーは処理が継続して実行できない時に発生し、エラーが発生すると直ちに処理を中断します。また、ウォーニングはソースファイルの修正を必要とする時に発生しますが、処理は中断されずに最後まで実行されます。</P>
+<P>例えば、ISASが正常にアセンブル処理を終了すると、次のようにエラーやウォーニングを表わすメッセージは表示されずに処理を終了し、MS-DOSまたはPC DOSのプロンプトに戻ります。</P>
+
+<PRE>C:¥&gt;isas sample
+INTELLIGENT SYSTEMS Assembler  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+
+C:¥&gt;
+</PRE>
+
+<P>エラーが発生した時は、次のようにエラーの発生したファイル名、行数、エラーメッセージ、およびエラーの数を表示します。</P>
+
+<PRE>C:¥&gt;isas sample
+INTELLIGENT SYSTEMS Assembler  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+sample.s      (19): ERROR Undefined symbol.[LOOP]
+fatal errors = 1
+
+C:¥&gt;
+</PRE>
+
+<P>この例では、sample.sファイルの19行目で使用されているLOOPシンボルが未定義であることがわかります。</P>
+<P>また、ウォーニングが発生した時もエラーと同様に表示されます。</P>
+
+<PRE>C:¥&gt;isas -w3 sample
+INTELLIGENT SYSTEMS Assembler  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+sample.s      (2): WARNING [KANJI] not yet support.
+warnings = 1
+
+C:¥&gt;
+</PRE>
+
+<P>なお、ISLKの場合もISASと同様にエラーおよびウォーニングメッセージが出力されます。ただし、行番号は表示されません。</P>
+
+<HR>
+
+</BODY>
+</HTML>

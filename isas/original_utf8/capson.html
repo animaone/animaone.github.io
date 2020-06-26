@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>CAPSON</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>CAPSON</H2>
+
+<font size=-1>[ <A HREF="capsoff.html">前ページへ</A> | <A HREF="comm.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>シンボルの英文字を、全て大文字として判断します。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	CAPSON
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>CAPSON疑似命令を指定すると、シンボルの英文字部分は大文字と小文字の何れで記述していても、全て大文字として判断します。例えば、シンボル名"ABC"とシンボル名"abc"は同じシンボルであると判断します。</P>
+<P>なお、CAPSON疑似命令、および<A HREF="capsoff.html">CAPSOFF/SMALL疑似命令</A>が指定されていない時は、CAPSON疑似命令が指定された時と同じように、シンボルの英文字を全て大文字として判断します。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="capsoff.html">CAPSOFF/SMALL</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	capson
+ABC				; シンボル名"ABC"を定義する
+	:
+abc				; シンボル名"abc"を"ABC"として判断する
+	:			; のでエラーが発生する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISLKの起動</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISLKの起動</H2>
+
+<font size=-1>[ <A HREF="isasstatus.html">前ページへ</A> | <A HREF="islkoption.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISLKを起動するには、Windows 95のMS-DOSプロンプトやWindows NTのコマンドプロンプト、MS-DOSやPC DOSのコマンドラインより次の書式に従い入力すると起動することができます。なお、起動オプションを除くコマンドやファイル名は大文字と小文字の何れでも指定することができます。</P>
+
+<PRE>C:¥&gt;islk [-options] object-file(.o) ...
+</PRE>
+
+<H4>[-options]</H4>
+<P>ISLKの起動オプションを指定します。</P>
+<P>起動オプションはハイフン（-）で始まる文字列であり、省略または一つ以上のオプションを指定することができます。複数個指定する時は、各オプションをスペースで区切ってください。詳しくは、次の"<A HREF="islkoption.html">起動オプション</A>"の項目を参照してください。</P>
+
+<H4>object-file(.o) ...</H4>
+<P>オブジェクトファイル名を指定します。</P>
+<P>ISASにより出力されたオブジェクトファイル名を指定します。拡張子を省略した場合は、拡張子".o"を付加したファイル名として判断します。例えば、ファイル名"sample1.o"のオブジェクトファイルをリンクする時は、次のように指定します。</P>
+
+<PRE>C:¥&gt;islk sample1
+</PRE>
+
+<P>ISASが出力するオブジェクトファイルはデフォルトで".o"の拡張子を付加するため、通常では拡張子を指定する必要はありません。</P>
+<P>また、拡張子が".o"以外のオブジェクトファイルをリンクする場合は、拡張子も指定してください。例えば、ファイル名"sample2.obj"のオブジェクトファイルをリンクする時は、拡張子が".o"ではないので必ず拡張子も指定します。</P>
+
+<PRE>C:¥&gt;islk sample2.o
+</PRE>
+
+<P>オブジェクトファイルを複数個指定する場合は、各オブジェクトファイル名の間に一つ以上のスペースを挿入します。複数個のオブジェクトファイルをリンクする時、オブジェクトファイルを指定する順番は、オブジェクトファイル内にアドレスが指定されていない場合に問題となります。ISLKは各バンク毎にアドレスの昇順にオブジェクトファイルをリンクしていきます。オブジェクトファイル内にアドレスが指定されていない場合、リンク時に指定するオブジェクトファイルの順に配置されます。</P>
+<P>なお、起動オプションの指定に誤りがある場合やオブジェクトファイル名が指定されていない場合は、次のようにISLKの使用方法が表示されます。</P>
+
+
+
+<pre>C:¥&gt;islk
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+Usage: islk [-options] object-file(.o) ...
+options:
+    -s &lt;n&gt;              symbol tables. default:65521
+    -b &lt;n&gt;              buffer for access files. default:32768
+    -o &lt;xxx&gt;            output file name.
+    -D &lt;symbol&gt;[=value] define symbol with value.
+    -G &lt;symbol&gt;[=value] define group with address.
+    -e &lt;xxx&gt;            switch error output file. default:stdout
+    -nologo             no logo.
+    -v                  verbose mode.
+    -n                  no debug information.
+    -t                  print linkage time.
+    -x24                24bit symbol debug.
+    -L &lt;xxx&gt;            library path.
+environments:
+    ISLK=[default options]
+    ISLIB=[library path]
+    ISTMP&gt;TEMP&gt;TMP=[temporary directry]
+
+C:¥&gt;
+</pre>
+
+<P>リンクが正常に終了すると、カレントディレクトリまたは<a href="islkoption.html#OBJECT">-oオプション</a>で指定したディレクトリにISXファイルが生成されます。このファイルをデバッガに読み込ませることにより、シンボリックデバッグが可能になります。</P>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>LIB/FILE/INCLUDE</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>LIB/FILE/INCLUDE</H2>
+
+<font size=-1>[ <A HREF="isv810.html">前ページへ</A> | <A HREF="libbin.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>指定したソースファイルをLIB/FILE/INCLUDE疑似命令の位置に挿入します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	LIB	&lt;ファイル名&gt;<!-- <ファイル名> -->
+</PRE>
+<P>または</P>
+<PRE>	FILE	&lt;ファイル名&gt;<!-- <ファイル名> -->
+</PRE>
+<P>または</P>
+<PRE>	INCLUDE	&lt;ファイル名&gt;<!-- <ファイル名> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<td>
+<p>&lt;ファイル名&gt;<!-- <ファイル名> -->で指定されたソースファイルを、LIB/FILE/INCLUDE疑似命令の位置に挿入しアセンブルします。</p>
+<p>&lt;ファイル名&gt;<!-- <ファイル名> -->には、読み込むソースファイルのファイル名を指定します。このファイル名にはドライブやディレクトリを追加して指定することもできます。&lt;ファイル名&gt;<!-- <ファイル名> -->の拡張子を省略した時は、ISASは拡張子".S"を付加したファイル名として判断します。</p>
+<p>指定したソースファイルが見つからない時、ISASは次の順に従いソースファイルを順次検索します。
+<ul>
+<li>ISASの<a href="isasoption.html#INCLUDE">-Iオプション</a>で指定したディレクトリ。
+<li><a href="value.html#ISINC">ISINC環境変数</a>で指定したディレクトリ。
+</ul>
+また、ファイルの拡張子が省略されている時には、更に拡張子を".X65"に付加し直したファイル名で上記手順に従い検索します。</p>
+<p>なお、LIB疑似命令とFILE疑似命令、およびINCLUDE疑似命令はスペルのみ異なり、動作は同じです。</p>
+</td>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="libbin.html">LIBBIN</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	lib	sample.s	; sample.sファイルをソース中に挿入する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ERRTAG</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ERRTAG</H2>
+
+<font size=-1>[ <A HREF="equ.html">前ページへ</A> | <A HREF="evalbits.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>エラータグファイルを出力します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ERRTAG
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>アセンブル時にエラーやウォーニングが発生した場合に画面に表示されるメッセージをファイルにも出力します。このエラータグファイルは、ソースファイル名の拡張子を".ERR"に変更したファイル名を付け、ソースファイルと同じディレクトリに作成されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	errtag			; エラータグファイルの出力指定
+bank	group
+	org	$0
+	lda	symbol		; ここでエラーが発生
+	end
+</PRE>
+<P>このようなプログラムをアセンブルすると、エラータグファイルには次のように出力されます。</P>
+<PRE>test.s		(4): ERROR Undefined symbol.[SYMBOL]
+fatal errors = 1
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

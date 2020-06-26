@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>PUBOFF</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>PUBOFF</H2>
+
+<font size=-1>[ <A HREF="public.html">前ページへ</A> | <A HREF="pubon.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD><A HREF="pubon.html">PUBON疑似命令</A>によって指定された外部定義シンボルの宣言を解除します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	PUBOFF
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>PUBOFF疑似命令は、<A HREF="pubon.html">PUBON疑似命令</A>で指定された外部定義シンボルの宣言を解除します。なお、<A HREF="puball.html">PUBALL疑似命令</A>がソースファイル内で記述されている場合は、PUBOFF疑似命令は無視されます。ただし、<A HREF="puball.html">PUBALL疑似命令</A>を指定後にPUBOFF疑似命令を指定すると、"Already PUBALL.（既にPUBALL状態です。）"のウォーニングが出力されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="public.html">PUBLIC</A>、<A HREF="puball.html">PUBALL</A>、<A HREF="pubon.html">PUBON</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	pubon
+sample1				; 外部定義シンボルとして宣言される
+	puboff			; PUBON疑似命令の解除
+sample2				; 外部定義シンボルとして宣言されない
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

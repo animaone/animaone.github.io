@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>RADIX</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>RADIX</H2>
+
+<font size=-1>[ <A HREF="pubon.html">前ページへ</A> | <A HREF="rsvreg.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>定数に基数演算子を省略した時の基数を指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	RADIX	&lt;式&gt;<!-- <式> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>RADIX疑似命令以降に記述された定数の内、定数に基数を示す文字（基数指定子）が付加されていない時の基数をアセンブラに指示します。&lt;式&gt;<!-- <式> -->には、2、8、10、16の値を指定し、それぞれ2進数、8進数、10進数、16進数を示します。このRADIX疑似命令によって基数が指示されている場合でも、定数に基数指定子が指定された場合は基数指定子の評価が優先されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	radix	16		; デフォルトの基数を16進数に指定
+	lda	#10		; 16進数の10として扱われる
+	ldx	#10b		; 基数指定子が付加されているので2進数の
+	:			; 10として扱われる
+</PRE>
+<P>なお、RADIX疑似命令が指定されていない場合、ISASは10進数をデフォルトの基数値として扱います。また、基数指定子については、"第４章　式"の"<A HREF="fix.html">定数</A>"の項目を参照してください。</P>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

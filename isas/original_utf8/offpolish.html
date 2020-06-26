@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>OFFPOLISH</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>OFFPOLISH</H2>
+
+<font size=-1>[ <A HREF="offcnum.html">前ページへ</A> | <A HREF="offrng.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>式を演算子の優先順位に係わらず左から順に評価します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	OFFPOLISH
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>オペランドに記述している式を評価する時、<A HREF="operator.html#ORDER">演算子の優先順位</A>に係わらず左から順に評価します。この疑似命令は、従来のIS65アセンブラ用に記述したソースファイルをISASでアセンブルする時に使用します。なお、ISAS起動時に<A HREF="isasoption.html#IS65">-is65オプション</A>を指定した時は、自動的にOFFPOLISH疑似命令が指定されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="onpolish.html">ONPOLISH</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	offpolish
+	lda	10h+20h*30h	; 加算が行われた後に乗算が行われる
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

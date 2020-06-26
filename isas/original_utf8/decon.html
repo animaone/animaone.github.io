@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DECON（V810SF用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DECON（V810SF用）</H2>
+
+<font size=-1>[ <A HREF="decoff.html">前ページへ</A> | <A HREF="def.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>条件分岐命令でロングブランチするように命令展開することをアセンブラに通知します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DECON	BRANCH
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>V810SFの条件分岐命令では、オペランドには9ビットのディスプレースメントしか指定することができません。DECON疑似命令を指定することにより、-256から255を越える相対アドレスに分岐する時、または1パス目で分岐先アドレスが不明な時に命令展開されます。例えば、BGT命令は次のように命令展開されます。</P>
+<PRE>	bgt     abc
+	↓
+	ble	_skip
+	jr	abc
+_skip:
+</PRE>
+<P>なお、シンボルの前にピリオド（.）のプリフィックスを付加すると命令展開は行われません。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="isv810.html">ISV810</A>、<A HREF="decoff.html">DECOFF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	isv810
+	decon	branch		; 条件分岐命令での命令展開を指定
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

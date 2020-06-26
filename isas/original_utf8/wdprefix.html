@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>WDPREFIX（65816用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>WDPREFIX（65816用）</H2>
+
+<font size=-1>[ <A HREF="undefext.html">前ページへ</A> | <A HREF="substitute.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>Western Design Center社用のプリフィックスを使用します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	WDPREFIX
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ダイレクトアドレッシング、アブソリュートアドレッシング、およびロングアドレッシングを明示的するためのプリフィックスに、Western Design Center社用のプリフィックスを使用します。次に示すプリフィックスをシンボルの直前に記述することにより、特定のアドレッシングを指定することができます。</P>
+
+<UL>
+<LI>ダイレクトアドレッシング	&lt;<!-- < -->（小なり記号）
+<LI>アブソリュートアドレッシング	&gt;<!-- > -->（大なり記号）
+<LI>ロングアドレッシング		^（キャレット）
+</UL>
+
+<P>なお、WDPREFIX疑似命令および<A HREF="isprefix.html">ISPREFIX疑似命令</A>の何れの疑似命令も指定しない時は、INTELLIGENT SYSTEMS社用のプリフィックスを使用する指定になります。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="is65.html">IS65</A>、<A HREF="isprefix.html">ISPREFIX</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	is65
+	extern	reg0, symbol
+	wdprefix
+	lda	&lt;reg0		; ダイレクトアドレッシング
+	lda	&gt;reg0		; アブソリュートアドレッシング
+	lda	^symbol		; ロングアドレッシング
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

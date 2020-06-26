@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>IFB</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>IFB</H2>
+
+<font size=-1>[ <A HREF="if16i.html">前ページへ</A> | <A HREF="ifdef.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>アセンブル条件が空白の時評価します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	IFB	&lt;&lt;式&gt;&gt;<!-- <<式>> --> （外側の&lt;&gt;<!-- <> -->は必要です）
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><p>アセンブル条件の&lt;&lt;式&gt;&gt;<!-- <<式>> -->が空白の時、次の<A HREF="else.html">ELSE疑似命令</A>または<A HREF="endif.html">ENDIF疑似命令</A>までのブロックをアセンブルします。</P>
+<P>この疑似命令は、マクロ定義内で条件アセンブルを制御する時に使用します。&lt;&lt;式&gt;&gt;<!-- <<式>> -->は、マクロ定義において宣言される仮引数の名前の一つでなければなりません。マクロ展開時に渡された&lt;&lt;式&gt;&gt;<!-- <<式>> -->が空白の時、つまり引数が渡されていない時にブロックがマクロ展開されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="if.html">IF/IFN</A>、<A HREF="ife.html">IFE</A>、<A HREF="ifnb.html">IFNB</A>、<A HREF="ifdef.html">IFDEF</A>、<A HREF="ifndef.html">IFNDEF</A>、<A HREF="else.html">ELSE</A>、<A HREF="endif.html">ENDIF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>test	macro	flag
+	ifb	&lt;flag&gt;<!-- <flag> -->		; 仮引数が空白の時アセンブルするように
+	lda	#$10		; 指定
+	endif
+	endm
+	:
+	test			; 引数が空白なのでアセンブルされる
+	test	1		; 引数が空白ではないのでアセンブルされ
+	:			; ない
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

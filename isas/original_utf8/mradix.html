@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>MRADIX</title>
+</head>
+
+<body bgcolor=#ffffff>
+<h2>MRADIX</h2>
+
+<font size=-1>[ <a href="macro.html">前ページへ</a> | <a href="ndspif.html">次ページへ</a> ]</font>
+<hr>
+
+<table border=0>
+<tr align=left valign=top>
+<td nowrap><b>機能</b></td>
+<td><br></td>
+<td>マクロ内の実引数にマクロ演算子<a href="macrooperator.html#PERCENT">%</a>を用いて数値を与える時の基数を指定します。
+</td>
+</tr>
+
+<tr><td>　</td></tr>
+
+<tr align=left valign=top>
+<td nowrap><b>書式</b></td>
+<td><br></td>
+<td>
+<pre>	MRADIX	&lt;式&gt;<!-- <式> -->
+</pre>
+</td>
+</tr>
+
+<tr><td>　</td></tr>
+
+<tr align=left valign=top>
+<td nowrap><b>説明</b></td>
+<td><br></td>
+<td><p>マクロ内の実引数にマクロ演算子<a href="macrooperator.html#PERCENT">%</a>を用いて数値を与える場合、その基数をアセンブラに指示します。&lt;式&gt;<!-- <式> -->には、10、16の何れかの値を指定し、それぞれ10進数、16進数を示します。なお、MRADIX疑似命令が指定されていない時のデフォルトは16進数表記となります。</p></td>
+</tr>
+
+<tr><td>　</td></tr>
+
+<tr align=left valign=top>
+<td nowrap><b>参照</b></td>
+<td><br></td>
+<td><a href="macrooperator.html#PERCENT">%</a></td>
+</tr>
+
+<tr><td>　</td></tr>
+
+<tr align=left valign=top>
+<td nowrap><b>入力例</b></td>
+<td><br></td>
+<td>
+<pre>set	macro	label
+	db	%label		; db 10
+	endm
+
+	mradix	10		; デフォルトの基数を10進数に指定
+	set	10		; db 10としてアセンブル
+</pre>
+</td>
+</tr>
+</table>
+
+<hr>
+
+</body>
+</html>

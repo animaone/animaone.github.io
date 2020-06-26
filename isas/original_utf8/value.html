@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>環境変数</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>環境変数</H2>
+
+<font size=-1>[ <A HREF="setup.html">前ページへ</A> | <A HREF="flow.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISASやISLKには、アセンブルやリンクの作業をより快適に進めるために、いくつかの環境変数が用意されています。</P>
+
+<TABLE WIDTH=100% BORDER=1>
+<TR bgcolor=gray>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP width=150>プログラム</TH>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>環境変数</TH>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>ISAS</TD>
+	<TD><A HREF="#ISAS">ISAS</A>、<A HREF="#ISINC">ISINC</A>、<A HREF="#ISTMP">ISTMP/TEMP/TMP</A>、<A HREF="#PATH">PATH</A></TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TD NOWRAP>ISLK</TD>
+	<TD><A HREF="#ISLK">ISLK</A>、<a href="#ISLIB">ISLIB</a>、<A HREF="#ISTMP">ISTMP/TEMP/TMP</A>、<A HREF="#PATH">PATH</A></TD>
+</TR>
+</TABLE>
+
+<P>これらの環境変数は、必要に応じてAUTOEXEC.BATファイルに設定すると良いでしょう。また、環境変数の指定は大文字と小文字の何れで指定してもかまいません。</P>
+
+<H3><A NAME="ISAS">ISAS</A></H3>
+<P>ISAS起動時のパラメータを指定します。</P>
+<P>パラメータには起動オプションとソースファイル名がありますが、特にアセンブル時に指定する起動オプションが同じ場合が多々あります。このような時にISAS環境変数を指定することで、ISAS起動時に指定するパラメータの入力の手間を省くことができます。</P>
+<P>例えば、シンボルテーブル数を8000個にしたい時は次のように指定します。</P>
+
+<PRE>set isas=-s8000
+</PRE>
+
+<P>このように設定すると、ISAS起動時に<A HREF="isasoption.html#SYMBOL">-sオプション</A>を指定しなくてもデフォルトでシンボルテーブル数を8000個確保することができます。ただし、ISAS環境変数と同じパラメータをISAS起動時にコマンドラインで指定した時は、コマンドラインの指定が有効となります。なお、ISASのパラメータの詳細については、<A HREF="isasoption.html">第６章　アセンブラ（ISAS）</A>を参照してください。</P>
+
+<H3><A NAME="ISLK">ISLK</A></H3>
+<P>ISLK起動時のパラメータを指定します。</P>
+<P>パラメータには起動オプションとオブジェクトファイル名がありますが、特にリンクする時に指定する起動オプションが同じ場合が多々あります。このような時にISLK環境変数を指定することで、ISLK起動時に指定するパラメータの入力の手間を省くことができます。</P>
+<P>例えば、シンボルテーブル数を8000個にしたい時は次のように指定します。</P>
+
+<PRE>set islk=-s8000
+</PRE>
+
+<P>このように設定すると、ISLK起動時に<A HREF="islkoption.html#SYMBOL">-sオプション</A>を指定しなくてもデフォルトでシンボルテーブル数を8000個確保することができます。ただし、ISLK環境変数と同じパラメータをISLK起動時にコマンドラインで指定した時は、コマンドラインの指定が有効となります。なお、ISLKのパラメータの詳細については、<A HREF="islkoption.html">第７章　リンカ（ISLK）</A>を参照してください。</P>
+
+<H3><A NAME="ISINC">ISINC</A></H3>
+<p><a href="lib.html">LIB/FILE/INCLUDE疑似命令</a>、および<a href="libbin.html">LIBBIN疑似命令</a>により読み込まれるファイルを検索するディレクトリパスを指定します。</p>
+<P><a href="lib.html">LIB/FILE/INCLUDE疑似命令</a>や<a href="libbin.html">LIBBIN疑似命令</a>で指定したファイルが見つからなかった時、ISASはISINC環境変数で指定されたディレクトリパスに従ってファイルを検索します。例えば、CドライブのINCLUDEディレクトリを検索するには次のように指定します。</p>
+
+<pre>set isinc=c:¥include
+</pre>
+
+<p>また、複数のディレクトリを指定する時は、検索するパスを順次記述しそれぞれセミコロン（;）で区切ることにより指定することができます。</p>
+
+<pre>set isinc=c:¥include1;c:¥include2
+</pre>
+
+<p>なお、ISINC環境変数を指定しても、ISAS起動時に<a href="isasoption.html#INCLUDE">-Iオプション</a>を指定すると、<a href="isasoption.html#INCLUDE">-Iオプション</a>で指定したディレクトリを優先して検索し、目的のファイルが見つからなかった時にISINC環境変数で指定したディレクトリが検索されます。</p>
+
+<h3><a name="ISLIB">ISLIB</a></h3>
+<p>リンクするオブジェクトファイルを検索するディレクトリパスを指定します。</p>
+<p>リンク時にオブジェクトファイルが見つからなかった時、ISLKはISLIB環境変数で指定されたディレクトリパスに従ってファイルを検索します。例えば、CドライブのLIBディレクトリを検索するには次のように指定します。</p>
+
+<pre>set islib=c:¥lib
+</pre>
+
+<p>また、複数のディレクトリを指定する時は、検索するパスを順次記述しそれぞれセミコロン（;）で区切ることにより指定することができます。</p>
+
+<pre>set islib=c:¥lib1;c:¥lib2
+</pre>
+
+<p>なお、ISLIB環境変数を指定しても、ISLK起動時に<a href="islkoption.html#LIB">-Lオプション</a>を指定すると、<a href="islkoption.html#LIB">-Lオプション</a>で指定したディレクトリを優先して検索し、目的のファイルが見つからなかった時にISLIB環境変数で指定したディレクトリが検索されます。</p>
+
+<H3><A NAME="ISTMP">ISTMP/TEMP/TMP</A></H3>
+<P>ISASおよびISLKが出力するテンポラリファイルのディレクトリパスを指定します。</P>
+<P>ISASおよびISLKは、ISTMP、TEMP、TMPの順に環境変数を検索します。これらの環境変数が見つからない場合は、ISASとISLKはカレントディレクトリにテンポラリファイルを出力します。この環境変数によって指定されたディレクトリは一時的に使用するだけなので、アセンブルやリンクの時間の短縮のためにRAMディスク等が割り当てられているディレクトリを指定する方が良いでしょう。</P>
+<P>例えば、テンポラリファイルの出力先ディレクトリをDドライブのルートディレクトリにするには次のように指定します。</P>
+
+<PRE>set istmp=d:¥
+</PRE>
+
+<H3><A NAME="PATH">PATH</A></H3>
+<P>ISAS.ISLKのシステムファイルが格納されているディレクトリパスを指定します。</P>
+<P>ISAS.ISLKのシステムファイルがカレントディレクトリにない場合、または、これらのファイルが格納されているディレクトリがPATHコマンドで指定されていないと、ISASやISLKを正常に起動することはできません。例えば、CドライブのISASディレクトリにこれらのファイルを用意した時には、次のようにPATHコマンドに"C:¥ISAS"を追加してください。</P>
+
+<PRE>path=%path%;c:¥isas
+</PRE>
+
+<P>PATHコマンドの詳細については、Windows 95やWindows NT、MS-DOSまたはPC DOSのマニュアル等を参照してください。</P>
+
+<HR>
+
+</BODY>
+</HTML>

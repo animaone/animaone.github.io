@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DSPM</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DSPM</H2>
+
+<font size=-1>[ <A HREF="dspif.html">前ページへ</A> | <A HREF="else.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>マクロの展開内容をリスティングファイルに出力します。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DSPM
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>マクロが呼び出されている部分に、そのマクロを展開した内容もリスティングファイルに出力します。マクロの展開内容をリスティングファイルに出力したくない場合は、<A HREF="ndspm.html">NDSPM疑似命令</A>を指定してください。</P>
+<P>なお、DSPM疑似命令と<A HREF="ndspm.html">NDSPM疑似命令</A>が共に指定されていない時は、DSPM疑似命令を指定した時と同じようにマクロの展開内容がリスティングファイルに出力されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="ndspm.html">NDSPM</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>sample	macro			; マクロ
+	lda	#$10
+	endm
+	:
+	dspm			; マクロ展開内容のリスティング出力指定
+	sample			; マクロの展開
+</PRE>
+<P>このようなプログラムをアセンブルすると、リスティングファイルには次のように出力されます。</P>
+<PRE>sample.s                               94-01-01 00:00:00......PAGE 0001
+
+LINE# LOC      CODE             LINE
+
+    5:00000000                  sample  macro
+    6:00000000                          lda     #$10
+    7:00000000                          endm
+    8:00000000                  
+    9:00000000                          dspm
+   10:00000000                          sample
+   10:00000000 A910           1         lda     #$10
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISDMG</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISDMG</H2>
+
+<font size=-1>[ <A HREF="isasbin.html">前ページへ</A> | <A HREF="isprefix.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>命令セットをDMGプロセッサ用に切り替えます。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ISDMG
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>DMGプロセッサ用としてISASを使用する時に指定します。ただし、ISAS起動時に<a href="isasoption.html#ISDMG">-isdmgオプション</a>を指定すると、自動的にISDMG疑似命令が指定された状態となります。このため、ISDMG用のソースファイルをISASでアセンブルする時に<a href="isasoption.html#ISDMG">-isdmgオプション</a>を指定することにより、ソースファイルにISDMG疑似命令を追加編集することなくアセンブルすることが可能です。</p>
+<p>なお、<a href="is65.html">IS65</a>、ISDMG、<a href="issfx.html">ISSFX</a>、<A HREF="issnd.html">ISSND</A>、および<A HREF="isv810.html">ISV810疑似命令</A>が指定されていない時には、ISASは65816プロセッサ用アセンブラとして機能します。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><a href="is65.html">IS65</a>、<a href="issfx.html">ISSFX</a>、<A HREF="issnd.html">ISSND</A>、<A HREF="isv810.html">ISV810</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	isdmg
+	:			; DMGプロセッサ用命令を記述
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

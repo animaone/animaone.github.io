@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>IFDEF</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>IFDEF</H2>
+
+<font size=-1>[ <A HREF="ifb.html">前ページへ</A> | <A HREF="ife.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>アセンブル条件が定義されている時評価します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	IFDEF	&lt;シンボル&gt;<!-- <シンボル> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>アセンブル条件の&lt;シンボル&gt;<!-- <シンボル> -->が既に定義されている時、次の<A HREF="else.html">ELSE疑似命令</A>または<A HREF="endif.html">ENDIF疑似命令</A>までのブロックをアセンブルします。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="if.html">IF/IFN</A>、<A HREF="ife.html">IFE</A>、<A HREF="ifb.html">IFB</A>、<A HREF="ifnb.html">IFNB</A>、<A HREF="ifndef.html">IFNDEF</A>、<A HREF="else.html">ELSE</A>、<A HREF="endif.html">ENDIF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>symbol
+	ifdef	symbol		; シンボル名symbolが定義されているので
+	lda	#$00		; アセンブルされる
+	endif
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

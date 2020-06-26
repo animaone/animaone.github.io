@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>LOCAL</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>LOCAL</H2>
+
+<font size=-1>[ <A HREF="list.html">前ページへ</A> | <A HREF="lprefix.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>シンボルを内部定義として宣言します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	LOCAL	&lt;名前&gt;[,名前] ... [,名前]<!-- <名前>[,名前] ... [,名前] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>LOCAL疑似命令を宣言したソースファイル内でのみ有効なシンボルであることをアセンブラに通知します。&lt;名前&gt;<!-- <名前> -->には、内部定義するシンボル名を記述します。複数の&lt;名前&gt;<!-- <名前> -->を与える時は、それぞれの&lt;名前&gt;<!-- <名前> -->をカンマ（,）で区切ってください。LOCAL疑似命令により内部定義として宣言されたシンボルと同名のシンボルを、他のソースファイルで内部定義しても問題はありません。</P>
+<P>また、マクロ定義内で記述した場合は、そのマクロ内でのみ有効なシンボルとして宣言されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="public.html">PUBLIC</A>、<A HREF="puball.html">PUBALL</A>、<A HREF="pubon.html">PUBON</A>、<A HREF="puboff.html">PUBOFF</A>、<A HREF="extern.html">EXTERN</A>、<A HREF="global.html">GLOBAL</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>ソースファイル1
+	local	symbol		; ソースファイル1でのみ有効
+symbol
+	:
+	jsr	symbol
+
+ソースファイル2
+	local	symbol		; ソースファイル2でのみ有効
+symbol
+	:
+	jsr	symbol
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

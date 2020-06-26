@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>PUBALL</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>PUBALL</H2>
+
+<font size=-1>[ <A HREF="page.html">前ページへ</A> | <A HREF="public.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>ソースファイル内の全ての定義シンボルを外部定義シンボルとして宣言します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	PUBALL
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ソースファイル内で定義している全てのシンボルが、他のソースファイルでの参照の有無に係らず外部定義シンボルとしてアセンブラに通知します。PUBALL疑似命令を指定した時は、<A HREF="public.html">PUBLIC</A>、<A HREF="pubon.html">PUBON</A>、<A HREF="puboff.html">PUBOFF疑似命令</A>は指定する必要はなく、また、指定されていても無視されます。ただし、PUBALL疑似命令を指定後に<A HREF="puboff.html">PUBOFF疑似命令</A>を指定すると、"Already PUBALL.（既にPUBALL状態です。）"のウォーニングが出力されます。</P>
+<P>PUBALL疑似命令はローカルシンボルに対しては影響を与えません。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="public.html">PUBLIC</A>、<A HREF="pubon.html">PUBON</A>、<A HREF="puboff.html">PUBOFF</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>ソースファイル1
+	puball			; シンボルsample1、sample2は外部定義シ
+	:			; ンボルとして宣言される
+sample1	equ	$10
+sample2	equ	$20
+
+ソースファイル2
+	extern	sample1,sample2	; 外部参照が可能
+	lda	sample1
+	ldx	sample2
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

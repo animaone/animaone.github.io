@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ASSUME（V810SF用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ASSUME（V810SF用）</H2>
+
+<font size=-1>[ <A HREF="assumespc700.html">前ページへ</A> | <A HREF="binset.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>メモリ参照命令のディスプレースメントにオフセット算出することをアセンブラに通知します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ASSUME	&lt;レジスタ&gt;[,式]<!-- <レジスタ>[,式] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>V810SFプロセッサのメモリ参照命令は、16ビット値のディスプレースメントを与えなければなりません。このため、ISASではASSUME疑似命令を用いて自動的にオフセット値を算出することができます。</P>
+<P>メモリ参照命令（ld、st、in、out）のディスプレースメントに絶対アドレス値を持つシンボルを与え、ASSUME疑似命令で指定されたレジスタで修飾する時、そのシンボル値からASSUME疑似命令で定義された式を引き、オフセットアドレスを算出します。</P>
+<P>&lt;レジスタ&gt;<!-- <レジスタ> -->には、レジスタとして予約されている文字列、またはレジスタ番号を指定します。また[式]には、修飾する&lt;レジスタ&gt;<!-- <レジスタ> -->の実行時の値を指定します。なお、この[式]で指定する値は1パスのアセンブル時に解決できる値を指定してください。アセンブル時に解決できない時はリンク時に解決することができますが、この時に生成される命令展開が冗長的になるので注意してください。</P>
+<P>例えば、次のように記述した時はASSUME疑似命令指定時に式の値が解決されていないため、ld.w命令は冗長な命令展開をしてしまいます。</P>
+
+<PRE>	assume	r4,abc		; ASSUME疑似命令指定時にabcの値が未解決
+abc	equ	123		; abcを定義
+def	equ	124
+	mov	#abc,r4
+	ld.w	def[r4],r2
+</PRE>
+
+<P>このような問題を避けるために、次のようにASSUME疑似命令指定時には解決された式を記述してください。</P>
+
+<PRE>abc	equ	123		; abcを定義
+def	equ	124
+	assume	r4,abc		; ASSUME疑似命令指定時にabcの値が解決済
+	mov	#abc,r4		; み
+	ld.w	def[r4],r2
+</PRE>
+
+<P>なお、ASSUME疑似命令の指定を解除したい時は、[式]を指定せずにASSUME疑似命令を記述してください。</P>
+
+<PRE>	assume	r4		; r4レジスタのASSUME疑似命令指定を解除
+</PRE>
+</TD></TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="isv810.html">ISV810</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	isv810
+	pubon
+
+DATA	group
+	org	$05000000
+base:
+symbol0:ds	4
+symbol1:ds	4
+
+TEXT	group
+	assume	gp,base		; ASSUME疑似命令の指定
+	mov	#base,gp	; GPレジスタにbaseのアドレスを代入
+	ld.w	symbol1[gp],r6	; GPで修飾
+
+	end
+</PRE>
+
+<P>ASSUME疑似命令を使用しない時、ld.w命令部分は次のように記述しなければならず、記述が繁雑になってしまいます。</P>
+
+<PRE>	ld.w	#symbol1-base[zero],r6
+</PRE>
+
+<P>なお、シンボルの前にシャープ記号（#）を付加した時は、シンボル値を定数と見なし、ASSUME疑似命令の影響は受けません。</P>
+
+<PRE>	ld.w	#symbol1[zero],r6
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

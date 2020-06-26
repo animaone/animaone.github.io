@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>PAGE</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>PAGE</H2>
+
+<font size=-1>[ <A HREF="org.html">前ページへ</A> | <A HREF="puball.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>リスティングファイルの1ページの行数、および改ページを指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	PAGE	[行数]
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+
+
+
+
+<TD><p>[行数]には、リスティングファイルの1ページの行数を10から255までの値で指定します。また、[行数]に0を指定すると、改ページを行わないようにすることができます。任意の場所で改ページを行いたい時には、[行数]を指定せずにPAGE疑似命令を記述することによりPAGE疑似命令の直前で改ページが行われるようになります。</p>
+<p>なお、PAGE疑似命令を指定しない時のデフォルト行数は66行です。</p></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="title.html">TITLE</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	page	50		; 1ページ50行に指定
+	:
+	page			; この行の直前で改ページを行う
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

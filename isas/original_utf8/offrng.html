@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>OFFRNG</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>OFFRNG</H2>
+
+<font size=-1>[ <A HREF="offpolish.html">前ページへ</A> | <A HREF="offset.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>レンジ情報の出力を禁止します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	OFFRNG
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>OFFRNG疑似命令の記述以降のプログラムのレンジ情報を、ISASが出力するオブジェクトファイルに出力しません。</P>
+<P>レンジ情報とは、記述された内容がプログラムなのかデータなのかを記録したものです。OFFRNG疑似命令を指定すると、この疑似命令を指定した部分をデバッガでデバッグする時、データ領域であっても逆アセンブル表示されるためデバッグし難くなりますが、アセンブル時間は短縮されます。この疑似命令の指定は、デバッグの終了した部分に指定すると良いでしょう。</P>
+<P>なお、OFFRNG疑似命令が指定されていない時は、常にレンジ情報が出力されます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="onrng.html">ONRNG</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	onrng
+	db	$10,$20		; デバッグ時にもこのように逆アセンブル
+	:			; される
+	offrng
+	db	$a9,$10		; デバッグ時には"lda #$10"と逆アセンブ
+	:			; ルされる
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

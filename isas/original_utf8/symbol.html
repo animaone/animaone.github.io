@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>シンボル</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>シンボル</H2>
+
+<font size=-1>[ <A HREF="program.html">前ページへ</A> | <A HREF="name.html">次ページへ</A> ]</font>
+<HR>
+
+<P>シンボルには、広域的に使用できるグローバルシンボルと、局所的に使用できるローカルシンボルが用意されています。これらのシンボルには、以下の文字を使用することができます。なお、括弧内は文字コードを示します。</P>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>英字</TH>
+	<TD><BR></TD>
+	<TD NOWRAP>A(41H) 〜 Z(5AH)<BR>
+	a(61H) 〜 z(7AH)</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>数字</TH>
+	<TD><BR></TD>
+	<TD NOWRAP>0(30H) 〜 9(39H)</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>特殊文字</TH>
+	<TD><BR></TD>
+	<TD NOWRAP>$(24H)<BR>
+	?(3FH)<BR>
+	@(40H)<BR>
+	_(5FH)</TD>
+</TR>
+</TABLE>
+
+<P>ただし、シンボルの1文字目は英字、クエスチョンマーク（?）、またはアンダーバー（_）でなければなりません。通常、シンボルの1文字目が英字、またはクエスチョンマークの時はグローバルシンボル、アンダーバーの時はローカルシンボルとして判断されます。また、シンボル名の長さはグローバルシンボルは32文字、ローカルシンボルは27文字までが有効となります。これらの文字数を越えたシンボルを使用するとエラーが発生するので注意してください。</P>
+
+<H3><A NAME="GLOBAL">グローバルシンボル</A></H3>
+<P>シンボルを定義したソースファイル内の全領域で有効なシンボルをグローバルシンボルといいます。また、<A HREF="public.html">PUBLIC</A>、<A HREF="extern.html">EXTERN</A>、<A HREF="global.html">GLOBAL</A>、<A HREF="puball.html">PUBALL</A>等の疑似命令を使用することにより、シンボル定義したソースファイル以外でもそのシンボルを参照することができます。通常、サブルーチンの先頭アドレスやデータ領域には、簡単に参照できるようにグローバルシンボルを定義します。</P>
+<P>グローバルシンボルは、デフォルトでは英字またはクエスチョンマークで始まり、32文字までの長さの名前を記述することができます。ただし、<A HREF="lprefix.html">LPREFIX疑似命令</A>によってローカルシンボルのプレフィックスに指定された文字は使用することができません。</P>
+<P>なお、グローバルシンボルに関係する疑似命令の詳細については、"第５章　疑似命令"の"<A HREF="public.html">PUBLIC</A>"、"<A HREF="extern.html">EXTERN</A>"、"<A HREF="global.html">GLOBAL</A>"、"<A HREF="puball.html">PUBALL</A>"、"<A HREF="pubon.html">PUBON</A>"、"<A HREF="puboff.html">PUBOFF</A>"、および"<A HREF="lprefix.html">LPREFIX</A>"の各項目を参照してください。</P>
+
+<H3><A NAME="LOCAL">ローカルシンボル</A></H3>
+<P>グローバルシンボルから次のグローバルシンボルの間でのみ有効なシンボルをローカルシンボルといいます。</P>
+<P>ローカルシンボルは、デフォルトではアンダーバーで始まり、このアンダーバーを含めて27文字までの長さの名前を記述することができます。なお、このローカルシンボルを示すプリフィックスは、<A HREF="lprefix.html">LPREFIX疑似命令</A>によって任意の英字またはクエスチョンマークに変更することができます。詳しくは、"第５章　疑似命令"の"<A HREF="lprefix.html">LPREFIX</A>"の項目を参照してください。</P>
+<P>以下に、ローカルシンボルの簡単な使用例を示します。</P>
+
+<PRE>aaa				; グローバルシンボル
+	nop
+	jp	_xyz		; ローカルシンボル1にジャンプ
+	:
+_xyz				; ローカルシンボル1
+	ret
+	:
+bbb				; グローバルシンボル
+	nop
+	jp	_xyz		; ローカルシンボル2にジャンプ
+	:
+_xyz				; ローカルシンボル2
+	ret
+ccc				; グローバルシンボル
+</PRE>
+
+<P>この例では、ローカルシンボル1とローカルシンボル2は同じ名前ですが、ローカルシンボル1はグローバルシンボル"aaa"と"bbb"の間でのみ有効であり、ローカルシンボル2はグローバルシンボル"bbb"と"ccc"の間で有効となるため、正常にアセンブルすることができます。</P>
+<P>このように、デバッグ時に特に必要としないシンボルをローカルシンボルとすることで、デバッグ時のシンボル領域の不足を防ぐことができます。<P>
+
+<HR>
+
+</BODY>
+</HTML>

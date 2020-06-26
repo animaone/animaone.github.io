@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISASBIN</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISASBIN</H2>
+
+<font size=-1>[ <A HREF="is65bin.html">前ページへ</A> | <A HREF="isdmg.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD><a href="binset.html">BINSET疑似命令</a>のパラメータの指定をISAS標準の指定方法にします。（デフォルト）
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ISASBIN
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><p>ISASの<a href="binset.html">BINSET疑似命令</a>は、次の<a href="libbin.html">LIBBIN疑似命令</a>の指定により<a href="binset.html">BINSET疑似命令</a>のパラメータはクリアされます。これに対し、IS65のBINSET疑似命令は、再度BINSET疑似命令を指定するまで、パラメータの値がLIBBIN疑似命令に反映されます。このようにISASとIS65のBINSET疑似命令は一部機能が異なりますが、ISASBIN疑似命令を指定、またはIS65BIN疑似命令を指定しない時には、ISASの標準的な<a href="binset.html">BINSET疑似命令</a>として機能させることができます。</p></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><a href="binset.html">BINSET</a>、<A HREF="is65bin.html">IS65BIN</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	isasbin			; BINSET疑似命令をISAS標準の機能にする
+	binset			; 
+	libbin	sample1.bin	; ファイルのオフセット$100から$200バイト分読み込む
+	libbin	sample2.bin	; ファイルのオフセット0からファイルサイズ分読み込む
+</PRE>
+
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

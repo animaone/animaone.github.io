@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>TITLE</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>TITLE</H2>
+
+<font size=-1>[ <A HREF="rsvreg.html">前ページへ</A> | <A HREF="undeferr.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>リスティングファイルの各ページのヘッダを指定します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	TITLE	&lt;タイトル&gt;<!-- <タイトル> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<td><p>ISAS起動時に<a href="isasoption.html#LIST">-listオプション</a>を指定した時に出力されるリスティングファイルの各ページのヘッダに表示する文字列を指定します。</p>
+<p>&lt;タイトル&gt;<!-- <タイトル> -->には、行の終わりまで、または50字以上記述されている時には50字までの文字列をタイトルとして使用します。このため、TITLE疑似命令を記述した行にはコメントを記述することはできないので注意してください。ソースファイルの1行目でTITLE疑似命令を指定した時には1ページ目から、また、2行目以降でTITLE疑似命令を指定した時には指定した次のページから有効になります。</p>
+<p>なお、TITLE疑似命令を指定しない時は、ヘッダにはソースファイル名が表示されます。</p></td>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="page.html">PAGE</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	title	This is sample program.
+</PRE>
+
+<P>このようにTITLE疑似命令を指定した時、リスティングファイルのヘッダには次のように表示されます。</P>
+
+<PRE>This is sample program.                94-01-01 00:00:00......PAGE 0001
+
+LINE# LOC      CODE             LINE
+
+    1:00000000                          title   This is sample program.
+    2:00000000
+</PRE>
+
+<P>また、TITLE疑似命令を指定しない時は、次のようにヘッダにはソースファイル名が表示されます。</P>
+
+<PRE>sample.s                               94-01-01 00:00:00......PAGE 0001
+
+LINE# LOC      CODE             LINE
+
+    1:00000000                          page    66
+    2:00000000
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

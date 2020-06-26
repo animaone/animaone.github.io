@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DEFL/DL</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DEFL/DL</H2>
+
+<font size=-1>[ <A HREF="defh.html">前ページへ</A> | <A HREF="defs.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>3バイト単位でデータをメモリに配置します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DEFL	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+<P>または</P>
+<PRE>	DL	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;式&gt;<!-- <式> -->には、3バイトのデータを与えることができ、下位バイトから上位バイトの順にメモリに配置されます。複数の&lt;式&gt;<!-- <式> -->を与える時は、それぞれの&lt;式&gt;<!-- <式> -->をカンマ（,）で区切ってください。</P>
+<P>なお、DEFL疑似命令とDL疑似命令はスペルのみ異なり、動作は同じです。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="defb.html">DEFB/DB</A>、<A HREF="defh.html">DEFH/DH</A>、<A HREF="defw.html">DEFW/DW</A>、<A HREF="defd.html">DEFD/DD</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	defl	$123456		; メモリ上に56H、34H、12Hの順に配置
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

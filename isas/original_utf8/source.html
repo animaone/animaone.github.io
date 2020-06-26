@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ソースファイル</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ソースファイル</H2>
+
+<font size=-1>[ <A HREF="movedmg.html">前ページへ</A> | <A HREF="program.html">次ページへ</A> ]</font>
+<HR>
+
+<H3><A NAME="FORMAT">ファイル形式</A></H3>
+<P>ISASでアセンブルすることができるソースファイルは、各行の終わりにCR（0DH）とLF（0AH）、またはLF（0AH）のみが付加されているテキストファイル形式で記述している必要があります。</P>
+<P>また、ソースファイル内のプログラムで使用できる文字を以下に示します。</P>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>英字</TH>
+	<TD><BR></TD>
+	<TD NOWRAP>A(41H) 〜 Z(5AH)<BR>
+	a(61H) 〜 z(7AH)</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>数字</TH>
+	<TD><BR></TD>
+	<TD NOWRAP>0(30H) 〜 9(39H)</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>特殊文字</TH>
+	<TD><BR></TD>
+	<TD NOWRAP>スペース(20H) 〜 &(26H)<BR>
+	((28H) 〜 /(2FH)<BR>
+	:(3AH) 〜 >(3EH)<BR>
+	@(40H)<BR>
+	^(5EH) 〜 _(5FH)<BR>
+	|(7CH)<BR>
+	‾(7EH)</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>制御文字</TH>
+	<TD><BR></TD>
+	<TD NOWRAP>TAB(09H)<BR>
+	CR(0DH)<BR>
+	LF(0AH)</TD>
+</TR>
+<TR ALIGN=LEFT VALIGN=TOP>
+	<TH ALIGN=LEFT VALIGN=TOP NOWRAP>その他</TH>
+	<TD><BR></TD>
+	<TD>上記以外のキャラクタコードの文字は、文字または文字列（シングルクォーテーションまたはダブルクォーテーションで囲まれた範囲）、およびコメントフィールド内でのみ記述できます。</TD>
+</TR>
+</TABLE>
+
+<P>なお、上記説明での括弧内は文字コードを示しています。</P>
+
+<H3><A NAME="NAME">ファイル名</A></H3>
+<P>ソースファイルの名前は、どのようなファイル名も付けてもかまいません。ただし、ISASはデフォルトでソースファイルの拡張子を".S"と判断するので、拡張子は".S"とするのが良いでしょう。このようにすると、ISAS起動時に拡張子を指定する必要はありません。もちろん、".S"以外の拡張子を持ったファイル名を付けた時は、ソースファイル名に拡張子も記述してください。なお、アセンブル時には拡張子に".O"を付けたオブジェクトファイルを、またリンク時には拡張子に".ISX"を付けたISXファイルをそれぞれデフォルトで出力するので、拡張子が".O"および".ISX"以外のファイル名を付けてください。</P>
+
+<HR>
+
+</BODY>
+</HTML>

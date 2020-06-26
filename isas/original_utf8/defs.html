@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DEFS/DS</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DEFS/DS</H2>
+
+<font size=-1>[ <A HREF="defl.html">前ページへ</A> | <A HREF="defw.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>指定された大きさの領域をメモリに確保します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DEFS	&lt;サイズ&gt;[,式]<!-- <サイズ>[,式] -->
+</PRE>
+<P>または</P>
+<PRE>	DS	&lt;サイズ&gt;[,式]<!-- <サイズ>[,式] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;サイズ&gt;<!-- <サイズ> -->で指定された大きさの領域をDEFS/DS疑似命令を記述した部分に確保します。&lt;サイズ&gt;<!-- <サイズ> -->には、確保する領域のサイズをバイト単位で指定します。また、[式]には、確保する領域にセットする1バイトのデータを指定します。[式]が省略された時は、ロケーションカウンタのみを進めます。</P>
+<P>なお、DEFS疑似命令とDS疑似命令はスペルのみ異なり、動作は同じです。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="comm.html">COMM</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	defs	$10		; 10Hバイト分の領域を確保する
+	defs	$20,$ff		; 20Hバイト分の領域を確保し、FFHのデー
+	:			; タをセットする
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

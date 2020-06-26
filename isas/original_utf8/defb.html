@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DEFB/DB</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DEFB/DB</H2>
+
+<font size=-1>[ <A HREF="def.html">前ページへ</A> | <A HREF="defd.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>1バイト単位でデータをメモリに配置します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	DEFB	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+<P>または</P>
+<PRE>	DB	&lt;式&gt;[,式] ... [,式]<!-- <式>[,式] ... [,式] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;式&gt;<!-- <式> -->には、任意の定数、文字、または文字列を与えることができます。&lt;式&gt;<!-- <式> -->の内容は、先頭のデータから順にメモリに配置されます。複数の&lt;式&gt;<!-- <式> -->を与える時は、それぞれの&lt;式&gt;<!-- <式> -->をカンマ（,）で区切ってください。</P>
+<P>なお、DEFB疑似命令とDB疑似命令はスペルのみ異なり、動作は同じです。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="defh.html">DEFH/DH</A>、<A HREF="defw.html">DEFW/DW</A>、<A HREF="defd.html">DEFD/DD</A>、<A HREF="defl.html">DEFL/DL</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	defb	$10		; 定数
+	defb	'a'		; 文字
+	defb	"TEST"		; 文字列
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

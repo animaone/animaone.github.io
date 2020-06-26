@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>DEF</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>DEF</H2>
+
+<font size=-1>[ <A HREF="decon.html">前ページへ</A> | <A HREF="defb.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>シンボルに文字列を定義します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>&lt;名前&gt;	DEF	&lt;文字列&gt;<!-- <名前>	DEF	<文字列> -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>&lt;名前&gt;<!-- <名前> -->に指定したシンボルに、&lt;文字列&gt;<!-- <文字列> -->に指定された文字列を定義します。&lt;文字列&gt;<!-- <文字列> -->は、行の最後またはコメントフィールドまでを文字列として判断するため、文字列の途中にスペースやタブを挿入してもかまいません。</P>
+<P>DEF疑似命令は、定義された&lt;名前&gt;<!-- <名前> -->が参照される時に&lt;文字列&gt;<!-- <文字列> -->を展開します。<A HREF="equ.html">EQU疑似命令</A>や<A HREF="substitute.html">=疑似命令</A>ではシンボルに既知の値を定義する必要がありますが、DEF疑似命令では展開時に&lt;文字列&gt;<!-- <文字列> -->内のシンボルが既知であれば良く、定義時に未定義のシンボルを&lt;文字列&gt;<!-- <文字列> -->に使用することができます。また、&lt;名前&gt;<!-- <名前> -->は再定義することができます。</P>
+<P>例えば、次の入力例のようにV810SFのレジスタ名をDEF疑似命令を用いてシンボルに定義すると、プログラムの可読性が高くなり、また、修正も容易になります。</P>
+<P>なお、DEF疑似命令で定義されたシンボルは、オペコードフィールドとオペランドフィールドでのみ使用することができます。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>_ram	def	r10		; シンボル_ramに文字列r10を定義する
+	push	_ram		; アセンブル時に"push r10"に展開される
+	:
+_ram	def	r11		; シンボル_ramに文字列r11を再定義する
+	push	_ram		; アセンブル時に"push r11"に展開される
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ASSUME（65816用）</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ASSUME（65816用）</H2>
+
+<font size=-1>[ <A HREF="pseudo.html">前ページへ</A> | <A HREF="assumespc700.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>現在のDBR（データバンクレジスタ）およびDR（ダイレクトページレジスタ）の値をアセンブラに通知します。</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ASSUME	&lt;DBR&gt;[,DR]<!-- <DBR>[,DR] -->
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>ASSUME疑似命令により、アセンブラはデータ転送命令等のニーモニックをマシン語に翻訳する際に必要最小限のアドレッシングデータを生成することができます。例えば、LDA命令をマシン語に翻訳する時、DBRおよびDRの値によって2バイト、3バイトまたは4バイト長の命令になりますが、この疑似命令により必要最小限の長さにすることができます。</P>
+<P>&lt;DBR&gt;<!-- <DBR> -->と[DR]には、それぞれデータバンクレジスタとダイレクトページレジスタの値を指定します。なお、[DR]は省略することができ、この時DRの値は変更されません。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="is65.html">IS65</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	is65
+	assume	$40,$0000	; DBRに$40、DRに$0000を指定する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>

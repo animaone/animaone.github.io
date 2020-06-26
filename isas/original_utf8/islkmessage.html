@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ISLKのメッセージ</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ISLKのメッセージ</H2>
+
+<font size=-1>[ <A HREF="isasmessage.html">前ページへ</A> | <A HREF="isxfile.html">次ページへ</A> ]</font>
+<HR>
+
+<P>ISLKが出力するメッセージについて説明します。メッセージの説明では、1行目に英語メッセージとエラーまたはウォーニングの種類、2行目に日本語メッセージ、3行目以降にメッセージの説明や対処方法等について記述しています。なお、英語メッセージはデフォルト、またはISLK起動時に<A HREF="islkoption.html#ENGLISH">-usオプション</A>を指定、日本語メッセージは<A HREF="islkoption.html#JAPANESE">-jpオプション</A>を指定した時に表示されます。</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Bank over.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>バンクを越えました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>プログラムがバンクの領域サイズを越えて作成されました。65816プロセッサのプログ
+ラムを開発する時、バンクを越えてプログラムを配置することは許されません。このウォーニングが出力された時は、以下の原因が考えられます。
+
+<UL>
+<LI>プログラムのサイズが大きく成り過ぎた場合。
+<LI><A HREF="org.html">ORG疑似命令</A>や<A HREF="offset.html">OFFSET疑似命令</A>で指定したアドレスに誤りがある場合。
+<LI>ISLKの<A HREF="islkoption.html#GROUP">-Gオプション</A>で指定したアドレスに誤りがある場合。
+</UL>
+
+[]内に表示されるオブジェクトの開始アドレスと終了アドレスを参考に、上記項目を確認してください。なお、このウォーニングはISLK起動時に<A HREF="islkoption.html#WARNING">-w bank-overオプション</A>を指定した場合にのみ出力されます。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not create temporary.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>テンポラリーファイルが作成できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISLKは、リンク時にカレントディレクトリ、または<A HREF="value.html#ISTMP">ISTMP、TEMP、TMP</A>の何れかの環境変数が指定されている時はその指定されたディレクトリに[]内に表示されたファイル名のテンポラリーファイルを作成しますが、ディスクの容量不足によってこのファイルが作成できない時にエラーが発生します。ディスクの空き容量を確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not devide by 0.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>０で除算する事はできません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>0で除算している式があります。0で除算することはできません。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not open file.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルがオープンできません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたファイルが見つからないためオープンすることができません。指定したオブジェクトファイル名やそのディレクトリパスを確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Can not write file.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルに出力できません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISLKが出力するISXファイルがディスクに正常に出力できませんでした。ディスクの容量不足が考えられるため、ファイルの出力先ディスクの空き容量を確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Different case module found.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>小文字と大文字の区別をしていないモジュールが含まれています。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>リンクしたモジュールのうち、<A HREF="capson.html">CAPSON疑似命令</A>を指定している（または<A HREF="capsoff.html">CAPSOFF/SMALL疑似命令</A>を指定していない）モジュールと、<A HREF="capsoff.html">CAPSOFF/SMALL疑似命令</A>を指定しているモジュールとが混在しています。<A HREF="capson.html">CAPSON疑似命令</A>と<A HREF="capsoff.html">CAPSOFF/SMALL疑似命令</A>の指定は、必ず同じ指定をリンクする全てのモジュールに行ってください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Expression stack over flow.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>計算に必要なスタックを使い果たしました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ソースファイル内で四則演算等の計算式が長すぎる時に発生します。このような時は、計算式を短くしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>File create failure.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルの作成に失敗しました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたファイルが作成できませんでした。ファイル名やディレクトリパスを確認してください。また、MS-DOSまたはPC DOSの環境変数FILESの値が小さい時にもこのエラーが発生する場合があるので、環境変数FILESの値が小さすぎないか確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>File read failure.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>ファイルの読み込みに失敗しました。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたファイルが正常に読み込めません。ファイルの有無、およびファイル名やディレクトリパスを確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Group has not assigned address.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>最初のグループにアドレスが割り当てられていません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>最初に出現するグループには絶対アドレスを指定する必要がありますが、相当するファイルに絶対アドレスの指定が行われていません。<A HREF="org.html">ORG疑似命令</A>によって絶対アドレスを指定してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>&lt;n&gt;<!-- <n> --> group(s) conflict area detected.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>&lt;n&gt;<!-- <n> -->個のグループが重なっています。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISLKの<A HREF="islkoption.html#GROUP">-Gオプション</A>で指定したグループの配置アドレスに重複された領域が見つかりました。&lt;n&gt;<!-- <n> -->には、他のグループと重複しているグループ数が表示されます。<BR>
+ウォーニングが発生すると、次のように重なっているグループとそのアドレスが表示されます。
+
+<PRE>C:¥&gt;islk4g sample.o -G text=$ffff0000 -G data=$ffff2000 -G bss=$05000000
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+        Area of [text] group = FFFF:0000 - FFFF:2BA5 conflict
+WARNING! 1 group(s) conflict area detected.
+
+C:¥&gt;
+</PRE>
+
+このような時には、次のように<A HREF="islkoption.html#VERBOSE">-vオプション</A>を指定すると、どのグループのアドレスと重なっているかを簡単に確認することができます。
+
+<PRE>C:¥&gt;islk4g sample.o -G text=$ffff0000 -G data=$ffff2000 -G bss=$05000000 -v
+INTELLIGENT SYSTEMS Linker  Version X.XX for XXXXX
+Copyright (c) 1993-1998 Nintendo Co.,Ltd.
+Copyright (c) 1993-1998 INTELLIGENT SYSTEMS Co.,Ltd.
+output file : sample.isx
+
+*** phase 1 ***
+ sample.o
+*** phase 2 ***
+ sample.o
+symbol:167
+        Area of [text] group = FFFF:0000 - FFFF:2BA5 conflict
+        Area of [data] group = FFFF:2000 - FFFF:22C7
+        Area of [bss] group = 0500:0000 - 0500:9157
+        End of [vec] group = FFFF:0017
+WARNING! 1 group(s) conflict area detected.
+range:23
+
+C:¥&gt;
+</PRE>
+</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Incorrect alignment op-code.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>オペコードのアライメントが正しくありません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>V810SFプロセッサ用として使用時に、オペコードが奇数番地から配置されている命令があります。<A HREF="org.html">ORG疑似命令</A>や<A HREF="offset.html">OFFSET疑似命令</A>を使用してオペコードを偶数番地から配置してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Incorrect alignment pointer.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>アライメントが正しくないポインタがあります。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>V810SFプロセッサ用として使用時に、奇数番地のシンボルをアドレッシングしている命令があります。<A HREF="org.html">ORG疑似命令</A>や<A HREF="offset.html">OFFSET疑似命令</A>を使用してアドレッシングしているシンボルを偶数番地から配置してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Missing symbol.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルの頭文字には数字を指定できません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたシンボルの頭文字に数字が使用されています。シンボルの頭文字には"@"、"$"、"_"、"A"から"Z"、および"a"から"z"の文字を使用してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Not enough memory.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>メモリーが足りません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISLKを動作させるために必要なメモリが足りません。ISLKを動作させるためには、アプリケーションが実行できるコンピュータのコンベンショナルメモリとして500Kバイト以上必要です。また、ISLK起動時に指定する<A HREF="islkoption.html#SYMBOL">-s（シンボルテーブルのサイズ指定）</A>、および<A HREF="islkoption.html#BUFFER">-b（入出力ファイルバッファのサイズ指定）</A>オプションを小さくして、ISLKが使用するメモリサイズを少なくしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Not enough symbol buffer.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルテーブルが足りません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>コンベンショナルメモリ上に確保されるシンボルテーブルのサイズが不足しています。ISLK起動時の<A HREF="islkoption.html#SYMBOL">-sオプション</A>を用いて、シンボルテーブルを増やしてください。なお、デフォルトで確保されるシンボルテーブル数は4091です。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Out of range.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>レンジオーバーです。目的のアドレスに届きません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>相対命令のアドレスが、-128バイトから+127バイトの範囲を越えています。この範囲に入るように配置し直してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Record length error in [].</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>レコード長が異常です。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたオブジェクトファイルのレコード長に誤りがあります。オブジェクトファイルが破壊されている可能性があるため、再度アセンブル、リンクして確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Symbol defined more than once.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルの値が一致していません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示された同名のシンボルが二ヶ所以上で外部定義されているため、シンボルの値が決定できません。<A HREF="public.html">PUBLIC疑似命令</A>によるシンボルの外部定義宣言は、必ず一ヶ所で行ってください。また、同名のシンボルでも大文字と小文字とを分けて判断したい時は、<A HREF="capsoff.html">CAPSOFF/SMALL疑似命令</A>を指定してください。デフォルトでは、シンボルの大文字と小文字は同一として判断するので注意してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Symbol out failure.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルの出力に失敗しました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>シンボル情報をISXファイルに正常に出力できませんでした。ディスクの容量の不足が考えられるため、ファイルを出力すべきディスクの容量を確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Tempolary file write failure.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>テンポラリーファイルの書き込みに失敗しました。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ISLKが作成するテンポラリーファイルの書き込みが正常に行われませんでした。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Too many range information.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Warning</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>レンジ情報が多すぎます。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>レンジ情報が多すぎるため、ISXファイルに全てのレンジ情報を出力することができませんでした。例えば、デバッグが完了したモジュールなどはレンジ情報を出力する必要がありません。そのようなモジュールの先頭で<a href="offrng.html">OFFRNG疑似命令</a>を、終わりに<a href="onrng.html">ONRNG疑似命令</a>を指定することにより、出力するレンジ情報を減らすことができます。[]内には現在のレンジ数が表示されますが、この値がISXファイルに出力可能な最大レンジ情報数の65535個を越えないように<a href="onrng.html">ONRNG疑似命令</a>と<a href="offrng.html">OFFRNG疑似命令</a>を用いて調整されると良いでしょう。</TD>
+</TR>
+</TABLE>
+</P>
+
+<!--
+レンジ情報が多すぎるため、ISXファイルに全てのレンジ情報を出力することができませんでした。デバッグを行なわないモジュールをアセンブルする時に<A HREF="isasoption.html#NORANGE">-norange</A>の起動オプションを指定して、不必要なレンジ情報が出力されないように指定してください。[]内には現在のレンジ数が表示されますが、この値がISXファイルに出力可能な最大レンジ情報数の65535個を越えないように<A HREF="isasoption.html#NORANGE">-norangeオプション</A>を指定されると良いでしょう。
+-->
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Undefined group.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>グループが定義されていません。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>ソースファイル内に<A HREF="group.html">GROUP疑似命令</A>が一つも宣言されていません。ソースファイルの先頭には、必ず<A HREF="group.html">GROUP疑似命令</A>を使用してグループを宣言する必要があります。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Unresolved external.[]</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>シンボルが解決されていません。[]</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>[]内に表示されたシンボルが定義されていないため、実際の値を代入することができません。シンボル名の確認、または外部参照シンボルの場合は<A HREF="extern.html">EXTERN疑似命令</A>によって外部参照宣言しているかどうかを確認してください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+<TABLE WIDTH=100% BORDER=0>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>Unusual expression.</B></TD>
+	<TD ALIGN=RIGHT VALINE=TOP>:Error</TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD><B>異常な式です。</B></TD>
+	<TD></TD>
+</TR>
+<TR ALIGN=LEFT VALINE=TOP>
+	<TD COLSPAN=2>このエラーが表示される時はオブジェクトファイルが破壊されている可能性が考えられます。また、ISASとISLKのバージョンが異なる時にも発生するので、バージョンを確認後、再度アセンブルしリンクしてください。</TD>
+</TR>
+</TABLE>
+</P>
+
+<HR>
+
+</BODY>
+</HTML>

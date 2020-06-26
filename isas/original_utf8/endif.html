@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>ENDIF</TITLE>
+</HEAD>
+
+<BODY BGCOLOR=#ffffff>
+<H2>ENDIF</H2>
+
+<font size=-1>[ <A HREF="end.html">前ページへ</A> | <A HREF="equ.html">次ページへ</A> ]</font>
+<HR>
+
+<TABLE BORDER=0>
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>機能</B></TD>
+<TD><BR></TD>
+<TD>IFで始まる疑似命令で指定した条件範囲を終了します。
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>書式</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ENDIF
+</PRE>
+</TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>説明</B></TD>
+<TD><BR></TD>
+<TD><P>IFで始まる疑似命令を記述した後は、必ず対となるENDIF疑似命令を記述する必要があります。</P></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>参照</B></TD>
+<TD><BR></TD>
+<TD><A HREF="if.html">IF/IFN</A>、<A HREF="ife.html">IFE</A>、<A HREF="ifb.html">IFB</A>、<A HREF="ifnb.html">IFNB</A>、<A HREF="ifdef.html">IFDEF</A>、<A HREF="ifndef.html">IFNDEF</A>、<A HREF="else.html">ELSE</A></TD>
+</TR>
+
+<TR><TD>　</TD></TR>
+
+<TR ALIGN=LEFT VALIGN=TOP>
+<TD NOWRAP><B>入力例</B></TD>
+<TD><BR></TD>
+<TD>
+<PRE>	ifn	1		; IFN疑似命令
+	lda	#$00
+	endif			; アセンブル範囲の終わりを指定する
+</PRE>
+</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+</BODY>
+</HTML>
