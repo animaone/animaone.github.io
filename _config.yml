@@ -15,6 +15,10 @@ url: "http://animaone.github.io" # the base hostname & protocol for your site
 twitter_username: null
 github_username:  null
 
+exclude:
+  - ChartNew/
+  - isas/
+  
 # Build settings
 markdown: kramdown
 
